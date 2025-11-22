@@ -1,0 +1,62 @@
+function openBankGUI(player: player):
+    play sound "block.note_block.bit" with volume 0.25 and pitch 1.2 at {_player} to {_player}
+    set metadata tag "bank_menu" of {_player} to chest inventory with 3 rows named "Bank: $%balance of {_player}%"
+    set slot numbers from 0 to 54 of metadata tag "bank_menu" of {_player} to 1 of gray stained glass pane named "&r"
+    set slot 10 of metadata tag "bank_menu" of {_player} to 1 of emerald block named "&2Gesamtes Taschengeld einzahlen" with lore "&8→ &7Zahle dein gesamtes Taschengeld in die Bank ein.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 13 of metadata tag "bank_menu" of {_player} to 1 of book named "&fSpeziellen Betrag einzahlen/auszahlen." with lore "&8→ &7Genauen Betrag auszahlen/einzahlen.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 16 of metadata tag "bank_menu" of {_player} to 1 of redstone block named "&cGesamtes Bankguthaben auszahlen." with lore "&8→ &7Zahle dein gesamtes Bankguthabenbetrag aus.%new line%%new line%&8%{server_title_stripped}%"
+    open (metadata tag "bank_menu" of {_player}) to {_player}
+
+on login:
+    set metadata tag "bank_menu" of player to chest inventory with 3 rows named "Bank: $%balance of player%"
+    set slot numbers from 0 to 54 of metadata tag "bank_menu" of player to 1 of gray stained glass pane named "&r"
+    set slot 10 of metadata tag "bank_menu" of player to 1 of emerald block named "&2Gesamtes Taschengeld einzahlen" with lore "&8→ &7Zahle dein gesamtes Taschengeld in die Bank ein.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 13 of metadata tag "bank_menu" of player to 1 of book named "&fSpeziellen Betrag einzahlen/auszahlen." with lore "&8→ &7Genauen Betrag auszahlen/einzahlen.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 16 of metadata tag "bank_menu" of player to 1 of redstone block named "&cGesamtes Bankguthaben auszahlen." with lore "&8→ &7Zahle dein gesamtes Bankguthabenbetrag aus.%new line%%new line%&8%{server_title_stripped}%"
+
+on inventory click:
+    if event-inventory = (metadata tag "bank_menu" of player):
+        cancel event
+        close inventory of player
+
+        if name of event-item is "&2Gesamtes Taschengeld einzahlen":
+            if {balance::%uuid of player%} >= 1:
+                set {_exchangeMoney} to "%{balance::%uuid of player%}%"
+                set {_exchangeMoney::*} to {_exchangeMoney} split at "."
+                if {_exchangeMoney::1} is not set:
+                    set {_exchangeMoney::1} to "0"
+                if {_exchangeMoney::2} is not set:
+                    set {_exchangeMoney::2} to "0"
+                set {_exchangeMoney} to "%{_exchangeMoney::1}%.%first 2 character of {_exchangeMoney::2}%"
+                remove {_exchangeMoney} parsed as number from {balance::%uuid of player%}
+                if {balance::%uuid of player%} <= 0:
+                    set {balance::%uuid of player%} to 0
+                updateScoreboardBalance(player)
+                add {_exchangeMoney} parsed as number to balance of player
+                play sound "block.note_block.bit" with volume 0.5 and pitch 2.0 to player
+                make 15 of note at event-block with offset vector(0.5, 0.5, 0.5) with extra 0.001
+                send "%{server_prefix}%&c%{currency_symbol}%%{_exchangeMoney}% &7wurde auf die Bank überwiesen." to player
+            else:
+                send action bar "%{server_prefix}%&cDu hast nicht genügend Taschengeld für diesen Umtausch." to event-entity
+                play sound "block.note_block.bit" with volume 0.5 and pitch 0.2 to player
+                make 5 of angry villager at event-block with offset vector(0.5, 0.5, 0.5) with extra 0.001
+        if name of event-item is "&cGesamtes Bankguthaben auszahlen.":
+            if balance of player >= 0.01:
+                set {_exchangeMoney} to "%balance of player%"
+                replace all "," with "" in {_exchangeMoney}
+                set {_exchangeMoneyNum} to {_exchangeMoney} parsed as number
+                set {_exchangeMoneyNum} to round({_exchangeMoneyNum} * 100) / 100
+                remove {_exchangeMoneyNum} from balance of player
+                add {_exchangeMoneyNum} to {balance::%uuid of player%}
+                updateScoreboardBalance(player)
+                play sound "block.note_block.bit" with volume 0.5 and pitch 2.0 to player
+                make 50 of bubble at event-block with offset vector(0.5, 0.5, 0.5) with extra 0.001
+                send "%{server_prefix}%&a%{currency_symbol}%%{_exchangeMoney}% &7wurde ausgezahlt." to player
+            else:
+                send action bar "%{server_prefix}%&cDu hast nicht genügend Kontostand für diesen Umtausch." to event-entity
+                play sound "block.note_block.bit" with volume 0.5 and pitch 0.2 to player
+                make 5 of angry villager at event-block with offset vector(0.5, 0.5, 0.5) with extra 0.001
+        if name of event-item is "&fSpeziellen Betrag einzahlen/auszahlen.":
+            send "%{server_prefix}%Gebe dafür &f""/bank einzahlen/auszahlen (Betrag)"" &7ein." to player
+            play sound "block.note_block.bit" with volume 0.5 and pitch 0.2 to player
+            make 5 of angry villager at event-block with offset vector(0.5, 0.5, 0.5) with extra 0.001

@@ -1,0 +1,10 @@
+on damage:
+    if attacker is player:
+        if victim is not armor stand or fireball or wither skull:
+            wait 1 tick
+            set name of victim to "&c%health of victim%/%max health of victim% ❤"
+            show custom name of victim
+            wait 10 seconds
+            if victim is alive:
+                hide custom name of victim
+                reset custom name of victim

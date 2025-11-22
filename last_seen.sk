@@ -1,0 +1,15 @@
+on login:
+    set {last_seen::%uuid of player%} to now
+
+on logout:
+    set {last_seen::%uuid of player%} to now
+
+command /lastseen [<offlineplayer>]:
+    trigger:
+        if arg-1 is set:
+            if {last_seen::%uuid of arg-1%} is set:
+                send "%{server_prefix}%Der Spieler &f%arg-1% &7wurde zuletzt gesichtet&8: &f%{last_seen::%uuid of arg-1%}%" to player
+            else:
+                send "%{server_prefix}%&cDer Spieler %arg-1% wurde noch nicht gesichtet." to player
+        else:
+            send "%{server_prefix}%&cBitte gibt einen Spieler an." to player

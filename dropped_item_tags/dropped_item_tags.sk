@@ -1,0 +1,4 @@
+on item spawn:
+    if name of event-item is set:
+        set glowing of event-entity to true
+        set custom name of event-entity to "&9ℹ &7%name of event-item%"

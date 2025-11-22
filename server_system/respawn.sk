@@ -1,0 +1,8 @@
+on death of player:
+    set {_gamemode} to gamemode of victim
+    force victim to respawn
+    wait 5 tick
+    set gamemode of victim to {_gamemode}
+
+    if {jailed::*} contains victim:
+        teleport victim to location(-11.5, 14.0, 30.5, world "world")

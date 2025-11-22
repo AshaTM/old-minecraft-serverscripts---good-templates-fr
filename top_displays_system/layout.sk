@@ -1,0 +1,80 @@
+function setTopDisplays(title: text, subtitle: text, icon: text, topPlayer_1: offlineplayer, topValue_1: number, topPlayer_2: offlineplayer, topValue_2: number, topPlayer_3: offlineplayer, topValue_3: number, yaw: number, pitch: number, x: number, y: number, z: number, world: world):
+    
+    set {_location} to location at {_x}, {_y}, {_z} in world {_world}
+    set yaw of {_location} to {_yaw}
+    set pitch of {_location} to {_pitch}
+
+    set block 2 below {_location} to light[level=11]
+    
+    loop all text displays and item displays and block displays in radius 3.5 of {_location}:
+        kill loop-entity
+
+    spawn text display at {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to fixed
+    set display scale of {_display} to vector(1.5, 1.5, 1.5)
+    set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set display component of {_display} to mini message from "<dark_purple>%{server_title}%</dark_purple>"
+
+    spawn text display 0.75 below {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to fixed
+    set display scale of {_display} to vector(3, 3, 3)
+    set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set display component of {_display} to mini message from {_title}
+
+    spawn text display 1.25 below {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to fixed
+    set display scale of {_display} to vector(1, 1, 1)
+    set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set the line width of {_display} to 1024
+    set display component of {_display} to mini message from "<gray>%{_subtitle}%</gray>%new line%<color:dark_gray>(Wird alle 5 Minuten aktuallisiert)"
+
+    spawn item display 2.5 below and 2 right {_location}
+    set {_display} to last spawned item display
+    set yaw of {_display} to yaw of {_location}-180-20
+    set display billboard of {_display} to fixed
+    set display scale of {_display} to vector(2, 2, 2)
+    set display item of {_display} to 1 of player head with nbt from "{profile:{name:""%{_topPlayer_2}%""}}"
+    spawn text display 2.25 below and 2 right {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to vertical
+    set display scale of {_display} to vector(0.7, 0.7, 0.7)
+    set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set the line width of {_display} to 1024
+    set display component of {_display} to mini message from "<color:dark_gray>(<color:dark_purple>2.</color:dark_purple>)</color:dark_gray> %{_topPlayer_2}%%new line%<color:gray>%{_icon}%%regex({_topValue_2})%</color:gray>"
+
+    spawn item display 2.25 below {_location}
+    set {_display} to last spawned item display
+    set yaw of {_display} to yaw of {_location}-180
+    set display billboard of {_display} to fixed
+    set display scale of {_display} to vector(2, 2, 2)
+    set display item of {_display} to 1 of player head with nbt from "{profile:{name:""%{_topPlayer_1}%""}}"
+    spawn text display 2 below {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to vertical
+    set display scale of {_display} to vector(0.7, 0.7, 0.7)
+    set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set the line width of {_display} to 1024
+    set display component of {_display} to mini message from "<color:dark_gray>(<color:dark_purple>1.</color:dark_purple>)</color:dark_gray> %{_topPlayer_1}%%new line%<color:gray>%{_icon}%%regex({_topValue_1})%</color:gray>"
+
+    spawn item display 2.5 below and 2 left {_location}
+    set {_display} to last spawned item display
+    set yaw of {_display} to yaw of {_location}-180+20
+    set display billboard of {_display} to fixed
+    set display scale of {_display} to vector(2, 2, 2)
+    set display item of {_display} to 1 of player head with nbt from "{profile:{name:""%{_topPlayer_3}%""}}"
+    spawn text display 2.25 below and 2 left {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to vertical
+    set display scale of {_display} to vector(0.7, 0.7, 0.7)
+    set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set the line width of {_display} to 1024
+    set display component of {_display} to mini message from "<color:dark_gray>(<color:dark_purple>3.</color:dark_purple>)</color:dark_gray> %{_topPlayer_3}%%new line%<color:gray>%{_icon}%%regex({_topValue_3})%</color:gray>"

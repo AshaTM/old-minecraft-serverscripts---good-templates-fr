@@ -1,0 +1,25 @@
+on first login:
+    set login message to "%new line%&8[&a+&l+&a+&8] &a%player% &7hat %{server_title_stripped}% zum ersten mal &abetreten&7."
+    wait 5 tick
+    send "&8→ &5Begrüßt alle zusammen &d%player%&7!%new line%" to all players
+    play sound "block.note_block.bell" with volume 0.5 and pitch 1.0 to all players
+    loop 3 times:
+        launch star or creeper or large ball coloured white fading to gold at location(random number between -1.5 and 4, 1.0, random number between 40.5 and 45, world "world") with duration random number between 0.5 and 2
+        wait 5 tick
+
+on login:
+    if {vanish.%uuid of player%} is not set:
+        set login message to ""
+        #set login message to "&8[&a&l+&8] %prefix of player%%player% &7hat %{server_title_stripped}% &abetreten&7."
+        #set action bar of all players to "&8[&a&l+&8] %prefix of player%%player% &7hat %{server_title_stripped}% &abetreten&7."
+    else:
+        set login message to ""     
+
+on logout:
+    if {vanish.%uuid of player%} is not set:
+        set logout message to ""
+        #set logout message to "&8[&c&l-&8] %prefix of player%%player% &7hat %{server_title_stripped}% &cverlassen&7."
+        #set action bar of all players to "&8[&c&l-&8] %prefix of player%%player% &7hat %{server_title_stripped}% &cverlassen&7."
+
+    else:
+        set logout message to ""

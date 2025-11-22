@@ -1,0 +1,198 @@
+on load:
+
+    set {_location} to location(0.5, 25.0, 44.5, world "world")
+    set yaw of {_location} to 180
+    set pitch of {_location} to 45
+
+    loop all text displays and item displays and block displays in radius 5 of {_location}:
+        kill loop-entity
+
+    set block at {_location} to light[level=11]
+    spawn text display at {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to fixed
+    set display scale of {_display} to vector(25, 25, 25)
+    set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set display component of {_display} to mini message from "<dark_purple>%{server_title}%</dark_purple>"
+
+    spawn text display 3.25 below {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to fixed
+    set display scale of {_display} to vector(10, 10, 10)
+    set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set display component of {_display} to mini message from "%{server_motto}%"
+
+
+    set {_location} to location(0.5, 5.0, 10.5, world "world")
+    set yaw of {_location} to 180
+    set pitch of {_location} to 10
+
+    loop all text displays and item displays and block displays in radius 2.5 of {_location}:
+        kill loop-entity
+
+    set block at {_location} to light[level=11]
+    spawn text display 0.45 below {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to vertical
+    set display scale of {_display} to vector(2, 2, 2)
+    #set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set display component of {_display} to mini message from "<dark_purple:gold> Grundstücke </dark_purple>"
+
+    spawn text display 0.95 below {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to vertical
+    set display scale of {_display} to vector(1.25, 1.25, 1.25)
+    set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set display component of {_display} to mini message from "<color:gray>Spring rein, und schon geht's los!</color:gray>"
+
+    spawn item display 1.7 below {_location}
+    set {_display} to last spawned item display
+    set display billboard of {_display} to vertical
+    set display scale of {_display} to vector(1, 1, 1)
+    set display item of {_display} to 1 of hopper
+
+
+
+
+
+    set {_location} to location(0.5, 7.0, -5.5, world "world")
+    set yaw of {_location} to 180
+    set pitch of {_location} to 30
+
+    loop all text displays and item displays and block displays in radius 3.5 of {_location}:
+        kill loop-entity
+
+    set block at {_location} to light[level=11]
+    spawn text display 0.45 below {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to fixed
+    set display scale of {_display} to vector(3, 3, 3)
+    set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set display component of {_display} to mini message from "<color:dark_purple>%{server_title}%</color:dark_purple>"
+
+    spawn text display 1.1 below {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to fixed
+    set display scale of {_display} to vector(2.25, 2.25, 2.25)
+    set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set display component of {_display} to mini message from "🍖 <color:gray>%{server_motto}%</color:gray> 🪓"
+
+    spawn text display 1.5 below {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to fixed
+    set display scale of {_display} to vector(1, 1, 1)
+    set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set display component of {_display} to mini message from "<color:gray>Mit <color:red>❤</color:red> von <color:white>Ashalinux</color:white> erstellt.</color:gray>"
+
+    set yaw of {_location} to 0
+    set pitch of {_location} to 30
+    spawn text display 0.45 below {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to fixed
+    set display scale of {_display} to vector(3, 3, 3)
+    set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set display component of {_display} to mini message from "<color:dark_purple>%{server_title}%</color:dark_purple>"
+
+    spawn text display 1.1 below {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to fixed
+    set display scale of {_display} to vector(2.25, 2.25, 2.25)
+    set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set display component of {_display} to mini message from "🍖 <color:gray>%{server_motto}%</color:gray> 🪓"
+
+    spawn text display 1.5 below {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to fixed
+    set display scale of {_display} to vector(1, 1, 1)
+    set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set display component of {_display} to mini message from "<color:gray>Mit <color:red>❤</color:red> von <color:white>Ashalinux</color:white> erstellt.</color:gray>"
+
+    set {_location} to location(0.5, 20.0, 56.5, world "world")
+    set yaw of {_location} to 0
+    set pitch of {_location} to 20
+
+    loop all text displays and item displays and block displays in radius 1.5 of {_location}:
+        kill loop-entity
+
+    spawn text display at {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to fixed
+    set display scale of {_display} to vector(0.7, 0.7, 0.7)
+    #set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set the line width of {_display} to 1024
+    set display component of {_display} to mini message from "%new line%<underlined>Ozymandias</underlined>%new line%%new line%Ein Wandrer kam aus einem alten Land,%newline%Und sprach: „Ein riesig Trümmerbild von Stein%newline%Steht in der Wüste, rumpflos Bein an Bein,%newline%Das Haupt daneben, halb verdeckt vom Sand.%newline%%newline%Der Züge Trotz belehrt uns: wohl verstand%newline%Der Bildner, jenes eitlen Hohnes Schein%newline%Zu lesen, der in todten Stoff hinein%newline%Geprägt den Stempel seiner ehrnen Hand.%newline%%newline%   Und auf dem Sockel steht die Schrift: ‚Mein Name  %newline%Ist Osymandias, aller Kön’ge König: –%newline%Seht meine Werke, Mächt’ge, und erbebt!‘%newline%%newline%Nichts weiter blieb. Ein Bild von düstrem Grame,%newline%Dehnt um die Trümmer endlos, kahl, eintönig%newline%Die Wüste sich, die den Koloß begräbt.“%new line%%newline%"
+
+    set {_location} to location(-5.5, 1.5, 50, world "world")
+    set yaw of {_location} to 0
+    set pitch of {_location} to 0
+
+    loop all text displays and item displays and block displays in radius 0.5 of {_location}:
+        kill loop-entity
+
+    spawn text display at {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to fixed
+    set display scale of {_display} to vector(0.35, 0.35, 0.35)
+    set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set the line width of {_display} to 1024
+    set display component of {_display} to mini message from "<gray>Der Tyrann Dionysios I. von Syrakus%newline%lud seinen Höfling Damokles zu einem üppigen Festmahl ein,%newline%um ihm den Reichtum und die Macht,%newline%die er besaß, zu demonstrieren.%newline%%newline%Über Damokles' Platz ließ Dionysios jedoch%newline%ein scharfes Schwert an einem Pferdehaar aufhängen.%newline%%newline%Dieses Schwert sollte Damokles verdeutlichen,%newline%dass sein glückliches Leben von einer ständigen Gefahr bedroht war.%newline%%newline%Damokles konnte das Festmahl nicht genießen%newline%und bat darum, den Palast verlassen zu dürfen,%newline%da er die damit verbundene Angst und Unsicherheit nicht ertragen konnte."
+
+
+
+    set {_location} to location(0.5, 2.25, 4.5, world "world")
+    set yaw of {_location} to 0
+    set pitch of {_location} to 0
+
+    loop all text displays and item displays and block displays in radius 0.5001 of {_location}:
+        kill loop-entity
+
+    spawn text display at {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to center
+    set display scale of {_display} to vector(0.75, 0.75, 0.75)
+    set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set the line width of {_display} to 1024
+    set display component of {_display} to mini message from "<dark_purple>Achtung</dark_purple>%new line%* <underlined>Jump-Pad</underlined> *"
+    
+
+    set {_location} to location(0.5, 0, 42.6, world "world")
+    set yaw of {_location} to 0
+    set pitch of {_location} to 0
+    
+    loop all text displays and item displays and block displays in radius 2.5001 of {_location}:
+        kill loop-entity
+    
+    spawn block display at {_location}
+    set {_display} to last spawned block display
+    set yaw of {_display} to 45
+    set display scale of {_display} to vector(1.25, 1.25, 1.25)
+    set display block data of {_display} to soul campfire
+
+    set {_location} to location(0.5, 2.88, -14.9, world "world")
+    set yaw of {_location} to 0
+    set pitch of {_location} to 0
+
+    loop all text displays and item displays and block displays in radius 1.5 of {_location}:
+        kill loop-entity
+
+    spawn text display at {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to fixed
+    set display scale of {_display} to vector(0.35, 0.35, 0.35)
+    set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set the line width of {_display} to 1024
+    set display component of {_display} to mini message from "<gold><bold>Danke. Einfach nur danke. </bold>⭐</gold>%newline%<gray>Dass du dir <white><bold>Zeit</bold></white> nimmst<dark_gray>.</dark_gray> Dass du hier bist<dark_gray>.</dark_gray> Dass du Teil <underlined><gold>dieser Welt</gold></underlined> bist<dark_gray>.</dark_gray></gray>%newline%<gray>Dieser Server existiert nicht <italic>einfach nur</italic><dark_gray>,</dark_gray></gray> <gold><bold>er lebt – durch dich und alle, die <italic>mitspielen</italic></bold></gold><dark_gray>.</dark_gray>%newline%<gray>Was als <underlined><white>kleine Idee</white></underlined> begann, ist zu einem Ort geworden<dark_gray>,</dark_gray></gray> <gold>an dem Menschen <white><bold>lachen</bold></white><dark_gray>,</dark_gray> <italic>bauen</italic><dark_gray>,</dark_gray> kämpfen<dark_gray>,</dark_gray> <underlined><white>träumen</white></underlined><dark_gray>.</dark_gray></gold>%newline%<gray>Und ohne dich wäre das alles nur <white><bold>Code</bold></white><dark_gray>,</dark_gray> nur Blöcke<dark_gray>,</dark_gray> nur <italic><white>Texturen</white></italic><dark_gray>.</dark_gray></gray>%newline%<gray>Du gibst dem Ganzen <white><bold><underlined>Leben</underlined></bold></white><dark_gray>.</dark_gray></gray>%newline%%newline%<gold><bold>Danke für dein Vertrauen<dark_gray>.</dark_gray></bold></gold>%newline%<gray>Für jeden <white><bold>Login</bold></white><dark_gray>,</dark_gray> jeden Block<dark_gray>,</dark_gray> jede Nachricht im Chat<dark_gray>.</dark_gray></gray>%newline%<gold>Danke, dass du diesen Server unterstützt – mit <underlined><white>deiner Zeit</white></underlined><dark_gray>,</dark_gray> deiner <white><bold>Energie</bold></white><dark_gray>,</dark_gray> deiner <italic><white>Präsenz</white></italic><dark_gray>.</dark_gray></gold>%newline%<gray>Wenn du helfen willst, noch mehr Leben auf den Server zu bringen<dark_gray>,</dark_gray> unterstütze uns mit einem</gray> <click:run_command:/vote><hover:show_text:'<gray>Klicke hier, um abzustimmen!'><bold><gold>/vote</gold></bold></hover></click><dark_gray>.</dark_gray>%newline%<gray>Jede Stimme zählt – und bringt neue <white><bold>Abenteurer</bold></white> in unsere Welt<dark_gray>.</dark_gray></gray>%newline%<gold><bold><underlined>Bleib wie du bist</underlined><dark_gray>.</dark_gray> Wir freuen uns, dass du da bist </bold>❤</gold>%newline%<gray>– Dein <italic><gold>Ashalinux</gold></italic></gray>"

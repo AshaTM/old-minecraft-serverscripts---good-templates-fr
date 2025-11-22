@@ -1,0 +1,93 @@
+command /rtpwand:
+    trigger:
+        set {_wand} to 1 of shiny golden axe named "&6&nRTP WAND" with lore "&7With this wand you can select an area in which", "&7the player must move in order to be random teleported" and "&7into one of the 3 default worlds"
+        give player {_wand}
+
+on left click:
+    if tool of player is 1 of shiny golden axe named "&6&nRTP WAND":
+        cancel event
+        if event-block is set:
+            if location of event-block is not {rtp_location_1::%uuid of player%}:
+                set {rtp_location_1::%uuid of player%} to location of event-block
+                send "&fRTP-REGIONS &8| &7location #1 was set. &8(%{rtp_location_1::%uuid of player%}%)" to player
+            else:
+                send "&fRTP-REGIONS &8| &cPoint #1 already set." to player
+
+on right click:
+    if tool of player is 1 of shiny golden axe named "&6&nRTP WAND":
+        cancel event
+        if event-block is set:
+            if location of event-block is not {rtp_location_2::%uuid of player%}:
+                set {rtp_location_2::%uuid of player%} to location of event-block
+                send "&fRTP-REGIONS &8| &7location #2 was set. &8(%{rtp_location_2::%uuid of player%}%)" to player
+            else:
+                send "&fRTP-REGIONS &8| &cPoint #2 already set." to player
+
+command /setrtp [<text>] [<world>]:
+    trigger:
+        if arg-1 is set:
+            if arg-2 exists:
+                if arg-1 is "overworld":
+                    set {rtp_regions_world_overworld_location_1} to {rtp_location_1::%uuid of player%}
+                    set {rtp_regions_world_overworld_location_2} to {rtp_location_2::%uuid of player%}
+                    delete {rtp_location_1::%uuid of player%}
+                    delete {rtp_location_2::%uuid of player%}
+                    send "&fRTP-REGIONS &8| &7overworld RTP was set." to player
+                if arg-1 is "nether":
+                    set {rtp_regions_world_nether_location_1} to {rtp_location_1::%uuid of player%}
+                    set {rtp_regions_world_nether_location_2} to {rtp_location_2::%uuid of player%}
+                    delete {rtp_location_1::%uuid of player%}
+                    delete {rtp_location_2::%uuid of player%}
+                    send "&fRTP-REGIONS &8| &7nether RTP was set." to player
+                if arg-1 is "end":
+                    set {rtp_regions_world_end_location_1} to {rtp_location_1::%uuid of player%}
+                    set {rtp_regions_world_end_location_2} to {rtp_location_2::%uuid of player%}
+                    delete {rtp_location_1::%uuid of player%}
+                    delete {rtp_location_2::%uuid of player%}
+                    send "&fRTP-REGIONS &8| &7end RTP was set." to player
+            else:
+                send "&fRTP-REGIONS &8| &cThis LINK world was not found: ""%arg-2%""" to player
+        else:
+            send "&fRTP-REGIONS &8| &7/setrtp (overworld,nether,end) (real_world_name)" to player
+
+on tab complete of "/setrtp":
+    set tab completions for position 1 to "overworld", "nether", "end"
+    set tab completions for position 2 to all worlds
+
+every 1 second:
+    loop all players:
+        if loop-player is within {rtp_regions_world_overworld_location_1} and {rtp_regions_world_overworld_location_2}:
+            randomTeleport(loop-player, "world_overworld")
+            stop
+        if loop-player is within {rtp_regions_world_nether_location_1} and {rtp_regions_world_nether_location_2}:
+            randomTeleport(loop-player, "world_nether")
+            stop
+        if loop-player is within {rtp_regions_world_end_location_1} and {rtp_regions_world_end_location_2}:
+            randomTeleport(loop-player, "world_the_end")
+
+on region enter:
+    if region at player is "nether_rtp":
+        wait 5 tick
+        if region at player is "nether_rtp":
+            send action bar "&fRTP &8| &7Der Random-Teleport wird ausgeführt in &c&n3&7 Sekunden." to player
+            wait 1 second
+            if region at player is "nether_rtp":
+                send action bar "&fRTP &8| &7Der Random-Teleport wird ausgeführt in &c&n2&7 Sekunden." to player
+                wait 1 second
+                if region at player is "nether_rtp":
+                    send action bar "&fRTP &8| &7Der Random-Teleport wird ausgeführt in &c&n1&7 Sekunden." to player
+                    wait 1 second
+                    if region at player is "nether_rtp":
+                        send action bar "&fRTP &8| &7Der Random-Teleport wird durchgeführt..." to player
+                        wait 1 second
+                        randomTeleport(player, "world_the_end")
+                    else:
+                        send action bar "&fRTP &8| &cDer Random-Teleport wurde abgebrochen." to player
+                        stop
+                else:
+                    send action bar "&fRTP &8| &cDer Random-Teleport wurde abgebrochen." to player
+                    stop
+            else:
+                send action bar "&fRTP &8| &cDer Random-Teleport wurde abgebrochen." to player
+                stop
+    

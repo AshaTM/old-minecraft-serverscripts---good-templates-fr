@@ -1,0 +1,3 @@
+on food level change:
+    if food level of player < 4:
+        cancel event

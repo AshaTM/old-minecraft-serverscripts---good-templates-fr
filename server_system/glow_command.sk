@@ -1,0 +1,12 @@
+command /glow:
+    permission: command.glow
+    trigger:
+        if glowing of player is true:
+            set glowing of player to false
+            send "%{server_prefix}%Du &cleuchtest nicht &7mehr."
+        else:
+            set glowing of player to true
+            send "%{server_prefix}%Du &aleuchtest &7jetzt."
+
+on login:
+    set glowing of player to false

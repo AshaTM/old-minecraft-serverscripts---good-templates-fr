@@ -1,0 +1,27 @@
+command /skbalancetop:
+    aliases: baltop,
+    trigger:
+        set {_top::*} to sorted indices of {balance::*} in descending order
+        message "" to sender
+        message "%{server_prefix}%Die Top 5 Kontostände&8:" to sender
+        loop 5 times:
+            add {_top::%loop-value%} to {_top_5::*}
+        loop {_top_5::*}:
+            add 1 to {_n}
+            message "%{_n}%. &8- &7%{_top_5::%{_n}%} parsed as offlineplayer% &8- &f%regex({balance::%{_top_5::%{_n}%}%})%%{currency_symbol}%" to sender
+        message "" to sender
+
+command /skbalance [<offlineplayer>]:
+    aliases: bal, money
+    trigger:
+        if arg-1 is not set:
+            set {_balance} to {balance::%player's uuid%} ? 0
+            send "%{server_prefix}%Dein Kontostand: &f%regex({_balance})%%{currency_symbol}%" to player
+        else:
+            set {_target} to arg-1
+            set {_uuid} to {_target}'s uuid
+            if {balance::%{_uuid}%} is set:
+                set {_balance} to {balance::%{_uuid}%}
+                send "%{server_prefix}%Kontostand von &f%{_target}%&7: &f%regex({_balance})%%{currency_symbol}%" to player
+            else:
+                send "%{server_prefix}%Der Spieler &f%{_target}% &7hat kein Konto." to player

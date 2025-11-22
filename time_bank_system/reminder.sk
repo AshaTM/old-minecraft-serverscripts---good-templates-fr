@@ -1,0 +1,8 @@
+every 13 minutes:
+    loop all players:
+        if {isAfk::%uuid of loop-player%} is 0:
+            if {time_balance::%uuid of loop-player%} >= 10:
+                play sound "block.note_block.bit" with volume 0.5 and pitch 2.0 to loop-player
+                loop 5 times:
+                    send action bar "%{server_prefix}%Du hast schon &a&n%{currency_symbol}%%{time_balance::%uuid of loop-player%}%&7 auf der Zeitbank &8→ &cVor dem ausloggen noch abheben." to loop-player
+                    wait 1 second

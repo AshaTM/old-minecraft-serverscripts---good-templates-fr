@@ -1,0 +1,13 @@
+function sizeSwap(player: player):
+    if {_player} has permission "use.sizeswapper":
+        if {size::%uuid of {_player}%} is not set:
+            set {size::%uuid of {_player}%} to true
+            set scale attribute of {_player} to 0.5
+            send action bar "%{server_prefix}%Deine Höhe wurde auf &f0.5 &7geändert." to {_player}
+            stop
+        else:
+            delete {size::%uuid of {_player}%}
+            set scale attribute of {_player} to 1
+            send action bar "%{server_prefix}%Deine Höhe wurde auf &f1 &7geändert." to {_player}
+    else:
+        send action bar "&cDieses Feature gibt es erst mit einem höheren Rang..." to {_player}

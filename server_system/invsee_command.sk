@@ -1,0 +1,11 @@
+command /invsee [<offlineplayer>]:
+    permission: command.invsee
+    trigger:
+        if arg-1 is set:
+            if arg-1 is online:
+                open inventory of arg-1 to player
+                send "%{server_prefix}%Inventar von &f%arg-1% &7geöffnet."
+            else:
+                send "%{server_prefix}%Bitte gib einen &fSpieler &7an, der &aonline &7ist." to player
+        else:
+            send "%{server_prefix}%Du musst einen Spieler angeben."

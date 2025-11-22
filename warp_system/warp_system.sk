@@ -1,0 +1,162 @@
+function openWarpsGUI(player: player):
+    play sound "block.note_block.bit" with volume 0.25 and pitch 1.2 at {_player} to {_player}
+    open (metadata tag "warps_menu" of {_player}) to {_player}
+
+on login:
+    set metadata tag "warps_menu" of player to chest inventory with 6 row named "Warps"
+    set slot numbers from 0 to 54 of metadata tag "warps_menu" of player to 1 of gray stained glass pane named "&r"
+    set slot 0, 1, 7, 8, 12, 36, 44, 45, 49 and 53 of metadata tag "warps_menu" of player to 1 of black stained glass pane named "&r"
+    set slot 12 of metadata tag "warps_menu" of player to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODdlNzE5M2EwYzNmZjgyYzE4OTI3ZDVhNzMwMTVmMDU3ZDA4N2ZmOTJjNGJjZTE1NTdiZTQ2MjNkMzA5NTBmZiJ9fX0=""}]}}" named "&fKühe" with lore "&8→ &7Teleportiere dich zu den Kühen.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 14 of metadata tag "warps_menu" of player to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWM5NmJlNzg4NmViN2RmNzU1MjVhMzYzZTVmNTQ5NjI2YzIxMzg4ZjBmZGE5ODhhNmU4YmY0ODdhNTMifX19""}]}}" named "&fCrates" with lore "&8→ &7Teleportiere dich zu den Crates.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 19 of metadata tag "warps_menu" of player to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWNhYTc0NDZiZTg3NGJmMWExNGVkMWZjZWZjYzBhMDkyMzM2YzFiZjViZjQ2NWU5ZDI1NGRlZTM0YWZlYTc5In19fQ==""}]}}" named "&fHerzen" with lore "&8→ &7Teleportiere dich zu den Herzen.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 25 of metadata tag "warps_menu" of player to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDA4YzFiYTNkMTNmMmMxZGRlMWVlOTk1YTVlYjUxODNkMmFlZGM1YWUyMzVkOGJkYWM4MTFhNWUzMGJjOTdlOCJ9fX0=""}]}}" named "&fZeitbank" with lore "&8→ &7Teleportiere dich zu der Zeitbank.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 31 of metadata tag "warps_menu" of player to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTVhOTZkYTEwZTlhMWQwMGZkMmFiNzJlZDIxZmJhNzU0NTViMTA4NTYwNzg1OGQyMDgxNDU1YTI1ZGRiM2RhMCJ9fX0=""}]}}" named "&fPlaza" with lore "&8→ &7Teleportiere dich zur Plaza.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 38 of metadata tag "warps_menu" of player to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjI3ODQzMDdiODkyZjUyYjkyZjc0ZmE5ZGI0OTg0YzRmMGYwMmViODFjNjc1MmU1ZWJhNjlhZDY3ODU4NDI3ZSJ9fX0=""}]}}" named "&fAdmin Shop" with lore "&8→ &7Teleportiere dich zum Admin Shop.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 42 of metadata tag "warps_menu" of player to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDhkZDBlYjVjMDEwNzhmMTg0MzM0NTY1ZjEzMjQyMTE5YWI1MTQ3Nzc3NDcyMWQ2ZTUzYzcxYzM5ODYxM2E1NiJ9fX0=""}]}}" named "&fZufallsteleport" with lore "&8→ &7Teleportiere dich zufällig in den Welten.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 49 of metadata tag "warps_menu" of player to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjA0OGNjMGRlZTA5NWJlNTgzOWZkZjJmN2QzODI1NTZjMDBjNjg2YzdlYjRiM2M2OTBiZTRkZjAyZjIxMmFhZCJ9fX0=""}]}}" named "&fSpawn" with lore "&8→ &7Teleportiere dich zum Spawn.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 8 of metadata tag "warps_menu" of player to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTVkNzZkOTBiMzc4MDgzZDE0Nzc1NjgwNTA1ZGRiMWU2YzJjNmRjZjRkZGU3ZjliMWY1ODgwOWJlYzZjNjVjOCJ9fX0=""}]}}" named "&fDuell-Tribühne" with lore "&8→ &7Teleportiere dich zur Duell-Tribühne.%new line%%new line%&8%{server_title_stripped}%"
+
+
+function warpSpawn(player: player):
+    teleportToSpawn({_player})
+    play sound "block.stone_button.click_on" with volume 0.5 and pitch 2.0 to {_player}
+    send title "&7Spawn" with subtitle {server_title_stripped} to {_player} for 15 tick with fadein 0 tick and fade out 0 tick
+    send "%{server_prefix}%Teleportiere dich zum &fSpawn&7..." to {_player}
+
+function warpZeitbank(player: player):
+    set {_loc} to location(-17.5, 1.0, 44.5, world "world")
+    set yaw of {_loc} to 90
+    teleport {_player} to {_loc}
+    play sound "block.stone_button.click_on" with volume 0.5 and pitch 2.0 to {_player}
+    send title "&7Zeitbank" with subtitle {server_title_stripped} to {_player} for 15 tick with fadein 0 tick and fade out 0 tick
+    send "%{server_prefix}%Teleportiere dich zur &fZeitbank&7..." to {_player}
+
+function warpHerzen(player: player):
+    set {_loc} to location(18.5, 1.0, 44.5, world "world")
+    set yaw of {_loc} to -90
+    teleport {_player} to {_loc}
+    play sound "block.stone_button.click_on" with volume 0.5 and pitch 2.0 to {_player}
+    send title "&7Herzen" with subtitle {server_title_stripped} to {_player} for 15 tick with fadein 0 tick and fade out 0 tick
+    send "%{server_prefix}%Teleportiere dich zu den &fHerzen&7..." to {_player}
+
+function warpPlaza(player: player):
+    set {_loc} to location(0.5, 0.0, 35.5, world "world")
+    teleport {_player} to {_loc}
+    play sound "block.stone_button.click_on" with volume 0.5 and pitch 2.0 to {_player}
+    send title "&7Plaza" with subtitle {server_title_stripped} to {_player} for 15 tick with fadein 0 tick and fade out 0 tick
+    send "%{server_prefix}%Teleportiere dich zur &fPlaza&7..." to {_player}
+
+function warpAdminShop(player: player):
+    set {_loc} to location(0.5, 1.0, 62.5, world "world")
+    teleport {_player} to {_loc}
+    play sound "block.stone_button.click_on" with volume 0.5 and pitch 2.0 to {_player}
+    send title "&7Admin Shop" with subtitle {server_title_stripped} to {_player} for 15 tick with fadein 0 tick and fade out 0 tick
+    send "%{server_prefix}%Teleportiere dich zum &fAdmin Shop&7..." to {_player}
+
+function warpKuehe(player: player):
+    set {_loc} to location(-7.5, 2.00, -0.5, world "world")
+    set yaw of {_loc} to 90
+    set pitch of {_loc} to 20
+    teleport {_player} to {_loc}
+    play sound "block.stone_button.click_on" with volume 0.5 and pitch 2.0 to {_player}
+    send title "&7Kühe" with subtitle {server_title_stripped} to {_player} for 15 tick with fadein 0 tick and fade out 0 tick
+    send "%{server_prefix}%Teleportiere dich zu den &fKühen&7..." to {_player}
+
+function warpZufallsteleport(player: player):
+    open (metadata tag "random_teleport_menu" of {_player}) to {_player}
+    play sound "block.stone_button.click_on" with volume 0.5 and pitch 2.0 to {_player}
+
+function warpCrates(player: player):
+    set {_loc} to location(8.5, 2.0, -5.5, world "world")
+    set yaw of {_loc} to -90
+    teleport {_player} to {_loc}
+    play sound "block.stone_button.click_on" with volume 0.5 and pitch 2.0 to {_player}
+    send title "&7Crates" with subtitle {server_title_stripped} to {_player} for 15 tick with fadein 0 tick and fade out 0 tick
+    send "%{server_prefix}%Teleportiere dich zu den &fCrates&7..." to {_player}
+
+function warpduellTribuehne(player: player):
+    set {_loc} to location(0.5, 20.0, -604.5, world "world")
+    set yaw of {_loc} to 180
+    teleport {_player} to {_loc}
+    play sound "block.stone_button.click_on" with volume 0.5 and pitch 2.0 to {_player}
+    send title "&7Duell-Tribühne" with subtitle {server_title_stripped} to {_player} for 15 tick with fadein 0 tick and fade out 0 tick
+    send "%{server_prefix}%Teleportiere dich zur &fDuell-Tribühne&7..." to {_player}
+
+on inventory click:
+    if event-inventory = (metadata tag "warps_menu" of player):
+        cancel event
+
+        if name of event-item is "&fSpawn":
+            close inventory of player
+            warpSpawn(player)
+
+        if name of event-item is "&fZeitbank":
+            close inventory of player
+            warpZeitbank(player)
+
+        if name of event-item is "&fHerzen":
+            close inventory of player
+            warpHerzen(player)
+
+        if name of event-item is "&fPlaza":
+            close inventory of player
+            warpPlaza(player)
+
+        if name of event-item is "&fAdmin Shop":
+            close inventory of player
+            warpAdminShop(player)
+
+        if name of event-item is "&fKühe":
+            close inventory of player
+            warpKuehe(player)
+
+        if name of event-item is "&fZufallsteleport":
+            close inventory of player
+            warpZufallsteleport(player)
+
+        if name of event-item is "&fCrates":
+            close inventory of player
+            warpCrates(player)
+
+        if name of event-item is "&fDuell-Tribühne":
+            close inventory of player
+            warpduellTribuehne(player)
+
+command /warp [<text>]:
+    aliases: warps
+    trigger:
+        if arg-1 is not set:
+            openWarpsGUI(player)
+            stop
+
+        if arg-1 is "spawn":
+            warpSpawn(player)
+        else if arg-1 is "zeitbank":
+            warpZeitbank(player)
+        else if arg-1 is "herzen":
+            warpHerzen(player)
+        else if arg-1 is "plaza":
+            warpPlaza(player)
+        else if arg-1 is "adminshop" or "shop":
+            warpAdminShop(player)
+        else if arg-1 is "kühe" or "kuehe":
+            warpKuehe(player)
+        else if arg-1 is "zufallsteleport" or "rtp":
+            warpZufallsteleport(player)
+        else if arg-1 is "crates":
+            warpCrates(player)
+        else if arg-1 is "Duell-Tribühne":
+            warpduellTribuehne(player)
+        else:
+            send "%{server_prefix}%Dieser Warp existiert nicht. Nutze &f/warp &7um eine Liste zu sehen." to player
+
+on tab complete of "/warp" or "/warps":
+    set tab completions for position 1 to "spawn", "zeitbank", "herzen", "plaza", "adminshop", "shop", "kühe", "kuehe", "zufallsteleport", "rtp", "crates", "Duell-Tribühne"
+
+command /shop:
+    trigger:
+        warpAdminShop(player)
+
+command /crates:
+    trigger:
+        warpCrates(player)

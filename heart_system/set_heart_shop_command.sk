@@ -1,0 +1,9 @@
+command /set_heart_shop:
+    permission: command.set_heart_shop
+    trigger:
+        set {_loc} to center of target block of player
+        set {_x} to x-coordinate of {_loc}
+        set {_y} to y-coordinate of {_loc}
+        set {_z} to z-coordinate of {_loc}
+        set {_world} to world of {_loc}
+        setHeartShop({_x}, {_y}, {_z}, {_world})

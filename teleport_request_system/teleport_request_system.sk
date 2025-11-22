@@ -1,0 +1,118 @@
+on load:
+    delete {request::*}
+    delete {requesthere::*}
+
+command /tpa [<offline player>]:
+    cooldown: 10 seconds
+    cooldown message: Warte kurz, bevor du die nächste Anfrage schickst.
+    trigger:
+        set {_p} to arg-1 
+        set {_u} to uuid of arg-1
+        if arg-1 is set:
+            if {_p} is online:
+                if {_p} is not player:
+                    if {request::player::%{_u}%} is set:
+                        send "🪣 &f&lTPA &8| &7Dieser Spieler hat bereits eine offene Anfrage. Bitte warte." to player
+                        stop
+                    send "🪣 &f&lTPA &8| %prefix of player%%player% &7möchte sich zu dir teleportieren." to {_p}
+                    send formatted "<command:/tpaccept>&a[KLICK HIER] &7um ihn zu dir zu holen." to {_p}
+                    send "&8(Tipp: Du kannst auch /tpaccept manuell eingeben.)" to {_p}
+                    send "🪣 &f&lTPA &8| &7Anfrage an %prefix of {_p}%%{_p}% gesendet – gültig für 30 Sekunden." to player
+                    set {request::player::%{_u}%} to player
+                    wait 30 seconds
+                    if {request::player::%{_u}%} is set:
+                        delete {request::player::%{_u}%}
+                        send "🪣 &f&lTPA &8| &cDeine Anfrage an %prefix of {_p}%%{_p}% ist abgelaufen." to player
+                        send "🪣 &f&lTPA &8| &cDie Anfrage von %prefix of player%%player% ist nicht mehr gültig." to {_p}
+                else:
+                    send "🪣 &f&lTPA &8| &7Du kannst dich nicht zu dir selbst teleportieren." to player
+            else:
+                send "🪣 &f&lTPA &8| &7Spieler ist aktuell nicht online." to player
+        else:
+            send "🪣 &f&lTPA &8| &7Du musst einen gültigen Spielernamen angeben." to player
+
+
+command /tpahere [<offline player>]:
+    cooldown: 10 seconds
+    cooldown message: Warte kurz, bevor du die nächste Anfrage schickst.
+    trigger:
+        set {_p} to arg-1 
+        set {_u} to uuid of arg-1
+        if arg-1 is set:
+            if {_p} is online:
+                if {_p} is not player:
+                    if {requesthere::player::%{_u}%} is set:
+                        send "🪣 &f&lTPA &8| &7Dieser Spieler hat bereits eine offene Anfrage. Bitte warte." to player
+                        stop
+                    send "🪣 &f&lTPA &8| %prefix of player%%player% &7möchte dich zu sich teleportieren." to {_p}
+                    send formatted "<command:/tpaccept>&a[KLICK HIER] &7um dich zu ihm zu teleportieren." to {_p}
+                    send "&8(Tipp: Du kannst auch /tpaccept manuell eingeben.)" to {_p}
+                    send "🪣 &f&lTPA &8| &7Anfrage an %prefix of {_p}%%{_p}% gesendet – gültig für 30 Sekunden." to player
+                    set {requesthere::player::%{_u}%} to player
+                    wait 30 seconds
+                    if {requesthere::player::%{_u}%} is set:
+                        delete {requesthere::player::%{_u}%}
+                        send "🪣 &f&lTPA &8| &cDeine Anfrage an %prefix of {_p}%%{_p}% ist abgelaufen." to player
+                        send "🪣 &f&lTPA &8| &cDie Anfrage von %prefix of player%%player% ist nicht mehr gültig." to {_p}
+                else:
+                    send "🪣 &f&lTPA &8| &7Du kannst dich nicht zu dir selbst teleportieren." to player
+            else:
+                send "🪣 &f&lTPA &8| &7Spieler ist aktuell nicht online." to player
+        else:
+            send "🪣 &f&lTPA &8| &7Du musst einen gültigen Spielernamen angeben." to player
+
+
+command /tpaccept:
+    trigger:
+        set {_u} to uuid of player
+
+        # Prüfe zuerst auf /tpahere
+        if {requesthere::player::%{_u}%} is set:
+            set {_p} to {requesthere::player::%{_u}%}
+            if {_p} is online:
+                teleport player to location of {_p}
+                send "🪣 &f&lTPA &8| &aDu wurdest zu %prefix of {_p}%%{_p}% teleportiert!" to player
+                send "🪣 &f&lTPA &8| &a%prefix of player%%player% &ahat deine Teleport-Anfrage bestätigt!" to {_p}
+                delete {requesthere::player::%{_u}%}
+            else:
+                send "🪣 &f&lTPA &8| &7Der Zielspieler ist nicht mehr online." to player
+                delete {requesthere::player::%{_u}%}
+            stop
+
+        # Dann normale /tpa
+        if {request::player::%{_u}%} is set:
+            set {_p} to {request::player::%{_u}%}
+            if {_p} is online:
+                teleport {_p} to location of player
+                send "🪣 &f&lTPA &8| &a%prefix of player%%player% &ahat deine Teleport-Anfrage bestätigt!" to {_p}
+                send "🪣 &f&lTPA &8| &aAnfrage von %prefix of {_p}%%{_p}% &aangenommen." to player
+                delete {request::player::%{_u}%}
+            else:
+                send "🪣 &f&lTPA &8| &7Der anfragende Spieler ist nicht mehr online." to player
+                delete {request::player::%{_u}%}
+        else:
+            send "🪣 &f&lTPA &8| &7Keine aktive Anfrage vorhanden." to player
+
+command /tpahereall:
+    permission: tpa.all
+    permission message: "🪣 &f&lTPA &8| &cDazu hast du keine Berechtigung."
+    cooldown: 30 seconds
+    cooldown message: "🪣 &f&lTPA &8| &7Bitte warte kurz, bevor du wieder alle einlädst."
+    trigger:
+        loop all players:
+            if loop-player is not player:
+                if {requesthere::player::%uuid of loop-player%} is not set:
+                    send "🪣 &f&lTPA &8| %prefix of player%%player% &7möchte dich zu sich teleportieren." to loop-player
+                    send formatted "<command:/tpaccept>&a[KLICK HIER] &7um dich zu ihm zu teleportieren." to loop-player
+                    send "&8(Tipp: Du kannst auch /tpaccept manuell eingeben.)" to loop-player
+                    set {requesthere::player::%uuid of loop-player%} to player
+                else:
+                    send "🪣 &f&lTPA &8| &7Du hast bereits eine offene Anfrage von jemandem, warte bitte kurz." to loop-player
+        send "🪣 &f&lTPA &8| &7Anfrage an &aalle &7gesendet – gültig für 30 Sekunden." to player
+        wait 30 seconds
+        loop all players:
+            if {requesthere::player::%uuid of loop-player%} is set:
+                if {requesthere::player::%uuid of loop-player%} = player:
+                    delete {requesthere::player::%uuid of loop-player%}
+                    send "🪣 &f&lTPA &8| &cDie Anfrage von %prefix of player%%player% &cist abgelaufen." to loop-player
+        send "🪣 &f&lTPA &8| &7Alle offenen Anfragen wurden &cabgebrochen." to player

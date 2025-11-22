@@ -1,0 +1,13 @@
+command /size [<number>] [<offlineplayer>]:
+    permission: command.size
+    trigger:
+        if arg-1 is set:
+            if arg-2 is not set:
+                set scale attribute of player to arg-1
+                send "%{server_prefix}%Deine Höhe wurde auf &f%arg-1% &7geändert." to player
+            else:
+                set scale attribute of arg-2 to arg-1
+                send "%{server_prefix}%Deine Höhe wurde auf &f%arg-1% &7geändert." to arg-2
+                send "%{server_prefix}%Die Höhe von &f%arg-2% &7wurde auf &f%arg-1% &7geändert." to player
+        else:
+            send "%{server_prefix}%/size (Höhe) (Spieler)." to player

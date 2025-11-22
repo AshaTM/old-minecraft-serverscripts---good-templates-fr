@@ -1,0 +1,45 @@
+function setTopDisplaysLocation():
+    set {_title} to "Top 3 Spielzeit"
+    set {_subtitle} to "Die Top Spielzeit"
+    set {_icon} to "Stunden "
+    set {_x} to 5.5
+    set {_y} to 4.0
+    set {_z} to 50.5
+    set {_yaw} to 145
+    set {_pitch} to 10
+    set {_world} to "world"
+    set {_topPlayer::*} to sorted indices of {hours::*} in descending order
+    set {_topPlayer_1} to {_topPlayer::1} parsed as offlineplayer
+    set {_topValue_1} to {hours::%{_topPlayer::1}%}
+    set {_topPlayer_2} to {_topPlayer::2} parsed as offlineplayer
+    set {_topValue_2} to {hours::%{_topPlayer::2}%}
+    set {_topPlayer_3} to {_topPlayer::3} parsed as offlineplayer
+    set {_topValue_3} to {hours::%{_topPlayer::3}%}
+    setTopDisplays({_title}, {_subtitle}, {_icon}, {_topPlayer_1}, {_topValue_1}, {_topPlayer_2}, {_topValue_2}, {_topPlayer_3}, {_topValue_3}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+
+    set {_title} to "Top 3 Votes"
+    set {_subtitle} to "Spieler mit der meisten Votes"
+    set {_icon} to "Votes<color:dark_gray>:</color:dark_gray> "
+    set {_x} to -8.5
+    set {_y} to 6.0
+    set {_z} to 7.5
+    set {_yaw} to -130
+    set {_pitch} to 10
+    set {_world} to "world"
+    set {_topPlayer::*} to sorted indices of {votes::*} in descending order
+    set {_topPlayer_1} to {_topPlayer::1} parsed as offlineplayer
+    set {_topValue_1} to {votes::%{_topPlayer::1}%}
+    set {_topPlayer_2} to {_topPlayer::2} parsed as offlineplayer
+    set {_topValue_2} to {votes::%{_topPlayer::2}%}
+    set {_topPlayer_3} to {_topPlayer::3} parsed as offlineplayer
+    set {_topValue_3} to {votes::%{_topPlayer::3}%}
+    setTopDisplays({_title}, {_subtitle}, {_icon}, {_topPlayer_1}, {_topValue_1}, {_topPlayer_2}, {_topValue_2}, {_topPlayer_3}, {_topValue_3}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+
+on load:
+    setTopDisplaysLocation()
+
+every 5 minutes:
+    setTopDisplaysLocation()
+
+on load:
+    set {hashed_player_texture::%uuid of {_player}%} to "<base64>"

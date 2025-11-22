@@ -1,0 +1,21 @@
+command /giveall:
+    permission: command.giveall
+    trigger:
+        set {_item} to held item of player
+        set {_amount} to amount of held item of player
+        if {_item} is not air:
+            if name of {_item} is set:
+                drop {_item} at all players
+                send "" to all players
+                send "%{server_prefix}%&aAlle &lSpieler &ahaben&8: &f%{_amount}%x &8""&f&l%name of {_item}%&8"" &aerhalten." to all players
+                send "" to all players
+            else:
+                drop {_item} 0.5 above all players without velocity
+                set {_item} to raw name of {_item} in uppercase
+                replace all "minecraft:" with "" in {_item}
+                replace all "_" with " " in {_item}
+                send "" to all players
+                send "%{server_prefix}%Alle &fSpieler &7haben&8: &f%{_amount}%x &8""&f&l%{_item}%&8"" &7erhalten." to all players
+                send "" to all players
+        else:
+            send "%{server_prefix}%Halte das Item, welches du den Spielern geben möchtest, in deiner Hand."

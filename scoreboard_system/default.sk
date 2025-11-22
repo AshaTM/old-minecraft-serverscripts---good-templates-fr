@@ -1,0 +1,48 @@
+on login:
+    wait 2 tick
+    setDefaultFastboard(player)
+
+function updateScoreboardJob(player: player):
+    if line 4 of fastboard of {_player} is not "&8● &fℹ &lPlot&finfo&8:":
+        set line 4 of fastboard of {_player} to "    &8՟ &7%{job::%uuid of {_player}%}%"
+
+function updateScoreboardBalance(player: player):
+    if line 4 of fastboard of {_player} is not "&8● &fℹ &lPlot&finfo&8:":
+        set line 6 of fastboard of {_player} to "    &8● &f☈ &lTaschen&fgeld&8:"
+        set line 7 of fastboard of {_player} to "     &8՟ &7%{currency_symbol}%%regex({balance::%uuid of {_player}%})%"
+
+function updateScoreboardOnlineTime(player: player):
+    if line 4 of fastboard of {_player} is not "&8● &fℹ &lPlot&finfo&8:":
+        set line 10 of fastboard of {_player} to "     &8՟ &7%{hours::%uuid of {_player}%}% Std. %{minutes::%uuid of {_player}%}% Min."
+
+function updateScoreboardGroup(player: player):
+    if line 4 of fastboard of {_player} is not "&8● &fℹ &lPlot&finfo&8:":
+        set line 13 of fastboard of {_player} to "    &8՟ &7%group of {_player}%"
+
+function setDefaultFastboard(player: player):
+    set title of fastboard of {_player} to "%{server_title}%"
+    set line 1 of fastboard of {_player} to "  %{server_motto}%  "
+    set line 2 of fastboard of {_player} to ""
+    set line 3 of fastboard of {_player} to "   &8● &f🔔 &lBe&fruf&8:"
+    set line 4 of fastboard of {_player} to "    &8՟ &7%{job::%uuid of {_player}%}%"
+    set line 5 of fastboard of {_player} to ""
+    set line 6 of fastboard of {_player} to "    &8● &f☈ &lTaschen&fgeld&8:"
+    set line 7 of fastboard of {_player} to "     &8՟ &7%{currency_symbol}%%regex({balance::%uuid of {_player}%})%"
+    set line 8 of fastboard of {_player} to ""
+    set line 9 of fastboard of {_player} to "    &8● &f⌚ &lSpiel&fzeit&8:"
+    set line 10 of fastboard of {_player} to "     &8՟ &7%{hours::%uuid of {_player}%}% Std. %{minutes::%uuid of {_player}%}% Min."
+    set line 11 of fastboard of {_player} to ""
+    set line 12 of fastboard of {_player} to "   &8● &f⛄ &lRa&fng&8:"
+    set line 13 of fastboard of {_player} to "    &8՟ &7%group of {_player}%"
+    set line 14 of fastboard of {_player} to ""
+    set line 15 of fastboard of {_player} to "&8%{server_title_stripped}% ©2025"
+
+every 12 seconds:
+    loop all players:
+        if line 4 of fastboard of loop-player is not "&8● &fℹ &lPlot&finfo&8:":
+            set line 6 of fastboard of loop-player to "    &8● &f☈ &lTaschen&fgeld&8:"
+            set line 7 of fastboard of loop-player to "     &8՟ &7%{currency_symbol}%%regex({balance::%uuid of loop-player%})%"
+            wait 6 seconds
+            if line 4 of fastboard of loop-player is not "&8● &fℹ &lPlot&finfo&8:":
+                set line 6 of fastboard of loop-player to "    &8● &f☈ &lKonto&fstand&8:"
+                set line 7 of fastboard of loop-player to "     &8՟ &7$%balance of loop-player%"

@@ -1,0 +1,156 @@
+on load:
+    set {_text} to "Zufallsteleport"
+    set {_sub_text} to "Rechtsklick <color:dark_gray>→</color:dark_gray> Öffnet das Zufallsteleport-Menü.%new line%<color:dark_gray>(/rtp)</color:dark_gray>"
+    set {_item} to netherrack
+    set {_nbt} to "{NoBasePlate:true,ShowArms:1b,DisabledSlots:4144959,CustomName:[{text:""random_teleport_§knpc""}],Invulnerable:1b,NoAI:1b,NoGravity:1b,PersistenceRequired:1b,attributes:[{id:""minecraft:scale"",base:1.25}],equipment:{mainhand:{id:""grass_block""},offhand:{id:""end_stone""},head:{id:""player_head"",components:{""minecraft:profile"":{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjVmMDRjMDk3OTMzMjNmNDFkYjliZGQ2M2ZiMDY4Njg4ZDk0YWIzY2MzN2EzOGMxNzdkZTllNWE5M2MyZjQ3YiJ9fX0=""}]}}},chest:{id:""leather_chestplate""},legs:{id:""leather_leggings""},feet:{id:""leather_boots""}}}"
+    set {_x} to -2.5
+    set {_y} to 2.0
+    set {_z} to -2.5
+    set {_yaw} to -160
+    set {_pitch} to -7
+    set {_world} to "world"
+    setNPC({_item}, {_text}, {_sub_text}, {_nbt}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+2, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_text} to "Reparatur"
+    set {_sub_text} to "Rechtsklick <color:dark_gray>→</color:dark_gray> Öffnet das Reparatur-Menü.%new line%<color:dark_gray>(/repair)</color:dark_gray>"
+    set {_item} to air
+    set {_nbt} to "{NoBasePlate:true,ShowArms:1b,DisabledSlots:4144959,CustomName:[{text:""repair_§knpc""}],Invulnerable:1b,NoAI:1b,NoGravity:1b,PersistenceRequired:1b,attributes:[{id:""minecraft:scale"",base:1.25}],equipment:{mainhand:{id:""iron_shovel""},offhand:{id:""iron_axe""},head:{id:""player_head"",components:{""minecraft:profile"":{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWU0MDliOTU4YmM0ZmUwNDVlOTVkMzI1ZTZlOTdhNTMzMTM3ZTMzZmVjNzA0MmFjMDI3YjMwYmI2OTNhOWQ0MiJ9fX0=""}]}}},chest:{id:""iron_chestplate""},legs:{id:""iron_leggings""},feet:{id:""iron_boots""}}}"
+    set {_x} to 8.5
+    set {_y} to 2.0
+    set {_z} to 7.5
+    set {_yaw} to 120
+    set {_pitch} to -7
+    set {_world} to "world"
+    setNPC({_item}, {_text}, {_sub_text}, {_nbt}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+2, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_text} to "Discord-Server"
+    set {_sub_text} to "Rechtsklick <color:dark_gray>→</color:dark_gray> Discord-Server beitreten.%new line%<color:dark_gray>(/discord)<color:dark_gray>"
+    set {_item} to paper
+    set {_nbt} to "{NoBasePlate:true,ShowArms:1b,DisabledSlots:4144959,CustomName:[{text:""discord_§knpc""}],Invulnerable:1b,NoAI:1b,NoGravity:1b,PersistenceRequired:1b,attributes:[{id:""minecraft:scale"",base:1.25}],equipment:{mainhand:{id:""breeze_rod""},offhand:{id:""breeze_rod""},head:{id:""player_head"",components:{""minecraft:profile"":{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTNiMTgzYjE0OGI5YjRlMmIxNTgzMzRhZmYzYjViYjZjMmMyZGJiYzRkNjdmNzZhN2JlODU2Njg3YTJiNjIzIn19fQ==""}]}}},chest:{id:""leather_chestplate"",count:1,components:{""minecraft:dyed_color"":5401765}},legs:{id:""leather_leggings"",count:1,components:{""minecraft:dyed_color"":5401765}},feet:{id:""leather_boots"",count:1,components:{""minecraft:dyed_color"":5401765}}}}"
+    set {_x} to -4.5
+    set {_y} to 2.0
+    set {_z} to 15.5
+    set {_yaw} to -120
+    set {_pitch} to -7
+    set {_world} to "world"
+    setNPC({_item}, {_text}, {_sub_text}, {_nbt}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+2, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_text} to "Warps"
+    set {_sub_text} to "Rechtsklick <color:dark_gray>→</color:dark_gray> Warps-Menü aufrufen.%new line%<color:dark_gray>(/warps)<color:dark_gray>"
+    set {_item} to calibrated sculk sensor
+    set {_nbt} to "{NoBasePlate:true,ShowArms:1b,DisabledSlots:4144959,CustomName:[{text:""warps_§knpc""}],Invulnerable:1b,NoAI:1b,NoGravity:1b,PersistenceRequired:1b,attributes:[{id:""minecraft:scale"",base:1.25}],equipment:{mainhand:{id:""spawner""},offhand:{id:""bookshelf""},head:{id:""player_head"",components:{""minecraft:profile"":{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTU4MzNiNWE0NDg4NDNkZGUyNTZhMzIxMDYyZjMzODc5ZDU0YmVlODkxN2FhMTM4Njc0MzZkZjczM2EzZGI1In19fQ==""}]}}},chest:{id:""leather_chestplate"",count:1,components:{""minecraft:dyed_color"":4405032}},legs:{id:""leather_leggings"",count:1,components:{""minecraft:dyed_color"":5259567}},feet:{id:""leather_boots"",count:1,components:{""minecraft:dyed_color"":3484448}}}}"
+    set {_x} to -4.5
+    set {_y} to 2.0
+    set {_z} to -7.5
+    set {_yaw} to -121
+    set {_pitch} to -7
+    set {_world} to "world"
+    setNPC({_item}, {_text}, {_sub_text}, {_nbt}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+2, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_text} to "Berufe"
+    set {_sub_text} to "Rechtsklick <color:dark_gray>→</color:dark_gray> Berufe-Menü aufrufen.%new line%<color:dark_gray>(/jobs)<color:dark_gray>"
+    set {_item} to air
+    set {_nbt} to "{NoBasePlate:true,ShowArms:1b,DisabledSlots:4144959,CustomName:[{text:""jobs_§knpc""}],Invulnerable:1b,NoAI:1b,NoGravity:1b,PersistenceRequired:1b,attributes:[{id:""minecraft:scale"",base:1.25}],equipment:{mainhand:{id:""writable_book""},offhand:{id:""iron_shovel""},head:{id:""player_head"",components:{""minecraft:profile"":{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjg0ZDY2ZTJhOWFhZDViMjM4OGUxODM5OGUxZDQ4MjYwOWI4MGRkNDUzZTIyNmFmYjJlNTkxOWQ5M2VjNmY2YSJ9fX0=""}]}}},chest:{id:""leather_chestplate"",count:1,components:{""minecraft:dyed_color"":16758563}},legs:{id:""leather_leggings"",count:1,components:{""minecraft:dyed_color"":16358912}},feet:{id:""leather_boots"",count:1,components:{""minecraft:dyed_color"":14849792}}}}"
+    set {_x} to 5.5
+    set {_y} to 2.0
+    set {_z} to -7.5
+    set {_yaw} to 121
+    set {_pitch} to -7
+    set {_world} to "world"
+    setNPC({_item}, {_text}, {_sub_text}, {_nbt}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+2, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_text} to "Hauptmenü"
+    set {_sub_text} to "Rechtsklick <color:dark_gray>→</color:dark_gray> Hauptmenü aufrufen.%new line%<color:dark_gray>(/menu) oder (SWAP)<color:dark_gray>"
+    set {_item} to air
+    set {_nbt} to "{NoBasePlate:true,ShowArms:1b,DisabledSlots:4144959,CustomName:[{text:""menu_§knpc""}],Invulnerable:1b,NoAI:1b,NoGravity:1b,PersistenceRequired:1b,attributes:[{id:""minecraft:scale"",base:1.25}],equipment:{mainhand:{id:""bread""},offhand:{id:""lead""},head:{id:""player_head"",components:{""minecraft:profile"":{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjA0OGNjMGRlZTA5NWJlNTgzOWZkZjJmN2QzODI1NTZjMDBjNjg2YzdlYjRiM2M2OTBiZTRkZjAyZjIxMmFhZCJ9fX0=""}]}}},chest:{id:""leather_chestplate"",count:1,components:{""minecraft:dyed_color"":723723}},legs:{id:""leather_leggings"",count:1,components:{""minecraft:dyed_color"":1381653}},feet:{id:""leather_boots"",count:1,components:{""minecraft:dyed_color"":2171169}}}}"
+    set {_x} to 3.5
+    set {_y} to 2.0
+    set {_z} to -2.5
+    set {_yaw} to 165
+    set {_pitch} to -7
+    set {_world} to "world"
+    setNPC({_item}, {_text}, {_sub_text}, {_nbt}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+2, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_text} to "Täglicher Kopf"
+    set {_sub_text} to "Rechtsklick <color:dark_gray>→</color:dark_gray> Täglichen Kopf abholen.%new line%<color:dark_gray>(/head)<color:dark_gray>"
+    set {_item} to air
+    set {_nbt} to "{NoBasePlate:true,ShowArms:1b,DisabledSlots:4144959,CustomName:[{text:""head_§knpc""}],Invulnerable:1b,NoAI:1b,NoGravity:1b,PersistenceRequired:1b,attributes:[{id:""minecraft:scale"",base:1.25}],equipment:{mainhand:{id:""iron_nugget""},offhand:{id:""iron_nugget""},head:{id:""player_head"",components:{""minecraft:profile"":{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2NhYWIyOTEwMWE3OTBiYzIyMWE5YTI5MjJlYjM5ODFmNTMzNWM5YmNjNzNhYTM0OWI1Y2VkNTgwMWU0MGMxYSJ9fX0=""}]}}},chest:{id:""leather_chestplate"",count:1,components:{""minecraft:dyed_color"":5331247}},legs:{id:""leather_leggings"",count:1,components:{""minecraft:dyed_color"":5331247}},feet:{id:""leather_boots"",count:1,components:{""minecraft:dyed_color"":5331247}}}}"
+    set {_x} to 3.5
+    set {_y} to 0.0
+    set {_z} to 37.5
+    set {_yaw} to 45
+    set {_pitch} to -7
+    set {_world} to "world"
+    setNPC({_item}, {_text}, {_sub_text}, {_nbt}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+2, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_text} to "Freischaltbare Ränge"
+    set {_sub_text} to "Rechtsklick <color:dark_gray>→</color:dark_gray> Rängemenü aufrufen.%new line%<color:dark_gray>(/ranks)<color:dark_gray>"
+    set {_item} to air
+    set {_nbt} to "{NoBasePlate:true,ShowArms:1b,DisabledSlots:4144959,CustomName:[{text:""ranks_§knpc""}],Invulnerable:1b,NoAI:1b,NoGravity:1b,PersistenceRequired:1b,attributes:[{id:""minecraft:scale"",base:1.25}],equipment:{mainhand:{id:""golden_apple""},offhand:{id:""golden_carrot""},head:{id:""player_head"",components:{""minecraft:profile"":{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWQ2NGMyZjJmMjMyZjA1MDAyMzkzMDY5NWIwY2Y3Y2Q2ZGI3ZDdkYzk0N2NhMzFhNzk1YjU1Yjg5NWRlNjBkNCJ9fX0=""}]}}},chest:{id:""leather_chestplate"",count:1,components:{""minecraft:dyed_color"":16755200}},legs:{id:""leather_leggings"",count:1,components:{""minecraft:dyed_color"":16755200}},feet:{id:""leather_boots"",count:1,components:{""minecraft:dyed_color"":16755200}}}}"
+    set {_x} to 3.5
+    set {_y} to 0.0
+    set {_z} to 30.5
+    set {_yaw} to 125
+    set {_pitch} to -7
+    set {_world} to "world"
+    setNPC({_item}, {_text}, {_sub_text}, {_nbt}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+2, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_text} to "Schwarzmarkthändler"
+    set {_sub_text} to "Rechtsklick <color:dark_gray>→</color:dark_gray> Schwarzmarkt aufrufen.%new line%<color:dark_gray>""Psst, brauchst du was?""<color:dark_gray>"
+    set {_item} to enchanted book
+    set {_nbt} to "{NoBasePlate:true,ShowArms:1b,DisabledSlots:4144959,CustomName:[{text:""black_market_§knpc""}],Invulnerable:1b,NoAI:1b,NoGravity:1b,PersistenceRequired:1b,attributes:[{id:""minecraft:scale"",base:1.25}],equipment:{mainhand:{id:""enchanted_book""},offhand:{id:""enchanted_book""},head:{id:""player_head"",components:{""minecraft:profile"":{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzFlZmVjMjkzZmYyY2U1ZWI2NDcyNTYzYWJlYTNkYTc2MjA3ZGFjYTRiMDUwZGE1Y2ZiZTRmMjI2MWUyZTU2NyJ9fX0=""}]}}},chest:{id:""leather_chestplate"",count:1,components:{""minecraft:dyed_color"":8476722}},legs:{id:""leather_leggings"",count:1,components:{""minecraft:dyed_color"":8476722}},feet:{id:""leather_boots"",count:1,components:{""minecraft:dyed_color"":8476722}}}}"
+    set {_x} to -3.5
+    set {_y} to 0.0
+    set {_z} to 52.5
+    set {_yaw} to -110
+    set {_pitch} to -7
+    set {_world} to "world"
+    setNPC({_item}, {_text}, {_sub_text}, {_nbt}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+2, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_text} to "Chiaras Chatfarben"
+    set {_sub_text} to "Rechtsklick <color:dark_gray>→</color:dark_gray> Chatfarben aufrufen.%new line%<color:dark_gray>""Farben!!?""<color:dark_gray>"
+    set {_item} to magenta concrete
+    set {_nbt} to "{NoBasePlate:true,ShowArms:1b,DisabledSlots:4144959,CustomName:[{text:""chat_color_§knpc""}],Invulnerable:1b,NoAI:1b,NoGravity:1b,PersistenceRequired:1b,attributes:[{id:""minecraft:scale"",base:1.25}],equipment:{mainhand:{id:""yellow_concrete""},offhand:{id:""orange_concrete""},head:{id:""player_head"",components:{""minecraft:profile"":""Chiaraninchen""}},chest:{id:""leather_chestplate"",count:1,components:{""minecraft:dyed_color"":10367318}},legs:{id:""leather_leggings"",count:1,components:{""minecraft:dyed_color"":16155392}},feet:{id:""leather_boots"",count:1,components:{""minecraft:dyed_color"":11351612}}}}"
+    set {_x} to 45.5
+    set {_y} to 29.0
+    set {_z} to -17.5
+    set {_yaw} to 65
+    set {_pitch} to -7
+    set {_world} to "world"
+    setNPC({_item}, {_text}, {_sub_text}, {_nbt}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+2, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_text} to "Auktionshaus"
+    set {_sub_text} to "Rechtsklick <color:dark_gray>→</color:dark_gray> Auktionshaus aufrufen.%new line%<color:dark_gray>""Wer bietet mehr?""<color:dark_gray>"
+    set {_item} to name tag
+    set {_nbt} to "{NoBasePlate:true,ShowArms:1b,DisabledSlots:4144959,CustomName:[{text:""auctionhouse_§knpc""}],Invulnerable:1b,NoAI:1b,NoGravity:1b,PersistenceRequired:1b,attributes:[{id:""minecraft:scale"",base:1.25}],equipment:{mainhand:{id:""bell""},offhand:{id:""anvil""},head:{id:""player_head"",components:{""minecraft:profile"":""Jaynooo""}},chest:{id:""leather_chestplate"",count:1,components:{""minecraft:dyed_color"":13024940}},legs:{id:""leather_leggings"",count:1,components:{""minecraft:dyed_color"":7757640}},feet:{id:""leather_boots"",count:1,components:{""minecraft:dyed_color"":3483428}}}}"
+    set {_x} to -6.5
+    set {_y} to 0.0
+    set {_z} to 41.5
+    set {_yaw} to -45
+    set {_pitch} to -7
+    set {_world} to "world"
+    setNPC({_item}, {_text}, {_sub_text}, {_nbt}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+2, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    #set {_text} to "Halloween - F1 Verlosung - 2025"
+    #set {_sub_text} to "Rechtsklick <color:dark_gray>→</color:dark_gray> an der Verlosung teilnehmen.%new line%<color:dark_gray>Was ne Karre!<color:dark_gray>"
+    #set {_item} to name tag
+    #set {_nbt} to "{NoBasePlate:true,ShowArms:1b,DisabledSlots:4144959,CustomName:[{text:""prize_draw_§knpc""}],Invulnerable:1b,NoAI:1b,NoGravity:1b,PersistenceRequired:1b,attributes:[{id:""minecraft:scale"",base:1.25}],equipment:{mainhand:{id:""bell""},offhand:{id:""anvil""},head:{id:""player_head"",components:{""minecraft:profile"":""Grimbear_""}},chest:{id:""leather_chestplate"",count:1,components:{""minecraft:dyed_color"":2171179}},legs:{id:""leather_leggings"",count:1,components:{""minecraft:dyed_color"":2565927}},feet:{id:""leather_boots"",count:1,components:{""minecraft:dyed_color"":1447453}}}}"
+    #set {_x} to 0.5
+    #set {_y} to 0.0
+    #set {_z} to 42.5
+    #set {_yaw} to 180
+    #set {_pitch} to -7
+    #set {_world} to "world"
+    #setNPC({_item}, {_text}, {_sub_text}, {_nbt}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    #add location at {_x}, {_y}+2, {_z} in world {_world} to {ambient_particle_locations::*}

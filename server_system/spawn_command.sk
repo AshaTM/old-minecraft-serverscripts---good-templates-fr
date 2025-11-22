@@ -1,0 +1,18 @@
+function teleportToSpawn(player: player):
+    play sound "block.amethyst_cluster.step" with volume 0.5 and pitch 2.0 to {_player}
+    set {_loc} to location(0.5, 2.0, -11.5, world "world")
+    set yaw of {_loc} to 0
+    teleport {_player} to {_loc}
+
+command /spawn:
+    trigger:
+        teleportToSpawn(player)
+        send title "&7Spawn" with subtitle {server_title} to player for 15 tick with fadein 0 tick and fade out 0 tick
+        send "%{server_prefix}%Teleportiere dich zum &fSpawn&7." to player
+
+on first join:
+    teleportToSpawn(player)
+
+on respawn:
+    wait 3 tick
+    teleportToSpawn(player)

@@ -1,0 +1,4 @@
+on smelting start:
+    set {_block} to event-block
+    set the cooking time of {_block} to 10 ticks
+    set the total cooking time of {_block} to 10 ticks

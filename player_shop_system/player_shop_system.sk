@@ -1,0 +1,132 @@
+on sign edit:
+    if line 1 of event-block is "[shop]":
+        loop all entities in radius 0.5 of location above event-block:
+            if loop-entity is item frame:
+                set {_item_frame} to loop-entity
+                add 1 to {_entityFound}
+        if {_entityFound} is 1:
+            if item of {_item_frame} is not air:
+                if length of line 2 of event-block < 8:
+                    if line 2 of event-block is not "":
+                        loop all entities in radius 0.5 of location above event-block:
+                            set {_shop_item} to item of loop-entity-1
+                        set line 1 of event-block to "&0[&6&lSpielershop&0]"
+                        set {_sell_price} to line 2 of event-block
+                        set line 2 of event-block to "%{_sell_price}%%{currency_symbol}%"
+                        set line 3 of event-block to "&l%{_shop_item}%" in uppercase
+                        set line 4 of event-block to "&e%name of player%"
+                        send "%{server_prefix}%Spielershop gesetzt. &8(Lade Spieler ein!)" to player
+                    else:
+                        send "%{server_prefix}%&cSetze einen Preis in die zweite Zeile.%nl%&7(Ohne Dollarzeichen, 8 stelliger Betrag maximum.)" to player
+                        play sound "block.redstone_torch.burnout" with volume 0.25 and pitch 2.0 to player
+                        break event-block
+                else:
+                    send "%{server_prefix}%&cDu verlangst ganz schön viel dafür...%nl%&7(8 stelliger Betrag maximum.)" to player
+                    play sound "block.redstone_torch.burnout" with volume 0.25 and pitch 2.0 to player
+                    break event-block
+            else:
+                send "%{server_prefix}%&cBitte setze einen Item Rahmen mit entsprechendem Item ein." to player
+                play sound "block.redstone_torch.burnout" with volume 0.25 and pitch 2.0 to player
+                break event-block
+        else:
+            send "%{server_prefix}%&cBitte setze einen Item Rahmen mit entsprechendem Item ein." to player
+            play sound "block.redstone_torch.burnout" with volume 0.25 and pitch 2.0 to player
+            break event-block
+
+on right click:
+    if event-block is tagged with minecraft tag "wall_signs":
+        if line 1 of event-block is "&0[&6&lSpielershop&0]":
+            cancel event
+            if name of tool of player does not contain "&f&lSERVER KONTEXT":
+                if uncolored line 4 of event-block is name of player:
+                    open inventory of block below event-block to player
+                    send "%{server_prefix}%Öffne deinen Shop... %nl%&7%line 3 of event-block% &8- &7(x%x-coordinate of target block of player%, y%y-coordinate of target block of player%, z%z-coordinate of target block of player%)" to player
+                    stop
+                loop all entities in radius 0.5 of location above event-block:
+                    set {_sell_item} to item of loop-entity
+                    set {_price} to line 2 of event-block
+                    replace all "$" with "" in {_price}
+                    set {_nbt} to nbt of {_sell_item}
+                set {_shop_owner} to uncolored line 4 of event-block parsed as offline player
+                if player is sneaking:
+                    if {balance::%uuid of player%} >= {_price} parsed as number*8:
+                        set {_chest_inventory} to inventory of block below event-block
+                        if {_chest_inventory} has 8 of {_sell_item}:
+                            remove 8 of {_sell_item} from {_chest_inventory}
+                            remove {_price} parsed as number*8 from {balance::%uuid of player%}
+                            updateScoreboardBalance(player)
+                            updateScoreboardBalance({_shop_owner} parsed as player)
+                            add {_price} parsed as number*8 to {balance::%uuid of {_shop_owner}%}
+                            if player has space for 8 of {_sell_item}:
+                                give player 8 of {_sell_item} with nbt {_nbt}
+                            else:
+                                drop 8 of {_sell_item} with nbt {_nbt} above player
+                                send "" to player
+                                send "%{server_prefix}%&4&lACHTUNG! &7Kein platz im Inventar.%nl%&8(Items hingeschmissen...)" to player
+                                send "" to player
+                                play sound "entity.item.pickup" with volume 2.0 and pitch 0.1 to player
+                            send "%{server_prefix}%Du hast &f8x ""%line 3 of event-block%&f"" &7von &f%{_shop_owner}% &7für &f%{_price} parsed as number*8%%{currency_symbol}% &7gekauft." to player
+                            send "%{server_prefix}%&f%player% &7hat &f8x ""%line 3 of event-block%&f"" &7von dir gekauft. &8(x%x-coordinate of target block of player%, y%y-coordinate of target block of player%, z%z-coordinate of target block of player%)" to {_shop_owner}
+                            make 10 of cloud at event-block with offset vector(0.5, 0.5, 0.5) with extra 0.001
+                            play sound "block.coral_block.step" with volume 1.5 and pitch 1.0 to player
+                        else:
+                            send "%{server_prefix}%&cShop hat keine 8x Items mehr&8:%nl%&7x%x-coordinate of target block of player%, y%y-coordinate of target block of player%, z%z-coordinate of target block of player% &8> ""&78x %line 3 of event-block%&8""" to {_shop_owner}
+                            send "%{server_prefix}%&cShop von &7%{_shop_owner}% &chat keine 8x Items mehr." to player
+                    else:
+                        send "%{server_prefix}%&cDu hast nicht genügend Geld für%nl%8x %line 3 of event-block%&c." to player
+                        play sound "block.redstone_torch.burnout" with volume 0.25 and pitch 2.0 to player
+                else:
+                    if {balance::%uuid of player%} >= {_price} parsed as number:
+                        set {_chest_inventory} to inventory of block below event-block
+                        if {_chest_inventory} has {_sell_item}:
+                            remove 1 of {_sell_item} from {_chest_inventory}
+                            remove {_price} parsed as number from {balance::%uuid of player%}
+                            updateScoreboardBalance(player)
+                            updateScoreboardBalance({_shop_owner})
+                            add {_price} parsed as number to {balance::%uuid of {_shop_owner}%}
+                            if player has space for 1 of {_sell_item}:
+                                give player 1 of {_sell_item} with nbt {_nbt}
+                            else:
+                                drop 1 of {_sell_item} with nbt {_nbt} above player
+                                send "" to player
+                                send "%{server_prefix}%&4&lACHTUNG! &7Kein platz im Inventar.%nl%&8(Item hingeschmissen...)" to player
+                                send "" to player
+                                play sound "entity.item.pickup" with volume 2.0 and pitch 0.1 to player
+                            send "%{server_prefix}%Du hast &f""%line 3 of event-block%&f"" &7von &f%{_shop_owner}% &7für &f%line 2 of event-block% &7gekauft." to player
+                            send "%{server_prefix}%&f%player% &7hat &f""%line 3 of event-block%&f"" &7von dir gekauft. &8(x%x-coordinate of target block of player%, y%y-coordinate of target block of player%, z%z-coordinate of target block of player%)" to {_shop_owner}
+                            make 10 of cloud at event-block with offset vector(0.5, 0.5, 0.5) with extra 0.001
+                            play sound "block.coral_block.step" with volume 1.5 and pitch 0.5 to player
+                        else:
+                            send "%{server_prefix}%&cShop hat keine Items mehr&8:%nl%&7x%x-coordinate of target block of player%, y%y-coordinate of target block of player%, z%z-coordinate of target block of player% &8> ""&7%line 3 of event-block%&8""" to {_shop_owner}
+                            send "%{server_prefix}%&cShop von &7%{_shop_owner}% &chat keine Items mehr." to player
+                    else:
+                        send "%{server_prefix}%&cDu hast nicht genügend Geld für%nl%1x %line 3 of event-block%&c.." to player
+                        play sound "block.redstone_torch.burnout" with volume 0.25 and pitch 2.0 to player
+
+on left click:
+    if event-block is tagged with minecraft tag "wall_signs":
+        if line 1 of event-block is "&0[&6&lSpielershop&0]":
+            if gamemode of player is not spectator or creative:
+                if name of tool of player does not contain "&f&lSERVER KONTEXT":
+                    if uncolored line 4 of event-block is not name of player:
+                        send "" to player
+                        send "%{server_prefix}%&fShop Informationen&8:" to player
+                        send "" to player
+                        send "&7Verkauft wird&8: &f%line 3 of event-block%" to player
+                        send "&7Für den Preis&8: &f%line 2 of event-block%" to player
+                        send "&7Verkäufer ist&8: &f%line 4 of event-block in uppercase%" to player
+                        send "" to player
+                        send "&aRechtsklick zum kaufen." to player
+                        send "&7Sneaken erhöt die Kaufzahl auf &f8&7." to player
+                        send "" to player
+                    else:
+                        send "%{server_prefix}%Das ist dein Shop. &7Abbauen? &8(Sneaken)" to player
+
+on break:
+    if event-block is tagged with minecraft tag "wall_signs":
+        if line 1 of event-block is "&0[&6&lSpielershop&0]":
+            if player is not sneaking:
+                cancel event
+                loop all entities in radius 0.5 of location above event-block:
+                    set {_shop_item} to item of loop-entity-1
+                send "%{server_prefix}%Shop abbauen? &8(Sneaken)" to player

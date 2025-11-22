@@ -1,0 +1,91 @@
+function chain(b: block, n: integer):
+    wait 5 tick
+    if {_n} is less than 50:
+        add 1 to {_n}
+        loop blocks in radius 2 around {_b}:
+            if loop-block is tagged with minecraft tag "logs":
+                loop blocks above loop-block:
+                    loop-block-2 is air:
+                        block above loop-block-2 is air
+                        exit 1 loop
+                    exit 1 loop
+                loop blocks above loop-block:
+                    loop-block-2 is tagged with minecraft tag "leaves"
+                    chain(loop-block-1, {_n})
+                    break loop-block-1
+
+                    play sound "block.bamboo.break" with volume 2.0 and pitch 2.0 to all players at loop-block-1
+                    play sound "block.wood.break" with volume 2.0 and pitch 1.0 to all players at loop-block-1
+                    play 5 (cloud with offset of 0.05, 0.05, 0.05 and speed 0.05) at location at loop-block-1
+                    
+                    wait 15 tick
+
+        loop blocks in radius 2 around {_b}:
+            if loop-block is tagged with minecraft tag "leaves":
+                break loop-block
+                play sound "block.grass.break" with volume 1.0 and pitch 1.5 to all players at loop-block
+                play 3 (happy villager) at location at loop-block
+
+function chorusChain(b: block, n: integer):
+    wait 1 tick
+    if {_n} is less than 100:
+        add 1 to {_n}
+        loop blocks in radius 1 around {_b}:
+            if loop-block is chorus plant or chorus flower:
+                break loop-block
+                play sound "block.chorus_flower.death" with volume 1.0 and pitch 1.0 to all players at loop-block
+                play 5 (portal) at location at loop-block
+                chorusChain(loop-block, {_n})
+
+on login:
+    if group of player is "Inhaber" or "Supporter" or "Administrator" or "Content" or "Freund" or "Reisender" or "Anwohner" or "Crafter" or "Meister" or "Bürger" or "Baron":
+        set {treefeller::%uuid of player%} to false
+
+on break:
+    if {treefeller::%uuid of player%} is true:
+        if player is sneaking:
+            if group of player is "Inhaber" or "Supporter" or "Administrator" or "Content" or "Freund" or "Reisender" or "Anwohner" or "Crafter" or "Meister" or "Bürger" or "Baron":
+                if tool of player is tagged with minecraft tag "axes":
+
+                    if event-block is tagged with minecraft tag "logs":
+                        loop blocks above event-block:
+                            set {_l} to 0
+                            if loop-block is tagged with minecraft tag "leaves":
+                                loop all blocks in radius 2 of loop-block:
+                                    loop-block-2 is tagged with minecraft tag "leaves"
+                                    add 1 to {_l}
+                                {_l} > 7
+                                set {_tree} to true
+                        if {_tree} is true:
+                            chain(event-block, 0)
+
+                    if event-block is chorus plant or chorus flower:
+                        chorusChain(event-block, 0)
+
+on tool change:
+    if tool of player is tagged with minecraft tag "axes":
+        if group of player is "Inhaber" or "Supporter" or "Administrator" or "Content" or "Freund" or "Reisender" or "Anwohner" or "Crafter" or "Meister" or "Bürger" or "Baron":
+            treefellerActionBar(player)
+        else:
+            send action bar "&fTreefeller &7wird mit dem Rang &eReisender &7freigeschaltet." to player
+
+on right click:
+    if tool of player is tagged with minecraft tag "axes":
+        if group of player is "Inhaber" or "Supporter" or "Administrator" or "Content" or "Freund" or "Reisender" or "Anwohner" or "Crafter" or "Meister" or "Bürger" or "Baron":
+            if player is sneaking:
+                cancel event
+                if {treefeller::%uuid of player%} is false:
+                    set {treefeller::%uuid of player%} to true
+                    send "%{server_prefix}%&fTreefeller &7wurde &aaktiviert&7.%nl%&8(Sneaken und gleichzeitig einen Baumstamm abbauen)" to player
+                    play sound "block.note_block.hat" with volume 0.5 and pitch 1.0 to player
+                else:
+                    set {treefeller::%uuid of player%} to false
+                    send "%{server_prefix}%&fTreefeller &7wurde &cdeaktiviert&7." to player
+                    play sound "block.note_block.hat" with volume 0.5 and pitch 0.5 to player
+                treefellerActionBar(player)
+
+function treefellerActionBar(player: player):
+    if {treefeller::%uuid of {_player}%} is true:
+        send action bar "&7Treefeller&8: &aAktiv" to {_player}
+    if {treefeller::%uuid of {_player}%} is false:
+        send action bar "&7Treefeller&8: &cInaktiv" to {_player}

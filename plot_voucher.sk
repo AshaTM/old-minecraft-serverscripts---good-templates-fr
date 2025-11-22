@@ -1,0 +1,16 @@
+on rightclick with paper:
+    if name of event-item is "&5&lGrundstücksgutschein":
+        if number of owned plots of player < 8:
+            send "%{server_prefix}%Du hast noch nicht deine Maximale-Plotanzahl ausgeschöpft." to player
+        else:
+            if {plot_count::%uuid of player%} is not set:
+                set {plot_count::%uuid of player%} to 9
+                add 1 to {plot_count::%uuid of player%}
+                remove 1 of tool of player from inventory of player
+                make console execute "/lp user %player% permission set plots.plot.%{plot_count::%uuid of player%}%"
+                send "%{server_prefix}%&cNach jedem eingelösten Gutschein muss ein Plott geclaimed werden." to player
+            else:
+                add 1 to {plot_count::%uuid of player%}
+                remove 1 of tool of player from inventory of player
+                make console execute "/lp user %player% permission set plots.plot.%{plot_count::%uuid of player%}%"
+                send "%{server_prefix}%&aGutschein eingelöst!&8, &7du kannst jetzt &f""/plot auto"" &7machen oder &f""/plot claim"" &7um ein weiters Plot zu erhalten." to player

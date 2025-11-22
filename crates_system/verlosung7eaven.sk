@@ -1,0 +1,49 @@
+command /verlosung [<number>]:
+    permission: team.verlosung
+    permission message: %{server_prefix}%Dafür hast du keine Berechtigung!
+    usage: %{server_prefix}%Nutze /verlosung <Anzahl>
+    trigger:
+        if arg-1 is not set:
+            send "%{server_prefix}%Bitte gib eine Anzahl an!"
+            stop
+        
+        if arg 1 is less than or equal to 0:
+            send "%{server_prefix}%Bitte gib eine positive Zahl an!"
+            stop
+            
+        if player's tool is air:
+            send "%{server_prefix}%Du musst ein Item in der Hand halten!"
+            stop
+            
+        set {_item} to player's tool
+        set {_amount} to arg-1
+        set {_online::*} to all players
+        remove player from {_online::*}
+        
+        if number of {_online::*} is less than {_amount}:
+            send "%{server_prefix}%Es sind nicht genügend Spieler online!"
+            stop
+            
+        broadcast ""
+        broadcast "%{server_prefix}%Eine Verlosung startet in..."
+        wait 20 ticks
+        broadcast "%{server_prefix}%Startet in &f&n5&7."
+        wait 20 ticks
+        broadcast "%{server_prefix}%Startet in &f&n4&7."
+        wait 20 ticks
+        broadcast "%{server_prefix}%Startet in &f&n3&7."
+        wait 20 ticks
+        broadcast "%{server_prefix}%Startet in &f&n2&7."
+        wait 20 ticks
+        broadcast "%{server_prefix}%Startet in &f&n1&7."
+        wait 20 ticks
+        broadcast ""
+        loop {_amount} times:
+            set {_winner} to random element out of {_online::*}
+            remove {_winner} from {_online::*}
+            give {_winner} 1 of {_item}
+            broadcast "%{server_prefix}%Gewinner*in &5#%loop-number%&8: &f&o%{_winner}%"
+        broadcast ""
+            
+        broadcast "%{server_prefix}%Die Verlosung ist beendet."
+        remove {_item} from player's inventory

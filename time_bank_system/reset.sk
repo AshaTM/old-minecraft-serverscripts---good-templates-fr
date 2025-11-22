@@ -1,0 +1,2 @@
+on login:
+    set {time_balance::%uuid of player%} to 0

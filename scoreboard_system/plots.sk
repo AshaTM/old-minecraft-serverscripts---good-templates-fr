@@ -1,0 +1,47 @@
+on plot enter:
+    if name of owner of plot event-string is set:
+        set {_plot_id} to event-string
+        set {_plot_owner} to name of owner of plot event-string
+        set {_plot_biome} to biome of plot event-string
+        replace all "minecraft:" with "" in {_plot_biome}
+        replace all "_" with " " in {_plot_biome}
+
+        add 1 to {plot_session::%player%}
+        set {_session} to {plot_session::%player%}
+
+        setPlotsFastboard(player, {_plot_id}, {_plot_owner}, {_plot_biome}, {_session})
+        send action bar "%{server_prefix}%&fID&8: &7%{_plot_id}% &8- &fBesitzer&8: &7%{_plot_owner}% &abetreten" to player
+
+on plot exit:
+    if name of owner of plot event-string is set:
+        add 1 to {plot_session::%player%}
+        set {_plot_id} to event-string
+        set {_plot_owner} to name of owner of plot event-string
+        setDefaultFastboard(player)
+        send action bar "%{server_prefix}%&fID&8: &7%{_plot_id}% &8- &fBesitzer&8: &7%{_plot_owner}% &cverlassen" to player
+
+on quit:
+    delete {plot_session::%player%}
+
+function setPlotsFastboard(player: player, plot_id: text, plot_owner: text, plot_biome: text, session: number):
+    set title of fastboard of {_player} to "%{server_title}%"
+    set line 1 of fastboard of {_player} to "  %{server_motto}%  "
+    set line 2 of fastboard of {_player} to ""
+    set line 3 of fastboard of {_player} to ""
+    set line 4 of fastboard of {_player} to "&8● &fℹ &lPlot&finfo&8:"
+    set line 5 of fastboard of {_player} to ""
+    set line 6 of fastboard of {_player} to ""
+    set line 7 of fastboard of {_player} to "&8՟ &7ID&8:"
+    set line 8 of fastboard of {_player} to "    &f%{_plot_id}%"
+    set line 9 of fastboard of {_player} to "&8՟ &7Besitzer&8:"
+    set line 10 of fastboard of {_player} to "    &f%{_plot_owner}%"
+    set line 11 of fastboard of {_player} to "&8՟ &7Biom&8:"
+    set line 12 of fastboard of {_player} to "    &f%{_plot_biome}%"
+    set line 13 of fastboard of {_player} to ""
+    set line 14 of fastboard of {_player} to ""
+    set line 15 of fastboard of {_player} to "&8%{server_title_stripped}% ©2025"
+
+    wait 3 seconds
+
+    if {plot_session::%{_player}%} is {_session}:
+        setDefaultFastboard({_player})

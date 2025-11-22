@@ -1,0 +1,161 @@
+on login:
+    if {seletected_chatcolor::%uuid of player%} is not set:
+        set {seletected_chatcolor::%uuid of player%} to "&7"
+
+command /teamchatcolor:
+    permission: command.teamchatcolor
+    trigger:
+        set {seletected_chatcolor::%uuid of player%} to "&c"
+        send "%{server_prefix}%&cTeam &7Chatfarbe gesetzt." to player
+
+command /resetchatcolors [<offlineplayer>]:
+    permission: command.resetchatcolors
+    trigger:
+        if arg-1 is set:
+            delete {magenta_owned::%uuid of arg-1%}
+            delete {orange_owned::%uuid of arg-1%}
+            delete {yellow_owned::%uuid of arg-1%}
+            delete {lime_owned::%uuid of arg-1%}
+            set {seletected_chatcolor::%uuid of arg-1%} to "&7"
+            send "%{server_prefix}%Die Chatfarbe von &f%arg-1% &7wurde zurückgesetzt."
+        else:
+            delete {magenta_owned::%uuid of player%}
+            delete {orange_owned::%uuid of player%}
+            delete {yellow_owned::%uuid of player%}
+            delete {lime_owned::%uuid of player%}
+            set {seletected_chatcolor::%uuid of player%} to "&7"
+            send "%{server_prefix}%Deine Chatfarben wurde zurückgesetzt."
+
+function updateChatcolorsUI(player: player):
+    set metadata tag "chatcolors_user_interface::%uuid of {_player}%" of {_player} to hopper inventory named "%{server_title_stripped} in uppercase% | Chatfarben"
+    if {seletected_chatcolor::%uuid of {_player}%} is "&7":
+        set slot 0 of metadata tag "chatcolors_user_interface::%uuid of {_player}%" of {_player} to light gray concrete named "&7&lGRAUE&8-&7Chatfarbe" with lore "&8→ &aAusgewählt%new line%%new line%&8%{server_title_stripped}%"
+    else:
+        set slot 0 of metadata tag "chatcolors_user_interface::%uuid of {_player}%" of {_player} to light gray concrete named "&7&lGRAUE&8-&7Chatfarbe &aStandard" with lore "&aIm Besitz%new line%%new line%&8%{server_title_stripped}%"
+    if {magenta_owned::%uuid of {_player}%} is set:
+        if {seletected_chatcolor::%uuid of {_player}%} is "&5":
+            set slot 1 of metadata tag "chatcolors_user_interface::%uuid of {_player}%" of {_player} to magenta concrete named "&5&lMAGENTA&8-&7Chatfarbe" with lore "&8→ &aAusgewählt%new line%%new line%&8%{server_title_stripped}%"
+        else:
+            set slot 1 of metadata tag "chatcolors_user_interface::%uuid of {_player}%" of {_player} to magenta concrete named "&5&lMAGENTA&8-&7Chatfarbe &aGekauft" with lore "&aIm Besitz%new line%%new line%&8%{server_title_stripped}%"
+    else:
+        set slot 1 of metadata tag "chatcolors_user_interface::%uuid of {_player}%" of {_player} to magenta concrete named "&5&lMAGENTA&8-&7Chatfarbe &aKaufen" with lore "&8Linksklick zum Kaufen%new line%%new line%&8» &f50000%{currency_symbol}% &7Kaufpreis%new line%&8⚡ &cNicht Im Besitz%new line%%new line%&8%{server_title_stripped}%"
+    if {orange_owned::%uuid of {_player}%} is set:
+        if {seletected_chatcolor::%uuid of {_player}%} is "&6":
+            set slot 2 of metadata tag "chatcolors_user_interface::%uuid of {_player}%" of {_player} to orange concrete named "&6&lORANGENE&8-&7Chatfarbe" with lore "&8→ &aAusgewählt%new line%%new line%&8%{server_title_stripped}%"
+        else:
+            set slot 2 of metadata tag "chatcolors_user_interface::%uuid of {_player}%" of {_player} to orange concrete named "&6&lORANGENE&8-&7Chatfarbe &aGekauft" with lore "&aIm Besitz%new line%%new line%&8%{server_title_stripped}%"
+    else:
+        set slot 2 of metadata tag "chatcolors_user_interface::%uuid of {_player}%" of {_player} to orange concrete named "&6&lORANGENE&8-&7Chatfarbe &aKaufen" with lore "&8Linksklick zum Kaufen%new line%%new line%&8» &f50000%{currency_symbol}% &7Kaufpreis%new line%&8⚡ &cNicht Im Besitz%new line%%new line%&8%{server_title_stripped}%"
+    if {yellow_owned::%uuid of {_player}%} is set:
+        if {seletected_chatcolor::%uuid of {_player}%} is "&e":
+            set slot 3 of metadata tag "chatcolors_user_interface::%uuid of {_player}%" of {_player} to yellow concrete named "&e&lGELBE&8-&7Chatfarbe" with lore "&8→ &aAusgewählt%new line%%new line%&8%{server_title_stripped}%"
+        else:
+            set slot 3 of metadata tag "chatcolors_user_interface::%uuid of {_player}%" of {_player} to yellow concrete named "&e&lGELBE&8-&7Chatfarbe &aGekauft" with lore "&aIm Besitz%new line%%new line%&8%{server_title_stripped}%"
+    else:
+        set slot 3 of metadata tag "chatcolors_user_interface::%uuid of {_player}%" of {_player} to yellow concrete named "&e&lGELBE&8-&7Chatfarbe &aKaufen" with lore "&8Linksklick zum Kaufen%new line%%new line%&8» &f50000%{currency_symbol}% &7Kaufpreis%new line%&8⚡ &cNicht Im Besitz%new line%%new line%&8%{server_title_stripped}%"
+    if {lime_owned::%uuid of {_player}%} is set:
+        if {seletected_chatcolor::%uuid of {_player}%} is "&a":
+            set slot 4 of metadata tag "chatcolors_user_interface::%uuid of {_player}%" of {_player} to lime concrete named "&a&lGRÜNE&8-&7Chatfarbe" with lore "&8→ &aAusgewählt%new line%%new line%&8%{server_title_stripped}%"
+        else:
+            set slot 4 of metadata tag "chatcolors_user_interface::%uuid of {_player}%" of {_player} to lime concrete named "&a&lGRÜNE&8-&7Chatfarbe &aGekauft" with lore "&aIm Besitz%new line%%new line%&8%{server_title_stripped}%"
+    else:
+        set slot 4 of metadata tag "chatcolors_user_interface::%uuid of {_player}%" of {_player} to lime concrete named "&a&lGRÜNE&8-&7Chatfarbe &aKaufen" with lore "&8Linksklick zum Kaufen%new line%%new line%&8» &f50000%{currency_symbol}% &7Kaufpreis%new line%&8⚡ &cNicht Im Besitz%new line%%new line%&8%{server_title_stripped}%"
+
+    open (metadata tag "chatcolors_user_interface::%uuid of {_player}%" of {_player}) to {_player}
+
+on inventory click:
+    if event-inventory = (metadata tag "chatcolors_user_interface::%uuid of player%" of player):
+        cancel event
+        if lore of event-item contains "&8→ &aAusgewählt":
+            close inventory of player
+            send "%{server_prefix}%&cChatfarbe bereits ausgewählt." to player
+            play sound "block.redstone_torch.burnout" with volume 0.25 and pitch 2.0 to player
+        if name of event-item is "&5&lMAGENTA&8-&7Chatfarbe &aKaufen":
+            if {balance::%uuid of player%} >= 50000:
+                remove 50000 from {balance::%uuid of player%}
+                updateScoreboardBalance(player)
+                set {magenta_owned::%uuid of player%} to true
+                set {seletected_chatcolor::%uuid of player%} to "&5"
+                close inventory of player
+                send "" to player
+                send "%{server_prefix}%&5&lMAGENTA&8-&7Chatfarbe gekauft." to player
+                send "%{server_prefix}%Schreibe eine Nachricht und probier's aus!" to player
+                send "" to player
+                play sound "block.note_block.guitar" with volume 2.0 and pitch 1.0 to player
+            else:
+                send "%{server_prefix}%Du hast nicht genügend Geld dafür." to player
+                close inventory of player
+                play sound "block.redstone_torch.burnout" with volume 0.25 and pitch 2.0 to player
+        if name of event-item is "&5&lMAGENTA&8-&7Chatfarbe &aGekauft":
+            set {seletected_chatcolor::%uuid of player%} to "&5"
+            send "%{server_prefix}%Ausgewählte Chatfarbe&8: &5&lMAGENTA&7."
+            play sound "block.note_block.chime" with volume 2.0 and pitch 1.0 to player
+            close inventory of player
+        if name of event-item is "&6&lORANGENE&8-&7Chatfarbe &aKaufen":
+            if {balance::%uuid of player%} >= 50000:
+                remove 50000 from {balance::%uuid of player%}
+                updateScoreboardBalance(player)
+                set {orange_owned::%uuid of player%} to true
+                set {seletected_chatcolor::%uuid of player%} to "&6"
+                close inventory of player
+                send "" to player
+                send "%{server_prefix}%&6&lORANGENE&8-&7Chatfarbe gekauft." to player
+                send "%{server_prefix}%Schreibe eine Nachricht und probier's aus!" to player
+                send "" to player
+                play sound "block.note_block.guitar" with volume 2.0 and pitch 1.0 to player
+            else:
+                send "%{server_prefix}%Du hast nicht genügend Geld dafür." to player
+                close inventory of player
+                play sound "block.redstone_torch.burnout" with volume 0.25 and pitch 2.0 to player
+        if name of event-item is "&6&lORANGENE&8-&7Chatfarbe &aGekauft":
+            set {seletected_chatcolor::%uuid of player%} to "&6"
+            send "%{server_prefix}%Ausgewählte Chatfarbe&8: &6&lORANGE&7."
+            play sound "block.note_block.chime" with volume 2.0 and pitch 1.0 to player
+            close inventory of player
+        if name of event-item is "&e&lGELBE&8-&7Chatfarbe &aKaufen":
+            if {balance::%uuid of player%} >= 50000:
+                remove 50000 from {balance::%uuid of player%}
+                updateScoreboardBalance(player)
+                set {yellow_owned::%uuid of player%} to true
+                set {seletected_chatcolor::%uuid of player%} to "&e"
+                close inventory of player
+                send "" to player
+                send "%{server_prefix}%&e&lGELBE&8-&7Chatfarbe gekauft." to player
+                send "%{server_prefix}%Schreibe eine Nachricht und probier's aus!" to player
+                send "" to player
+                play sound "block.note_block.guitar" with volume 2.0 and pitch 1.0 to player
+            else:
+                send "%{server_prefix}%Du hast nicht genügend Geld dafür." to player
+                close inventory of player
+                play sound "block.redstone_torch.burnout" with volume 0.25 and pitch 2.0 to player
+        if name of event-item is "&e&lGELBE&8-&7Chatfarbe &aGekauft":
+            set {seletected_chatcolor::%uuid of player%} to "&e"
+            send "%{server_prefix}%Ausgewählte Chatfarbe&8: &e&lGELB&7."
+            play sound "block.note_block.chime" with volume 2.0 and pitch 1.0 to player
+            close inventory of player
+        if name of event-item is "&a&lGRÜNE&8-&7Chatfarbe &aKaufen":
+            if {balance::%uuid of player%} >= 50000:
+                remove 50000 from {balance::%uuid of player%}
+                updateScoreboardBalance(player)
+                set {lime_owned::%uuid of player%} to true
+                set {seletected_chatcolor::%uuid of player%} to "&a"
+                close inventory of player
+                send ""
+                send "%{server_prefix}%&a&lGRÜNE&8-&7Chatfarbe gekauft." to player
+                send "%{server_prefix}%Schreibe eine Nachricht und probier's aus!" to player
+                send ""
+                play sound "block.note_block.guitar" with volume 2.0 and pitch 1.0 to player
+            else:
+                send "%{server_prefix}%Du hast nicht genügend Geld dafür." to player
+                close inventory of player
+                play sound "block.redstone_torch.burnout" with volume 0.25 and pitch 2.0 to player
+        if name of event-item is "&a&lGRÜNE&8-&7Chatfarbe &aGekauft":
+            set {seletected_chatcolor::%uuid of player%} to "&a"
+            send "%{server_prefix}%Ausgewählte Chatfarbe&8: &a&lGRÜN&7."
+            play sound "block.note_block.chime" with volume 2.0 and pitch 1.0 to player
+            close inventory of player
+        if name of event-item is "&7&lGRAUE&8-&7Chatfarbe &aStandard":
+            set {seletected_chatcolor::%uuid of player%} to "&7"
+            send "%{server_prefix}%Ausgewählte Chatfarbe&8: &7&lGRAU&7."
+            play sound "block.note_block.chime" with volume 2.0 and pitch 1.0 to player
+            close inventory of player

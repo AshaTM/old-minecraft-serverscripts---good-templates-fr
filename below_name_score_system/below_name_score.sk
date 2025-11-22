@@ -1,0 +1,11 @@
+every 12 second:
+    loop all players:
+        if loop-player is online:
+            set score "&n%{currency_symbol}%&r &fTaschengeld" below loop-player to {balance::%uuid of loop-player%} for all players
+            wait 4 second
+            if loop-player is online:
+                set score "&nStd&r. Spielzeit" below loop-player to {hours::%uuid of loop-player%} for all players
+                wait 4 second
+                if loop-player is online:
+                    set score "&fVotes" below loop-player to {votes::%uuid of loop-player%} for all players
+                    wait 4 second

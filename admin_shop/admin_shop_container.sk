@@ -1,0 +1,38 @@
+function setShopItem(buy: number, sell: number, item: item, x: number, y: number, z: number, world: world):
+
+    set {_location} to location at {_x}, {_y}, {_z} in world {_world}
+
+    set block at {_location} to gray stained glass
+    set block below {_location} to smooth stone
+    set block above {_location} to stone pressure plate
+    set block 2 above {_location} to light[level=10]
+
+    loop all text displays and item displays and block displays in radius 1 of location 1 above {_location}:
+        kill loop-entity
+    loop all text displays and item displays and block displays in radius 1 of {_location}:
+        kill loop-entity
+
+    set {_shop_item_name} to raw name of {_item}
+    replace all "minecraft:" with "" in {_shop_item_name}
+    replace all "_" with " " in {_shop_item_name}
+
+    spawn text display 1.45 above {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to vertical
+    set display scale of {_display} to vector(0.5, 0.5, 0.5)
+    set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set the line width of {_display} to 1024
+    set display component of {_display} to mini message from "<dark_purple>%{server_title}%</dark_purple>%new line%%new line%<bold>%{_shop_item_name} in uppercase%</bold>%new line%%new line%<gray><green>LK</green></gray> <dark_gray>→</dark_gray> <gray>Für</gray> <green>$%{_sell}%</green> <gray>verkaufen<dark_gray>.</dark_gray></gray>%new line%<gray><red>RK</red></gray> <dark_gray>→</dark_gray> <gray>Für</gray> <red>$%{_buy}%</red> <gray>kaufen<dark_gray>.</dark_gray></gray>"
+
+    spawn item display 0.50 above {_location}
+    set {_display} to last spawned item display
+    set display billboard of {_display} to vertical
+    set display scale of {_display} to vector(0.5, 0.5, 0.5)
+    set display item of {_display} to 1 of {_item}
+    set name of {_display} to "shop,%{_buy}%,%{_sell}%,%{_item}%"
+
+    #spawn item display 0.15 above {_location}
+    #set {_display} to last spawned item display
+    #set display scale of {_display} to vector(0.7, 0.8, 0.7)
+    #set display item of {_display} to 1 of andesite slab

@@ -1,0 +1,18 @@
+command /bagofsweets:
+    trigger:
+        give player 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjI2ZTAzMTg2MDI0YzRiZDRjYjQ0NGY4YzYwNzUxZTQ4ODgzOTNhYjE1NGY0YTgzNTcxNDQwMWRkNDM4YTM0MiJ9fX0=""}]}}" named "&5Süßigkeitentüte" with lore "&6Halloween Spezial-Item &8- &dHalloween 2025%new line%&8- &7Rechtsklick zum öffnen."
+
+on rightclick with player head:
+    if name of event-item is "&5Süßigkeitentüte":
+        cancel event
+        add 16 of iron ingot to {_sweets_list::*}
+        add 16 of gold ingot to {_sweets_list::*}
+        add 16 of golden apple to {_sweets_list::*}
+        add 8 of netherite scrap to {_sweets_list::*}
+        add 16 of golden carrot to {_sweets_list::*}
+        add 4 of dragon breath to {_sweets_list::*}
+        add 16 of spectral arrow to {_sweets_list::*}
+        drop one of {_sweets_list::*} at player
+        launch ball large coloured blue and white fading to white and red at location of player with duration 1
+        remove 1 of tool of player from inventory of player
+        send "%{server_prefix}%&5&lSüßigkeitentüte geöffnet!" to player

@@ -1,0 +1,38 @@
+function checkAfk(player: player):
+    set {afkTime::%uuid of {_player}%} to 0
+    if {isAfk::%uuid of {_player}%} is 1:
+        set {isAfk::%uuid of {_player}%} to 0
+        set {afkText::%uuid of {_player}%} to ""
+        reset the titles of {_player}
+        updateTablistName({_player})
+        send "⚐ &f&lAFK &8| %prefix of {_player}%%{_player}% ist wieder &aanwesend&7." to all players
+
+on login:
+    set {isAfk::%uuid of player%} to 0
+    set {afkTime::%uuid of player%} to 0
+    set {afkText::%uuid of player%} to ""
+    reset the titles of player
+
+every second:
+    loop all players:
+        add 1 to {afkTime::%uuid of loop-player%}
+        if {afkTime::%uuid of loop-player%} > 600:
+            if {isAfk::%uuid of loop-player%} is not 1:
+                if name of loop-player is not "Jaynooo":
+                    set {isAfk::%uuid of loop-player%} to 1
+                    set {afkText::%uuid of loop-player%} to "&cᴀꜰᴋ"
+                    updateTablistName(loop-player)
+                    send title "&cAFK" with subtitle "&cᴅᴜ ʙɪѕᴛ ᴀʙᴡᴇѕᴇɴᴅ" to loop-player for 13 days with fade in 0 ticks and fade out 0 ticks
+                    send "⚐ &f&lAFK &8| %prefix of loop-player%%loop-player% ist jetzt &cabwesend&7." to all players
+                    send "⚐ &f&lAFK &8| &cAchtung&7, deine &fSpielzeit &7wird nicht mehr gezählt." to loop-player
+
+on inventory click:
+    checkAfk(player)
+on player move:
+    checkAfk(player)
+on command:
+    checkAfk(player)
+on click:
+    checkAfk(player)
+on chat:
+    checkAfk(player)

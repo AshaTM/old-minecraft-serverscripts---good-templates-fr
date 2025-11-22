@@ -1,0 +1,13 @@
+on login:
+    delete boss bar with id uuid of player
+    set {_bar} to boss bar with id uuid of player with title "%{server_prefix}%Willkommen %player%, viel spaß!" with color red with progress 100
+    set bar flag darken sky of {_bar} to true
+    add player to {_bar}
+    loop 5 times:
+        wait 1 second
+        set bar progress of {_bar} to bar progress of {_bar}-10
+    set bar title of {_bar} to "%{server_prefix}%Melde dich, sollten Probleme auftreten."
+    loop 6 times:
+        wait 1 second
+        set bar progress of {_bar} to bar progress of {_bar}-10
+    delete boss bar with id uuid of player

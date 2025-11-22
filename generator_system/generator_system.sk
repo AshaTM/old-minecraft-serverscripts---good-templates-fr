@@ -1,0 +1,345 @@
+command /givegenerator:
+    trigger:
+        give player 1 of cauldron named "&7Neuling &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann von allen Rängen abgebaut werden.%new line%&8     - &7Generiert alle 2 Sekunden.%new line%%new line%&8%{server_title_stripped}%"
+        give player 1 of cauldron named "&eReisender &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &eReisender &7und höher abgebaut werden.%new line%&8     - &7Generiert alle 1.5 Sekunden.%new line%%new line%&8%{server_title_stripped}%"
+        give player 1 of cauldron named "&aAnwohner &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &aAnwohner &7und höher abgebaut werden.%new line%&8     - &7Generiert jede Sekunde.%new line%%new line%&8%{server_title_stripped}%"
+        give player 1 of cauldron named "&2Bürger &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &2Bürger &7und höher abgebaut werden.%new line%&8     - &7Generiert jede Sekunde.%new line%&8     - &7Doppelte Erz-Wahrscheinlichkeit.%new line%%new line%&8%{server_title_stripped}%"
+        give player 1 of cauldron named "&7Meister &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &7Meister &7und höher abgebaut werden.%new line%&8     - &7Generiert jede halbe Sekunde.%new line%&8     - &7Doppelte Erz-Wahrscheinlichkeit.%new line%%new line%&8%{server_title_stripped}%"
+        give player 1 of cauldron named "&6Crafter &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &6Crafter &7abgebaut werden.%new line%&8     - &7Generiert jede halbe Sekunde.%new line%&8     - &7Dreifache Erz-Wahrscheinlichkeit.%new line%%new line%&8%{server_title_stripped}%"
+        give player 1 of cauldron named "&5Baron &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &5Baron &7abgebaut werden.%new line%&8     - &7Generiert jede viertel Sekunde.%new line%&8     - &7Fünffache Erz-Wahrscheinlichkeit.%new line%%new line%&8%{server_title_stripped}%"
+
+
+on place of cauldron:
+    if name of tool of player is "&7Neuling &8→ &7Generator":
+        spawn text display 0.45 above event-block
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.25, 0.25, 0.25)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set name of {_display} to "0_generator"
+        set display component of {_display} to mini message from "<gold>%{server_title}%</gold>%new line%<gray>Generator<gray><dark_gray>:</dark_gray> <gray><underlined>Neuling</underlined></gray>%new line%<gray>Zeit<white><dark_gray>:</dark_gray> <white>2 Sekunden</white>%new line%%new line%%new line%%new line%%new line%%new line%%new line%%new line%"
+        set block above event-block to cobblestone
+    if name of tool of player is "&eReisender &8→ &7Generator":
+        spawn text display 0.45 above event-block
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.25, 0.25, 0.25)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set name of {_display} to "1_generator"
+        set display component of {_display} to mini message from "<gold>%{server_title}%</gold>%new line%<gray>Generator<gray><dark_gray>:</dark_gray> <yellow><underlined>Reisender</underlined></yellow>%new line%<gray>Zeit<white><dark_gray>:</dark_gray> <white>1.5 Sekunden</white>%new line%%new line%%new line%%new line%%new line%%new line%%new line%%new line%"
+        set block above event-block to cobblestone
+    if name of tool of player is "&aAnwohner &8→ &7Generator":
+        spawn text display 0.45 above event-block
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.25, 0.25, 0.25)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set name of {_display} to "2_generator"
+        set display component of {_display} to mini message from "<gold>%{server_title}%</gold>%new line%<gray>Generator<gray><dark_gray>:</dark_gray> <green><underlined>Anwohner</underlined></green>%new line%<gray>Zeit<white><dark_gray>:</dark_gray> <white>1 Sekunde</white>%new line%%new line%%new line%%new line%%new line%%new line%%new line%%new line%"
+        set block above event-block to cobblestone
+    if name of tool of player is "&2Bürger &8→ &7Generator":
+        spawn text display 0.45 above event-block
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.25, 0.25, 0.25)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set name of {_display} to "3_generator"
+        set display component of {_display} to mini message from "<gold>%{server_title}%</gold>%new line%<gray>Generator<gray><dark_gray>:</dark_gray> <dark_green><underlined>Bürger</underlined></dark_green>%new line%<gray>Zeit<white><dark_gray>:</dark_gray> <white>1 Sekunde</white>%new line%<gray>Erz-Wahrscheinlichkeit<white><dark_gray>:</dark_gray> <white>Verdoppelt</white>%new line%%new line%%new line%%new line%%new line%%new line%%new line%%new line%"
+        set block above event-block to cobblestone
+    if name of tool of player is "&7Meister &8→ &7Generator":
+        spawn text display 0.45 above event-block
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.25, 0.25, 0.25)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set name of {_display} to "4_generator"
+        set display component of {_display} to mini message from "<gold>%{server_title}%</gold>%new line%<gray>Generator<gray><dark_gray>:</dark_gray> <gray><underlined>Meister</underlined></gray>%new line%<gray>Zeit<white><dark_gray>:</dark_gray> <white>Jede halbe Sekunde</white>%new line%<gray>Erz-Wahrscheinlichkeit<white><dark_gray>:</dark_gray> <white>Verdoppelt</white>%new line%%new line%%new line%%new line%%new line%%new line%%new line%%new line%"
+        set block above event-block to cobblestone
+    if name of tool of player is "&6Crafter &8→ &7Generator":
+        spawn text display 0.45 above event-block
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.25, 0.25, 0.25)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set name of {_display} to "5_generator"
+        set display component of {_display} to mini message from "<gold>%{server_title}%</gold>%new line%<gray>Generator<gray><dark_gray>:</dark_gray> <gold><underlined>Crafter</underlined></gold>%new line%<gray>Zeit<white><dark_gray>:</dark_gray> <white>Jede halbe Sekunde</white>%new line%<gray>Erz-Wahrscheinlichkeit<white><dark_gray>:</dark_gray> <white>Verdreifacht</white>%new line%%new line%%new line%%new line%%new line%%new line%%new line%%new line%"
+        set block above event-block to cobblestone
+    if name of tool of player is "&5Baron &8→ &7Generator":
+        spawn text display 0.45 above event-block
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.25, 0.25, 0.25)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set name of {_display} to "6_generator"
+        set display component of {_display} to mini message from "<gold>%{server_title}%</gold>%new line%<gray>Generator<gray><dark_gray>:</dark_gray> <dark_purple><underlined>Baron</underlined></dark_purple>%new line%<gray>Zeit<white><dark_gray>:</dark_gray> <white>Jede vietel Sekunde</white>%new line%<gray>Erz-Wahrscheinlichkeit<white><dark_gray>:</dark_gray> <white>Verfünffacht</white>%new line%%new line%%new line%%new line%%new line%%new line%%new line%%new line%"
+        set block above event-block to cobblestone
+
+on break of cauldron:
+    loop all text displays and item displays and block displays in radius 0.5 of event-block:
+        if name of loop-entity is "0_generator":
+            cancel event
+            set event-block to air
+            set block above event-block to air
+            drop 1 of cauldron named "&7Neuling &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann von allen Rängen abgebaut werden.%new line%&8     - &7Generiert alle 2 Sekunden.%new line%%new line%&8%{server_title_stripped}%" without velocity
+        if name of loop-entity is "1_generator":
+            cancel event
+            set event-block to air
+            set block above event-block to air
+            drop 1 of cauldron named "&eReisender &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &eReisender &7und höher abgebaut werden.%new line%&8     - &7Generiert alle 1.5 Sekunden.%new line%%new line%&8%{server_title_stripped}%" without velocity
+        if name of loop-entity is "2_generator":
+            cancel event
+            set event-block to air
+            set block above event-block to air
+            drop 1 of cauldron named "&aAnwohner &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &aAnwohner &7und höher abgebaut werden.%new line%&8     - &7Generiert jede Sekunde.%new line%%new line%&8%{server_title_stripped}%" without velocity
+        if name of loop-entity is "3_generator":
+            cancel event
+            set event-block to air
+            set block above event-block to air
+            drop 1 of cauldron named "&2Bürger &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &2Bürger &7und höher abgebaut werden.%new line%&8     - &7Generiert jede Sekunde.%new line%&8     - &7Doppelte Erz-Wahrscheinlichkeit.%new line%%new line%&8%{server_title_stripped}%" without velocity
+        if name of loop-entity is "4_generator":
+            cancel event
+            set event-block to air
+            set block above event-block to air
+            drop 1 of cauldron named "&7Meister &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &7Meister &7und höher abgebaut werden.%new line%&8     - &7Generiert jede halbe Sekunde.%new line%&8     - &7Doppelte Erz-Wahrscheinlichkeit.%new line%%new line%&8%{server_title_stripped}%" without velocity
+        if name of loop-entity is "5_generator":
+            cancel event
+            set event-block to air
+            set block above event-block to air
+            drop 1 of cauldron named "&6Crafter &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &6Crafter &7abgebaut werden.%new line%&8     - &7Generiert jede halbe Sekunde.%new line%&8     - &7Dreifache Erz-Wahrscheinlichkeit.%new line%%new line%&8%{server_title_stripped}%" without velocity
+        if name of loop-entity is "6_generator":
+            cancel event
+            set event-block to air
+            set block above event-block to air
+            drop 1 of cauldron named "&5Baron &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &5Baron &7abgebaut werden.%new line%&8     - &7Generiert jede halbe Sekunde.%new line%&8     - &7Fünffache Erz-Wahrscheinlichkeit.%new line%%new line%&8%{server_title_stripped}%" without velocity
+        kill loop-entity
+
+on break of cobblestone or stone or diamond ore or emerald ore or gold ore or lapis ore or iron ore or coal ore or redstone ore:
+    loop all text displays and item displays and block displays in radius 0.51 of location 1 below event-block:
+        if name of loop-entity is "0_generator":
+            if group of player is "Inhaber" or "Supporter" or "Moderator" or "Content" or "Freund" or "Neuling" or "Reisender" or "Anwohner" or "Crafter" or "Meister" or "Bürger" or "Baron":
+                wait 40 ticks
+                if block below event-block is cauldron:
+                    play sound "block.stone.fall" with volume 0.5 and pitch 0.25 at event-block for player
+                    play sound "block.redstone_torch.burnout" with volume 0.05 and pitch 2.0 at event-block for player
+                    make 5 of cloud at event-block with offset vector(0.5, 0.5, 0.5) with extra 0
+                    set {_chance} to random integer between 1 and 100
+                    if {_chance} <= 1:
+                        set event-block to diamond ore
+                    else if {_chance} <= 2:
+                        set event-block to emerald ore
+                    else if {_chance} <= 7:
+                        set event-block to gold ore
+                    else if {_chance} <= 9:
+                        set event-block to lapis ore
+                    else if {_chance} <= 19:
+                        set event-block to iron ore
+                    else if {_chance} <= 39:
+                        set event-block to coal ore
+                    else if {_chance} <= 41:
+                        set event-block to redstone ore
+                    else if {_chance} <= 76:
+                        set event-block to stone
+                    else:
+                        set event-block to cobblestone
+            else:
+                cancel event
+                send "%{server_prefix}%&cKann nur vom Rang &7Neuling &cund höher abgebaut werden." to player
+        if name of loop-entity is "1_generator":
+            if group of player is "Inhaber" or "Supporter" or "Moderator" or "Content" or "Freund" or "Reisender" or "Anwohner" or "Crafter" or "Meister" or "Bürger" or "Baron":
+                wait 30 ticks
+                if block below event-block is cauldron:
+                    play sound "block.stone.fall" with volume 0.5 and pitch 0.25 at event-block for player
+                    play sound "block.redstone_torch.burnout" with volume 0.05 and pitch 2.0 at event-block for player
+                    make 5 of cloud at event-block with offset vector(0.5, 0.5, 0.5) with extra 0
+                    set {_chance} to random integer between 1 and 100
+                    if {_chance} <= 1:
+                        set event-block to diamond ore
+                    else if {_chance} <= 2:
+                        set event-block to emerald ore
+                    else if {_chance} <= 7:
+                        set event-block to gold ore
+                    else if {_chance} <= 9:
+                        set event-block to lapis ore
+                    else if {_chance} <= 10:
+                        set event-block to iron ore
+                    else if {_chance} <= 39:
+                        set event-block to coal ore
+                    else if {_chance} <= 31:
+                        set event-block to redstone ore
+                    else if {_chance} <= 76:
+                        set event-block to stone
+                    else:
+                        set event-block to cobblestone
+            else:
+                cancel event
+                send "%{server_prefix}%&cKann nur vom Rang &eReisender &cund höher abgebaut werden." to player
+        if name of loop-entity is "2_generator":
+            if group of player is "Inhaber" or "Supporter" or "Moderator" or "Content" or "Freund" or "Anwohner" or "Crafter" or "Meister" or "Bürger" or "Baron":
+                wait 20 ticks
+                if block below event-block is cauldron:
+                    play sound "block.stone.fall" with volume 0.5 and pitch 0.25 at event-block for player
+                    play sound "block.redstone_torch.burnout" with volume 0.05 and pitch 2.0 at event-block for player
+                    make 5 of cloud at event-block with offset vector(0.5, 0.5, 0.5) with extra 0
+                    set {_chance} to random integer between 1 and 100
+                    if {_chance} <= 1:
+                        set event-block to diamond ore
+                    else if {_chance} <= 2:
+                        set event-block to emerald ore
+                    else if {_chance} <= 7:
+                        set event-block to gold ore
+                    else if {_chance} <= 9:
+                        set event-block to lapis ore
+                    else if {_chance} <= 10:
+                        set event-block to iron ore
+                    else if {_chance} <= 39:
+                        set event-block to coal ore
+                    else if {_chance} <= 31:
+                        set event-block to redstone ore
+                    else if {_chance} <= 76:
+                        set event-block to stone
+                    else:
+                        set event-block to cobblestone
+            else:
+                cancel event
+                send "%{server_prefix}%&cKann nur vom Rang &aAnwohner &cund höher abgebaut werden." to player
+        if name of loop-entity is "3_generator":
+            if group of player is "Inhaber" or "Supporter" or "Moderator" or "Content" or "Freund" or "Bürger" or "Meister" or "Crafter" or "Baron":
+                wait 20 ticks
+                if block below event-block is cauldron:
+                    play sound "block.stone.fall" with volume 0.5 and pitch 0.25 at event-block for player
+                    play sound "block.redstone_torch.burnout" with volume 0.05 and pitch 2.0 at event-block for player
+                    make 5 of cloud at event-block with offset vector(0.5, 0.5, 0.5) with extra 0
+                    set {_chance} to random integer between 1 and 100
+                    if {_chance} <= 1:
+                        set event-block to diamond ore
+                    else if {_chance} <= 4:
+                        set event-block to emerald ore
+                    else if {_chance} <= 10:
+                        set event-block to gold ore
+                    else if {_chance} <= 12:
+                        set event-block to lapis ore
+                    else if {_chance} <= 17:
+                        set event-block to iron ore
+                    else if {_chance} <= 44:
+                        set event-block to coal ore
+                    else if {_chance} <= 37:
+                        set event-block to redstone ore
+                    else if {_chance} <= 32:
+                        set event-block to stone
+                    else:
+                        set event-block to cobblestone
+            else:
+                cancel event
+                send "%{server_prefix}%&cKann nur vom Rang &2Bürger &cund höher abgebaut werden." to player
+        if name of loop-entity is "4_generator":
+            if group of player is "Inhaber" or "Supporter" or "Moderator" or "Content" or "Freund" or "Meister" or "Crafter" or "Baron":
+                wait 10 ticks
+                if block below event-block is cauldron:
+                    play sound "block.stone.fall" with volume 0.5 and pitch 0.25 at event-block for player
+                    play sound "block.redstone_torch.burnout" with volume 0.05 and pitch 2.0 at event-block for player
+                    make 5 of cloud at event-block with offset vector(0.5, 0.5, 0.5) with extra 0
+                    set {_chance} to random integer between 1 and 100
+                    if {_chance} <= 1:
+                        set event-block to diamond ore
+                    else if {_chance} <= 4:
+                        set event-block to emerald ore
+                    else if {_chance} <= 10:
+                        set event-block to gold ore
+                    else if {_chance} <= 12:
+                        set event-block to lapis ore
+                    else if {_chance} <= 17:
+                        set event-block to iron ore
+                    else if {_chance} <= 44:
+                        set event-block to coal ore
+                    else if {_chance} <= 37:
+                        set event-block to redstone ore
+                    else if {_chance} <= 32:
+                        set event-block to stone
+                    else:
+                        set event-block to cobblestone
+            else:
+                cancel event
+                send "%{server_prefix}%&cKann nur vom Rang &7Meister &cund höher abgebaut werden." to player
+        if name of loop-entity is "5_generator":
+            if group of player is "Inhaber" or "Supporter" or "Moderator" or "Content" or "Freund" or "Crafter" or "Baron":
+                wait 10 ticks
+                if block below event-block is cauldron:
+                    play sound "block.stone.fall" with volume 0.5 and pitch 0.25 at event-block for player
+                    play sound "block.redstone_torch.burnout" with volume 0.05 and pitch 2.0 at event-block for player
+                    make 5 of cloud at event-block with offset vector(0.5, 0.5, 0.5) with extra 0
+                    set {_chance} to random integer between 1 and 100
+                    if {_chance} <= 1:
+                        set event-block to diamond ore
+                    else if {_chance} <= 8:
+                        set event-block to emerald ore
+                    else if {_chance} <= 17:
+                        set event-block to gold ore
+                    else if {_chance} <= 21:
+                        set event-block to lapis ore
+                    else if {_chance} <= 23:
+                        set event-block to iron ore
+                    else if {_chance} <= 74:
+                        set event-block to coal ore
+                    else if {_chance} <= 34:
+                        set event-block to redstone ore
+                    else if {_chance} <= 22:
+                        set event-block to stone
+                    else:
+                        set event-block to cobblestone
+            else:
+                cancel event
+                send "%{server_prefix}%&cKann nur vom Rang &6Crafter &cabgebaut werden." to player
+        if name of loop-entity is "6_generator":
+            if group of player is "Inhaber" or "Supporter" or "Moderator" or "Content" or "Freund" or "Crafter" or "Baron":
+                wait 5 ticks
+                if block below event-block is cauldron:
+                    play sound "block.stone.fall" with volume 0.5 and pitch 0.25 at event-block for player
+                    play sound "block.redstone_torch.burnout" with volume 0.05 and pitch 2.0 at event-block for player
+                    make 5 of cloud at event-block with offset vector(0.5, 0.5, 0.5) with extra 0
+                    set {_chance} to random integer between 1 and 100
+                    if {_chance} <= 1:
+                        set event-block to diamond ore
+                    else if {_chance} <= 18:
+                        set event-block to emerald ore
+                    else if {_chance} <= 27:
+                        set event-block to gold ore
+                    else if {_chance} <= 31:
+                        set event-block to lapis ore
+                    else if {_chance} <= 43:
+                        set event-block to iron ore
+                    else if {_chance} <= 74:
+                        set event-block to coal ore
+                    else if {_chance} <= 34:
+                        set event-block to redstone ore
+                    else if {_chance} <= 22:
+                        set event-block to stone
+                    else:
+                        set event-block to cobblestone
+            else:
+                cancel event
+                send "%{server_prefix}%&cKann nur vom Rang &5Baron &cabgebaut werden." to player
+
+on piston extend:
+    if moved blocks contains cauldron:
+        cancel event
+    if blocks below moved blocks contains cauldron:
+        cancel event
+
+on piston retract:
+    if moved blocks contains cauldron:
+        cancel event
+    if blocks below moved blocks contains cauldron:
+        cancel event
+
+on place:
+    if block below event-block is cauldron:
+        loop all text displays and item displays and block displays in radius 0.5 of block below event-block:
+            if name of loop-entity contains "generator":
+                cancel event

@@ -1,0 +1,15 @@
+on right click on white stained glass:
+    loop all entities in radius 0.5 of event-block:
+        if name of loop-entity is "time_bank":
+            cancel event
+            if {time_balance::%uuid of player%} >= 0.05:
+                add {time_balance::%uuid of player%} to {balance::%uuid of player%}
+                updateScoreboardBalance(player)
+                send action bar "%{server_prefix}%Dir wurden &a%{currency_symbol}%%{time_balance::%uuid of player%}% &7ausgezahlt." to player
+                set {time_balance::%uuid of player%} to 0
+                play sound "block.note_block.bit" with volume 0.5 and pitch 2.0 to player
+                make 2 of happy villager at event-block with offset vector(0.5, 0.5, 0.5) with extra 0.001
+            else:
+                send action bar "%{server_prefix}%&cDein Zeit-Kontostand ist zu niedrig - &cKomm später wieder..." to player
+                play sound "block.note_block.bit" with volume 0.5 and pitch 0.2 to player
+                make 2 of angry villager at event-block with offset vector(0.5, 0.5, 0.5) with extra 0.001

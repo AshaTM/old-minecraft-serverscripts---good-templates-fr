@@ -1,0 +1,7 @@
+on load:
+    set {_x} to 0.5
+    set {_y} to 2.0
+    set {_z} to 65.5
+    set {_world} to "world"
+    setServerShop({_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}

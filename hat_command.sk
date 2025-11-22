@@ -1,0 +1,15 @@
+command /hat:
+    trigger:
+        if player has permission "command.hat":
+            if tool of player is not air:
+                set {_hat_item} to helmet of player
+                set {_new_hat_item} to tool of player
+                set helmet of player to {_new_hat_item}
+                set tool of player to {_hat_item}
+                send "%{server_prefix}%Schöner neuer &fHut&7." to player
+                stop
+            else:
+                send "%{server_prefix}%Du hast schon Luft auf deinem Kopf und scheinbar in deinem Kopf." to player
+                
+        else:
+            send "%{server_prefix}%Schöner neuer &fHut&7Deine Hände sind zu schwer um diesen Hut auf deinen Kopf aufzusetzen." to player

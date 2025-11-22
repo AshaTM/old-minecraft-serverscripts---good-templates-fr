@@ -1,0 +1,68 @@
+on right click on player:
+    if {jailed::*} contains player:
+        stop
+    if player is sneaking:
+        set metadata tag "player_sneak_menu" of player to dispenser inventory named "Spieler » %name of event-entity%"
+        set slot numbers from 0 to 8 of metadata tag "player_sneak_menu" of player to 1 of gray stained glass pane named "&r"
+        set slot 4 of metadata tag "player_sneak_menu" of player to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjVjOTZjZjNlNWM2OTgwYzcxNGYyNzkxN2I2NDM5YjA1OTY1MmY0Y2MyMTRhZGQ3MGRjNzQwYzZjMWZlNzBmMSJ9fX0=""}]}}" named "&cUmarme %name of event-entity%" with lore "&8→ &7Umarme den Spieler mit ganzer Kraft.%nl%%nl%&8%{server_title_stripped}%"
+        set slot 7 of metadata tag "player_sneak_menu" of player to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTI2ZWU4ZThiOWNiYThmODc2ZGM3NmY4ZmIwNjcwYjJhYmRjOTJjNjRlNGViNjc1ZWU0ZTU4MmRkYTQ4ZWZhOCJ9fX0=""}]}}" named "&cAuf %name of event-entity% setzen" with lore "&8→ &7Setze dich auf den Spieler drauf.%nl%%nl%&8%{server_title_stripped}%"
+        set slot 1 of metadata tag "player_sneak_menu" of player to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTVkNzZkOTBiMzc4MDgzZDE0Nzc1NjgwNTA1ZGRiMWU2YzJjNmRjZjRkZGU3ZjliMWY1ODgwOWJlYzZjNjVjOCJ9fX0=""}]}}" named "&c%name of event-entity% zum Duell herausfordern" with lore "&8→ &7Kämpfe gegen diesen Spieler.%nl%%nl%&8%{server_title_stripped}%"
+        open (metadata tag "player_sneak_menu" of player) to player
+        play sound "block.note_block.bit" with volume 0.25 and pitch 1.2 at player to player
+    if player is riding:
+        set metadata tag "player_sneak_menu" of player to dispenser inventory named "Spieler » %name of event-entity%"
+        set slot numbers from 0 to 8 of metadata tag "player_sneak_menu" of player to 1 of gray stained glass pane named "&r"
+        set slot 4 of metadata tag "player_sneak_menu" of player to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjVjOTZjZjNlNWM2OTgwYzcxNGYyNzkxN2I2NDM5YjA1OTY1MmY0Y2MyMTRhZGQ3MGRjNzQwYzZjMWZlNzBmMSJ9fX0=""}]}}" named "&cUmarme %name of event-entity%" with lore "&8→ &7Umarme den Spieler mit ganzer Kraft.%nl%%nl%&8%{server_title_stripped}%"
+        open (metadata tag "player_sneak_menu" of player) to player
+        play sound "block.note_block.bit" with volume 0.25 and pitch 1.2 at player to player
+
+on inventory click:
+    if event-inventory = (metadata tag "player_sneak_menu" of player):
+        cancel event
+        set {_event_player} to name of inventory of player
+        if name of event-item contains "&cUmarme":
+            replace all "Spieler » " with "" in {_event_player}
+            close inventory of player
+            if {_event_player} parsed as player is online:
+                send action bar "%{server_prefix}%Du hast &f%{_event_player} parsed as player% &7umarmt. &c❤" to player
+                send action bar "%{server_prefix}%%player% hat &fdich &7umarmt. &c❤" to {_event_player} parsed as player
+                make 1 of heart 2.7 above {_event_player} parsed as player with offset vector(0, 0, 0) with extra 0
+                make 1 of heart 2.7 above player with offset vector(0, 0, 0) with extra 0
+                play sound "block.note_block.guitar" with volume 0.15 and pitch 1.0 at player
+                wait 4 tick
+                make 1 of heart 2.5 above {_event_player} parsed as player with offset vector(0, 0, 0) with extra 0
+                make 1 of heart 2.5 above player with offset vector(0, 0, 0) with extra 0
+                play sound "block.note_block.guitar" with volume 0.15 and pitch 1.5 at player
+                wait 4 tick
+                make 1 of heart 2.25 above {_event_player} parsed as player with offset vector(0, 0, 0) with extra 0
+                make 1 of heart 2.25 above player with offset vector(0, 0, 0) with extra 0
+                play sound "block.note_block.guitar" with volume 0.15 and pitch 2.0 at player
+            else:
+                send action bar "%{server_prefix}%Spieler ist nicht online." to player
+        if name of event-item contains "&cAuf":
+            replace all "Spieler » " with "" in {_event_player}
+            close inventory of player
+            if {_event_player} parsed as player is online:
+                loop all players in radius 5 around the player:
+                    if loop-player is {_event_player} parsed as player:
+                        make player ride {_event_player} parsed as player
+                        send action bar "%{server_prefix}%Du hast dich auf &f%{_event_player} parsed as player% &7gesetzt." to player
+                        send action bar "%{server_prefix}%%player% hat sich auf &fdich &7gesetzt." to {_event_player} parsed as player
+                        make 1 of cloud 2.7 above {_event_player} parsed as player with offset vector(0, 0, 0) with extra 0
+                        play sound "block.note_block.guitar" with volume 0.15 and pitch 1.0 at player
+                    else:
+                        send action bar "%{server_prefix}%Spieler ist nicht in der nähe. &8(5 Blöcke...)" to player
+            else:
+                send action bar "%{server_prefix}%Spieler ist nicht online." to player
+        if name of event-item contains "zum Duell herausfordern":
+            replace all "Spieler » " with "" in {_event_player}
+            close inventory of player
+            make player execute "duell %{_event_player}%"
+        else:
+            close inventory of player
+
+on sneak toggle:
+    dismount any passenger from player
+
+on command:
+    dismount any passenger from player

@@ -1,0 +1,26 @@
+every 8 minutes:
+    set {_integer} to random integer between 1 and 10
+    if {_integer} = 1:
+        set {_message} to "Drücke die Item-Swap-Taste, um das Hauptmenü aufzurufen. Um Items zu tauschen musst du dabei sneaken (ducken)."
+    if {_integer} = 2:
+        set {_message} to "Es gibt insgesamt 6 Ränge, die du dir freischalten kannst. Jeder Rang kann mehr als der vorherige – der letzte Rang erlaubt dir sogar &f/fly&7!"
+    if {_integer} = 3:
+        set {_message} to "Setz dich mit &f/sit&7 einfach hin – das heilt dich langsam! Super praktisch, besonders am Anfang mit 10 Herzen."
+    if {_integer} = 4:
+        set {_message} to "Mit &f/warps&7 öffnest du das Warp-Menü und kannst dich auf %{server_title_stripped}% ganz bequem bewegen."
+    if {_integer} = 5:
+        set {_message} to "Vergiss nicht, vor dem Ausloggen dein Geld aus der Zeitbank abzuheben – sonst ist es weg!"
+    if {_integer} = 6:
+        set {_message} to "Der Einkaufsladen bietet dir alle wichtigen Items und Blöcke für dein nächstes Bauprojekt!"
+    if {_integer} = 7:
+        set {_message} to "Ab und zu findest du beim Abbauen einfach so Geld in Blöcken. Verrückt, oder?"
+    if {_integer} = 8:
+        set {_message} to "Besuche uns auf dem Discord mit &f/discord&7 – dort findest du News, Events und Support!"
+    if {_integer} = 9:
+        set {_message} to "Vergiss nicht, dir täglich einen Kopf mit &f/head&7 abzuholen!"
+    if {_integer} = 10:
+        set {_message} to "Kauf dir Herzen! Jeder startet mit 10 Herzen – das wird nicht lange reichen…"
+
+    play sound "block.note_block.cow_bell" with volume 0.025 and pitch 1.5 to all players
+    send "%new line%%{server_prefix}%&fInformation&8:" to all players
+    send "&7 %{_message}%%new line%" to all players

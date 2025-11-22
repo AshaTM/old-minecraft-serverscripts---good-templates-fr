@@ -1,0 +1,18 @@
+function updateTablistName(player: player):
+    if {tutorial_done::%uuid of {_player}%} is false:
+        set tablist name of {_player} to "&fTutorial &8| &7%{_player}% *Begrüßt mich*  &8&o%ping of {_player}%ms"
+        stop
+    if {vanish.%uuid of {_player}%} is true:
+        set tablist name of {_player} to "&8[&7%{hours::%uuid of {_player}%}%Std.&8] &4&lVANISH &8→ %prefix of {_player}%%{_player}% %{afkText::%uuid of {_player}%}%  &8&o%ping of {_player}%ms"
+        stop
+    set tablist name of {_player} to "&8[&7%{hours::%uuid of {_player}%}%Std.&8] %prefix of {_player}%%{_player}% %{afkText::%uuid of {_player}%}%  &8&o%ping of {_player}%ms"
+
+on login:
+    wait 1 tick
+    updateTablistName(player)
+    
+every 10 seconds:
+    loop all players:
+        updateTablistName(loop-player)
+
+        

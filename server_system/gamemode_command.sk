@@ -1,0 +1,56 @@
+on tab complete of "gamemode" or "gm" or "gamem" or "gmode":
+    set tab completions for position 1 to "0", "1", "2", "3", "survival", "creative", "adventure" and "spectator"
+
+command /gamemode [<text>] [<offlineplayer>]:
+    permission: command.gamemode
+    aliases: gm, gamem, gmode,
+    trigger:
+        if arg-1 is not set:
+            message "%{server_prefix}%Überprüfe den Befehl&8: &f/gamemode &70&8, &71&8, &72&8, &73&f" to player
+        if arg-1 is set:
+            if arg-2 is set:
+                if arg-2 is online:
+                    if arg-1 is "0" or "survival" or "s" or "su":
+                        set gamemode of arg-2 to survival
+                        message "%{server_prefix}%Spielmodus auf &fÜberleben &7gesetzt." to arg-2
+                        message "%{server_prefix}%Spielmodus von &f%arg-2% &7auf &fÜberleben &7gesetzt." to player
+                        stop
+                    if arg-1 is "1" or "creative" or "c":
+                        set gamemode of arg-2 to creative
+                        message "%{server_prefix}%Spielmodus auf &fKreativ &7gesetzt." to arg-2
+                        message "%{server_prefix}%Spielmodus von &f%arg-2% &7auf &fKreativ &7gesetzt." to player
+                        stop
+                    if arg-1 is "2" or "adventure" or "a":
+                        set gamemode of arg-2 to adventure
+                        message "%{server_prefix}%Spielmodus auf &fAbenteuer &7gesetzt." to arg-2
+                        message "%{server_prefix}%Spielmodus von &f%arg-2% &7auf &fAbenteuer &7gesetzt." to player
+                        stop
+                    if arg-1 is "3" or "spectator" or "sp":
+                        set gamemode of arg-2 to spectator
+                        message "%{server_prefix}%Spielmodus auf &fBeobachter &7gesetzt." to arg-2
+                        message "%{server_prefix}%Spielmodus von &f%arg-2% &7auf &fBeobachter &7gesetzt." to player
+                        stop
+                    else:
+                        message "%{server_prefix}%&cÜberprüfe deine Argumente..." to player
+                else:
+                    send "%{server_prefix}%Bitte gib einen &fSpieler &7an, der &aonline &7ist." to player
+                    
+            else:
+                if arg-1 is "0" or "survival" or "s" or "su":
+                    set gamemode of player to survival
+                    message "%{server_prefix}%Spielmodus auf &fÜberleben &7gesetzt." to player
+                    stop
+                if arg-1 is "1" or "creative" or "c":
+                    set gamemode of player to creative
+                    message "%{server_prefix}%Spielmodus auf &fKreativ &7gesetzt." to player
+                    stop
+                if arg-1 is "2" or "adventure" or "a":
+                    set gamemode of player to adventure
+                    message "%{server_prefix}%Spielmodus auf &fAbenteuer &7gesetzt." to player
+                    stop
+                if arg-1 is "3" or "spectator" or "sp":
+                    set gamemode of player to spectator
+                    message "%{server_prefix}%Spielmodus auf &fBeobachter &7gesetzt." to player
+                    stop
+                else:
+                    message "%{server_prefix}%&cÜberprüfe deine Argumente..." to player

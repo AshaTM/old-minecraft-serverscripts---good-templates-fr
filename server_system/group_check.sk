@@ -1,0 +1,105 @@
+on load:
+    set {_team} to team named "AAA_owner"
+    set team prefix of {_team} to "&4Inhaber &8| &7"
+    set team option collision rule of {_team} to always
+    set team color of {_team} to dark red
+
+    set {_team} to team named "AAB_administrator"
+    set team prefix of {_team} to "&cAdministrator &8| &7"
+    set team option collision rule of {_team} to always
+    set team color of {_team} to light red
+
+    set {_team} to team named "AAC_moderator"
+    set team prefix of {_team} to "&1Moderator &8| &7"
+    set team option collision rule of {_team} to always
+    set team color of {_team} to blue
+    
+    set {_team} to team named "AAD_supporter"
+    set team prefix of {_team} to "&2Supporter &8| &7"
+    set team option collision rule of {_team} to always
+    set team color of {_team} to green
+
+    set {_team} to team named "AAE_content"
+    set team prefix of {_team} to "&5Content &8| &7"
+    set team option collision rule of {_team} to always
+    set team color of {_team} to purple
+
+    set {_team} to team named "AAF_friend"
+    set team prefix of {_team} to "&eFreund &8| &7"
+    set team option collision rule of {_team} to always
+    set team color of {_team} to yellow
+
+    set {_team} to team named "ZZT_baron"
+    set team prefix of {_team} to "&5Baron &8| &7"
+    set team option collision rule of {_team} to always
+    set team color of {_team} to dark purple
+
+    set {_team} to team named "ZZU_crafter"
+    set team prefix of {_team} to "&6Crafter &8| &7"
+    set team option collision rule of {_team} to always
+    set team color of {_team} to gold
+
+    set {_team} to team named "ZZV_master"
+    set team prefix of {_team} to "&7Meister &8| &7"
+    set team option collision rule of {_team} to always
+    set team color of {_team} to gray
+    
+    set {_team} to team named "ZZW_citizen"
+    set team prefix of {_team} to "&2Bürger &8| &7"
+    set team option collision rule of {_team} to always
+    set team color of {_team} to green
+
+    set {_team} to team named "ZZX_residents"
+    set team prefix of {_team} to "&aAnwohner &8| &7"
+    set team option collision rule of {_team} to always
+    set team color of {_team} to light green
+
+    set {_team} to team named "ZZY_traveler"
+    set team prefix of {_team} to "&eReisender &8| &7"
+    set team option collision rule of {_team} to always
+    set team color of {_team} to yellow
+    
+    set {_team} to team named "ZZZ_default"
+    set team prefix of {_team} to "&7Neuling &8| &7"
+    set team option collision rule of {_team} to always
+    set team color of {_team} to gray
+
+function setGroup(player: player):
+    if group of {_player} is "Inhaber":
+        add {_player} to team named "AAA_owner"
+    if group of {_player} is "Administrator":
+        add {_player} to team named "AAB_administrator"
+    if group of {_player} is "Moderator":
+        add {_player} to team named "AAC_moderator"
+    if group of {_player} is "Supporter":
+        add {_player} to team named "AAD_supporter"
+    if group of {_player} is "Content":
+        add {_player} to team named "AAE_content"
+    if group of {_player} is "Freund":
+        add {_player} to team named "AAF_friend"
+    if group of {_player} is "Baron":
+        add {_player} to team named "ZZT_baron"
+    if group of {_player} is "Crafter":
+        add {_player} to team named "ZZU_crafter"
+    if group of {_player} is "Meister":
+        add {_player} to team named "ZZV_master"
+    if group of {_player} is "Bürger":
+        add {_player} to team named "ZZW_citizen"
+    if group of {_player} is "Anwohner":
+        add {_player} to team named "ZZX_residents"
+    if group of {_player} is "Reisender":
+        add {_player} to team named "ZZY_traveler"
+    if group of {_player} is "Neuling":
+        add {_player} to team named "ZZZ_default"
+
+on login:
+    setGroup(player)
+    updateScoreboardGroup(player)
+    updateTablistName(player)
+
+on command "/lp":
+    wait 3 ticks
+    loop all players:
+        setGroup(loop-player)
+        updateScoreboardGroup(loop-player)
+        updateTablistName(loop-player)

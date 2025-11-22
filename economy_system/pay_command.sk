@@ -1,0 +1,25 @@
+command /skpay [<offlineplayer>] [<number>]:
+    trigger:
+        if arg-1 or arg-2 is not set:
+            send "%{server_prefix}%Benutze&8: &c/pay &8(&cSpieler&8) (&cBetrag&8)" to player
+            stop
+
+        if arg-2 is not an integer:
+            send "%{server_prefix}%&cBitte gib eine ganze Zahl als Betrag ein (z.B. 10, 50, 100)." to player
+            stop
+
+        if arg-2 <= 0:
+            send "%{server_prefix}%&cBitte gib einen Betrag ein, der größer als 0 ist." to player
+            stop
+
+        if arg-2 > {balance::%uuid of player%}:
+            send "%{server_prefix}%&cDu hast nicht genug Geld!" to player
+            stop
+
+        remove arg-2 from {balance::%uuid of player%}
+        add arg-2 to {balance::%uuid of arg-1%}
+        updateScoreboardBalance(arg-1)
+        updateScoreboardBalance(player)
+
+        send "%{server_prefix}%&a%arg-2%%{currency_symbol}% &7wurde an &f%arg-1% &7überwiesen." to player
+        send "%{server_prefix}%&a%arg-2%%{currency_symbol}% &7von &f%player% &7wurde auf &fdein Konto &7überwiesen." to arg-1

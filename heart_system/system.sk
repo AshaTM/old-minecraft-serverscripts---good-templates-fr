@@ -1,0 +1,4 @@
+on login:
+    if {hearts::%uuid of player%} is not set:
+        set {hearts::%uuid of player%} to 10
+    set maximum health of player to {hearts::%uuid of player%}

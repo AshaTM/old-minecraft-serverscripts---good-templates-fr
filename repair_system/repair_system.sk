@@ -1,0 +1,54 @@
+on login:
+    set metadata tag "repair_menu" of player to chest inventory with 3 row named "Reparatur"
+    set slot numbers from 0 to 54 of metadata tag "repair_menu" of player to 1 of gray stained glass pane named "&r"
+    set slot 0, 1, 2, 8, 9, 11, 17, 18, 19, 20 and 26 of metadata tag "repair_menu" of player to 1 of black stained glass pane named "&r"
+
+function openRepairGUI(player: player, item: item):
+    if tool of {_player} is not air:
+        set {_price} to 100-durability of tool of {_player}/max durability of tool of {_player}*100
+        set slot 10 of metadata tag "repair_menu" of {_player} to 1 of {_item}
+        if {_price} is set:
+            if {_price} >= 0.1:
+                set slot 14 of metadata tag "repair_menu" of {_player} to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTM4NmQwZjE0MDI0ZTRkZWNiNjc2ZjA2ZTM2OTA0MzIwOWU3NGE0ZDVmNWFjN2UyM2I4YWE4ZjNiN2UxZWU3NiJ9fX0=""}]}}" named "&cAktion Bestätigen" with lore "&8→ &7Möchtest du diese Reparatur%new line%&8   &7für &c$%{_price}% &7durchführen?%new line%%new line%&8%{server_title_stripped}%"
+            else:
+                set slot 14 of metadata tag "repair_menu" of {_player} to 1 of barrier named "&cDieser Gegenstand benötigt" with lore "&caktuell keine Reparatur.%new line%%new line%&8%{server_title_stripped}%"
+        make 2 of cloud at {_player} with offset vector(0.5, 0.5, 0.5) with extra 0
+        play sound "block.note_block.bit" with volume 0.25 and pitch 1.2 at {_player} to {_player}
+        open (metadata tag "repair_menu" of {_player}) to {_player}
+    else:
+        set slot 10 of metadata tag "repair_menu" of {_player} to 1 of skull of {_player} named "&7Spaßvogel, du kannst doch" with lore "&7nicht deine Hand reparieren...%new line%%new line%&8(Obwohl wir alle ein wenig gebrochen sind...)"
+        set slot 14 of metadata tag "repair_menu" of {_player} to 1 of barrier named "&cDieser Gegenstand benötigt" with lore "&caktuell keine Reparatur.%new line%%new line%&8%{server_title_stripped}%"
+        make 2 of cloud at {_player} with offset vector(0.5, 0.5, 0.5) with extra 0
+        play sound "block.note_block.bit" with volume 0.25 and pitch 1.2 at {_player} to {_player}
+        open (metadata tag "repair_menu" of {_player}) to {_player}
+
+command /repair:
+    trigger:
+        openRepairGUI(player, tool of player)
+
+on inventory click:
+    if event-inventory = (metadata tag "repair_menu" of player):
+        cancel event
+        if name of event-item is "&cDieser Gegenstand benötigt":
+            close inventory of player
+            send "%{server_prefix}%&cGegenstand benötigt aktuell keine Reparatur." to player
+        if name of event-item is "&cAktion Bestätigen":
+            set {_item} to slot 10 of metadata tag "repair_menu" of player
+            set {_price} to line 2 of lore of event-item
+            set {_item_name} to raw name of {_item}
+            replace all "minecraft:" with "" in {_item_name}
+            replace all "_" with " " in {_item_name}
+            replace all "&8   &7für &c$" and " &7durchführen?" with "" in {_price}
+            if balance of player >= {_price} parsed as number:
+                remove {_price} parsed as number from balance of player
+                updateScoreboardBalance(player)
+                if {_item} is tool of player:
+                    repair tool of player
+                    close inventory of player
+                    send "%{server_prefix}%&f&l%{_item_name} in uppercase% &7für &c$%{_price}% &7repariert." to player
+                else:
+                    close inventory of player
+                    send "%{server_prefix}%&cGegenstand beim reparieren in der Hand halten." to player
+            else:
+                close inventory of player
+                send "%{server_prefix}%&cDir fehlt $%regex({_price} parsed as number-balance of player)% für eine &lReparatur&c. &8(Bankguthaben)" to player

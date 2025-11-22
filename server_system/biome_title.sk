@@ -1,0 +1,32 @@
+on chunk enter:
+    if world of player is "world_overworld" or "world_nether" or "world_the_end":
+        wait 1 tick
+        set {_biome} to biome at location of player
+        if {_biome} is not {last_biome::%uuid of player%}:
+            set {last_biome::%uuid of player%} to {_biome}
+
+            add 1 to {biome_session::%player%}
+            set {_session} to {biome_session::%player%}
+            
+            set {_biome_name} to "&7%{_biome}%"
+            set {_subtitle} to ""
+
+            set {_length} to length of {_biome_name}
+            set {_i} to 1
+
+            while {_i} <= {_length}:
+                if {biome_session::%player%} is not {_session}:
+                    stop
+
+                wait 2 ticks
+                set {_char} to substring of {_biome_name} from {_i} to {_i}
+                add {_char} to {_subtitle}
+                send title "" with subtitle {_subtitle} in uppercase to player for 9999 ticks with fadein 0 ticks and fadeout 0 ticks
+                add 1 to {_i}
+
+            wait 30 ticks
+            if {biome_session::%player%} is {_session}:
+                send title "" with subtitle {_subtitle} in uppercase to player for 10 ticks with fadein 0 ticks and fadeout 10 ticks
+
+on logout:
+    delete {last_biome::%uuid of player%}

@@ -1,0 +1,3 @@
+on spawn of cow:
+    if event-world is "world":
+        add nbt compound from "{Silent:1b}" to nbt of event-entity

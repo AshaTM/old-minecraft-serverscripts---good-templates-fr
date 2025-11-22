@@ -1,0 +1,10 @@
+# ----------------------------------------
+# CitronStudios
+# Alertsystem
+# Skript by F4biqn
+# ----------------------------------------
+command /alert <text>:
+    permission: alert.admin
+    trigger:
+        broadcast "&6&lAlert &8» &7%arg 1%"
+# ----------------------------------------

@@ -1,0 +1,30 @@
+on sneak toggle:
+	block below player is iron block
+	wait 1 tick
+	if player is sneaking:
+		loop integers between 1 and 100:
+			if block loop-value below block below player is iron block:
+				set {_b} to block above block loop-value-1 below block below player
+				{_b} is passable
+				set {_p} to location of player
+				set y-coord of {_p} to floor(y-coord of {_b})
+				teleport player to {_p}
+				play sound "block.note_block.bell" with volume 0.15 and pitch 1.0 to player
+				make 5 of cloud at player with offset vector(0.25, 1.0, 0.25) with extra 0.001
+				send title "&r" with subtitle "&7Runter &f↓" to player for 10 tick with fadein 0 tick and fade out 0 tick
+				stop
+
+on jump:
+	block below player is iron block
+	if player is not sneaking:
+		loop integers between 0 and 100:
+			if block loop-value above block above player is iron block:
+				set {_j} to block above block loop-value-1 above block above player
+				{_j} is passable
+				set {_p} to location of player
+				set y-coord of {_p} to floor(y-coord of {_j})
+				teleport player to {_p}
+				play sound "block.note_block.bell" with volume 0.15 and pitch 1.5 to player
+				make 5 of cloud at player with offset vector(0.25, 1.0, 0.25) with extra 0.001
+				send title "&r" with subtitle "&7Rauf &f↑" to player for 10 tick with fadein 0 tick and fade out 0 tick
+				stop

@@ -1,0 +1,13 @@
+command /give_crate_key [<integer>]:
+    permission: command.give_crate_key
+    trigger:
+        if arg-1 is 1:
+            give player 1 of trial key named "&7&lStandard Crate &8| &fSchlüssel" with lore "&8→ &7Rechtsklick auf eine &7&lStandard Crate &7um diese zu öffnen."
+        if arg-1 is 2:
+            give player 1 of trial key named "&f&lCraften Crate &8| &fSchlüssel" with lore "&8→ &7Rechtsklick auf eine &f&lCraften Crate &7um diese zu öffnen."
+        if arg-1 is 3:
+            give player 1 of trial key named "&d&l*Girly* Crate &8| &fSchlüssel" with lore "&8→ &7Rechtsklick auf eine &d&l*Girly* Crate &7um diese zu öffnen."
+        if arg-1 is 4:
+            give player 1 of trial key named "&6&lHalloween Crate &8| &fSchlüssel" with lore "&8→ &7Rechtsklick auf eine &6&lHalloween Crate &7um diese zu öffnen."
+        if arg-1 is 5:
+            give player 1 of trial key named "&9&lWinter Crate &8| &fSchlüssel" with lore "&8→ &7Rechtsklick auf eine &9&lWinter Crate &7um diese zu öffnen."

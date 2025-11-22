@@ -1,0 +1,67 @@
+function payOutSalary(player: player):
+    set {_player} to {_player}
+    set {_boost} to 0
+    set {_hasBoostGroup} to false
+
+    if group of {_player} is "Bürger":
+        set {_boost} to 10
+        set {_hasBoostGroup} to true
+    else if group of {_player} is "Meister":
+        set {_boost} to 25
+        set {_hasBoostGroup} to true
+    else if group of {_player} is "Crafter":
+        set {_boost} to 100
+        set {_hasBoostGroup} to true
+    else if group of {_player} is "Baron" or "Inhaber" or "Supporter" or "Content" or "Administrator":
+        set {_boost} to 300
+        set {_hasBoostGroup} to true
+
+    set {_salary} to random number between 1.01 and 7.51
+    set {_totalSalary} to {_salary} * (1 + ({_boost} / 100))
+
+    add {_totalSalary} to {balance::%uuid of {_player}%}
+    updateScoreboardBalance({_player})
+
+    if {_hasBoostGroup} is true:
+        send action bar "%{server_prefix}%&f%{job::%uuid of {_player}%}% &8→ &a%{currency_symbol}%%regex({_totalSalary})% &e+%{_boost}%%%" to {_player}
+    else:
+        send action bar "%{server_prefix}%Gehalt für &f%{job::%uuid of {_player}%}% &8→ &a%{currency_symbol}%%regex({_totalSalary})%" to {_player}
+
+    play sound "block.stone_button.click_on" with volume 1.5 and pitch 2.0 to {_player}
+    play sound "block.chiseled_bookshelf.pickup" with volume 1.5 and pitch 0.5 to {_player}
+
+
+on break:
+    if {job::%uuid of player%} is "Minenarbeiter":
+        if event-block is tagged with minecraft tag "mineable/pickaxe":
+            if tool of player is not enchanted with silk touch:
+                if event-block is tagged with paper tag "ores":
+                    chance of 10%:
+                        payOutSalary(player)
+                chance of 5%:
+                    payOutSalary(player)
+    if {job::%uuid of player%} is "Holzfäller":
+        if event-block is tagged with minecraft tag "logs":
+            chance of 10%:
+                payOutSalary(player)
+    if {job::%uuid of player%} is "Schaufler":
+        if event-block is tagged with minecraft tag "mineable/shovel":
+            chance of 5%:
+                payOutSalary(player)
+
+on death of monster:
+    if {job::%uuid of attacker%} is "Jäger":
+        payOutSalary(attacker)
+
+on fishing state change:
+    if event-fishing state is fish caught:
+        if {job::%uuid of player%} is "Angler":
+            payOutSalary(player)
+
+on fishing line cast:
+    if fish state = fishing:
+        set min wait time of fish hook to 1 tick
+        set max wait time of fish hook to 1 tick
+
+on fish approach:
+	set fishing bite time to 1 second

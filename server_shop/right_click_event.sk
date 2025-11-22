@@ -1,0 +1,5 @@
+on right click on brown stained glass:
+    loop all entities in radius 0.5 of event-block:
+        if name of loop-entity is "server_shop":
+            cancel event
+            openServerShopGUI(player)

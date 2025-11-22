@@ -1,0 +1,36 @@
+command /jail [<offlineplayer>]:
+    permission: command.jail
+    trigger:
+        if {jailed::*} does not contain arg-1:
+            add arg-1 to {jailed::*}
+            teleport arg-1 to location(-11.5, 14.0, 30.5, world "world")
+            send "%{server_prefix}%&f%arg-1% &7wurde eingesperrt." to player
+            send "%{server_prefix}%&cDu wurdest eingesperrt, weil du gegen unsere Regeln verstoßen hast.&r%newline%&7Bitte melde dich auf unserem Discord-Server, um den Sachverhalt zu klären:%newline%<link:https://discord.gg/7eaven>&9&nhttps://discord.gg/7eaven<reset>" to arg-1
+        else:
+            send "%{server_prefix}%&f%arg-1% &7ist bereits eingesperrt." to player
+
+command /unjail [<offlineplayer>]:
+    permission: command.unjail
+    trigger:
+        if {jailed::*} contains arg-1:
+            remove arg-1 from {jailed::*}
+            teleportToSpawn(arg-1)
+            send "%{server_prefix}%&f%arg-1% &7wurde entlassen." to player
+            send "%{server_prefix}%&aDu wurdest entlassen." to arg-1
+        else:
+            send "%{server_prefix}%&f%arg-1% &7ist nicht eingesperrt." to player
+
+on command:
+    if {jailed::*} contains player:
+        cancel event
+        send "%{server_prefix}%&cDu bist aktuell eingesperrt und kannst keine Befehle ausführen.&r%newline%&7Bitte melde dich auf unserem Discord-Server, um den Sachverhalt zu klären:%newline%<link:https://discord.gg/7eaven>&9&nhttps://discord.gg/7eaven<reset>" to player
+
+on drop:
+    if {jailed::*} contains player:
+        cancel event
+        send "%{server_prefix}%&cDu darfst keine Items droppen, während du eingesperrt bist.&r%newline%&7Melde dich bitte auf unserem Discord-Server, um den Fall zu klären:%newline%<link:https://discord.gg/7eaven>&9&nhttps://discord.gg/7eaven<reset>" to player
+
+on pickup:
+    if {jailed::*} contains player:
+        cancel event
+        send "%{server_prefix}%&cDu darfst keine Items aufsammeln, während du eingesperrt bist.&r%newline%&7Melde dich bitte auf unserem Discord-Server, um den Fall zu klären:%newline%<link:https://discord.gg/7eaven>&9&nhttps://discord.gg/7eaven<reset>" to player

@@ -1,0 +1,22 @@
+command /voucher [<integer>]:
+    trigger:
+        if arg-1 is set:
+            if balance of player >= arg-1:
+                give player 1 of flow banner pattern named "&a%{currency_symbol}%%arg-1% &8→ &7Gutschein" with lore ""
+                remove arg-1 from balance of player
+                send "%{server_prefix}%Du hast einen &a%{currency_symbol}%%arg-1% &7Gutschein erstellt." to player
+            else:
+                send "%{server_prefix}%&cDu hast nicht genügend Geld für diesen Gutschein." to player
+
+on right click with flow banner pattern:
+    if name of event-item contains "&8→ &7Gutschein":
+        set {_voucherAmount} to name of event-item
+        replace all ".", " ", "&8→", "&a$" and "&7Gutschein" with "" in {_voucherAmount}
+        remove 1 of tool of player from inventory of player
+        add {_voucherAmount} parsed as integer to balance of player
+        send "%{server_prefix}%Du hast einen &a%{currency_symbol}%%{_voucherAmount}% &7Gutschein eingelöst." to player
+        make 10 of falling spore blossom 1.5 above player with offset vector(0.5, 0.25, 0.5) with extra 0.000001
+        make player execute "balance"
+
+on tab complete of "/voucher":
+    set tab completions for position 1 to "100", "1000", "10000"

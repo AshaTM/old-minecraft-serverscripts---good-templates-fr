@@ -1,0 +1,188 @@
+command /ranks:
+    trigger:
+        openRanksGUI(player)
+
+function openRanksGUI(player: player):
+    play sound "block.note_block.bit" with volume 0.25 and pitch 1.2 at {_player} to {_player}
+    set metadata tag "ranks_menu" of {_player} to chest inventory with 6 rows named "Ränge"
+    set slot numbers from 0 to 54 of metadata tag "ranks_menu" of {_player} to 1 of gray stained glass pane named "&r"
+    set slot 0, 1, 7, 8, 9, 10, 16, 17, 18, 26, 27, 35, 36, 45, 44, 46, 52 and 53 of metadata tag "ranks_menu" of {_player} to 1 of black stained glass pane named "&r"
+    if group of {_player} is "Inhaber" or "Administrator" or "Supporter" or "Moderator" or "Content" or "Freund" or "Neuling" or "Reisender" or "Anwohner" or "Crafter" or "Meister" or "Bürger" or "Baron":
+        set slot 12 of metadata tag "ranks_menu" of {_player} to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDlhNTNmNDNmMzA2ZjQ1OTdiZTlhZWRhMTdlYjA0OTUwMWQ1NDRmZGE4ZDU0YTUyOGNhZTVhYWU4ZWIzYzRkMSJ9fX0=""}]}}" named "&eReisender" with lore "&8→ &7Kosten für diesen Rang&8:%new line%&8     &c2 Spielstunden%new line%&8     &c%{currency_symbol}%25.000%new line%%new line%&8→ &7Vorteile des Rangs&8:%new line%&8     &7&a+Treefeller Zugang%new line%&8     &7&a+1 Weiteres Plot%new line%&8     &7&a+1 Weiteres Home%new line%%new line%&8%{server_title_stripped}%"
+    else:
+        set slot 12 of metadata tag "ranks_menu" of {_player} to 1 of barrier named "&cUnbekannter Rang..." with lore "&8→ &7Schalte erstmal den Rang davor frei.%new line%%new line%&8%{server_title_stripped}%"
+
+    if group of {_player} is "Inhaber" or "Administrator" or "Supporter" or "Moderator" or "Content" or "Freund" or "Reisender" or "Anwohner" or "Crafter" or "Meister" or "Bürger" or "Baron":
+        set slot 14 of metadata tag "ranks_menu" of {_player} to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWIxY2M3MTA3ZTBlMjdiZjE4MDg1ZTI4NTg1NTNiZThlZjlkZGI0MDU4MGY1ZmNmYzBhNGVjZjAzNDA4YTM5MCJ9fX0=""}]}}" named "&aAnwohner" with lore "&8→ &7Kosten für diesen Rang&8:%new line%&8     &c8 Spielstunden%new line%&8     &c%{currency_symbol}%50.000%new line%%new line%&8→ &7Vorteile des Rangs&8:%new line%&8     &7&a+Veinminer Zugang%new line%&8     &7&a+1 Weiteres Plot%new line%&8     &7&a+1 Weiteres Home%new line%%new line%&8%{server_title_stripped}%"
+    else:
+        set slot 14 of metadata tag "ranks_menu" of {_player} to 1 of barrier named "&cUnbekannter Rang..." with lore "&8→ &7Schalte erstmal den Rang davor frei.%new line%%new line%&8%{server_title_stripped}%"
+
+    if group of {_player} is "Inhaber" or "Administrator" or "Supporter" or "Moderator" or "Content" or "Freund" or "Anwohner" or "Crafter" or "Meister" or "Bürger" or "Baron":
+        set slot 29 of metadata tag "ranks_menu" of {_player} to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzViNjI0YTQzZTM1NDQxZWU2Yjk5NzM2OTdhMjY2Zjk1Yzk2NzczMmM1ZGI3YzBmZDljNDlmMWM4NmZhMzIzYiJ9fX0=""}]}}" named "&2Bürger" with lore "&8→ &7Kosten für diesen Rang&8:%new line%&8     &c16 Spielstunden%new line%&8     &c%{currency_symbol}%75.000%new line%%new line%&8→ &7Vorteile des Rangs&8:%new line%&8     &7&a+10%% Mehr Jobgehalt%new line%&8     &7&a+1 Weiteres Plot%new line%&8     &7&a+1 Weiteres Home%new line%&8     &7&a+/plot alias Befehl Zugang%new line%%new line%&8%{server_title_stripped}%"
+    else:
+        set slot 29 of metadata tag "ranks_menu" of {_player} to 1 of barrier named "&cUnbekannter Rang..." with lore "&8→ &7Schalte erstmal den Rang davor frei.%new line%%new line%&8%{server_title_stripped}%"
+
+    if group of {_player} is "Inhaber" or "Administrator" or "Supporter" or "Moderator" or "Content" or "Freund" or "Bürger" or "Crafter" or "Meister" or "Baron":
+        set slot 33 of metadata tag "ranks_menu" of {_player} to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWRkYzkwZTZlNTdhMzU5NDUzNjE1N2UxNDFkNWEzMjZjOTk2OTZkYWQ4YjZmYjFiNWJhZmNlZGY5ZjA3MGNhOCJ9fX0=""}]}}" named "&7Meister" with lore "&8→ &7Kosten für diesen Rang&8:%new line%&8     &c32 Spielstunden%new line%&8     &c%{currency_symbol}%100.000%new line%%new line%&8→ &7Vorteile des Rangs&8:%new line%&8     &7&a+25%% Mehr Jobgehalt%new line%&8     &7&a+1 Weiteres Plot%new line%&8     &7&a+1 Weiteres Home%new line%%new line%%new line%&8%{server_title_stripped}%"
+    else:
+        set slot 33 of metadata tag "ranks_menu" of {_player} to 1 of barrier named "&cUnbekannter Rang..." with lore "&8→ &7Schalte erstmal den Rang davor frei.%new line%%new line%&8%{server_title_stripped}%"
+
+    if group of {_player} is "Inhaber" or "Administrator" or "Supporter" or "Moderator" or "Content" or "Freund" or "Meister" or "Crafter" or "Baron":
+        set slot 49 of metadata tag "ranks_menu" of {_player} to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWQ2NGMyZjJmMjMyZjA1MDAyMzkzMDY5NWIwY2Y3Y2Q2ZGI3ZDdkYzk0N2NhMzFhNzk1YjU1Yjg5NWRlNjBkNCJ9fX0=""}]}}" named "&6Crafter" with lore "&8→ &7Kosten für diesen Rang&8:%new line%&8     &c48 Spielstunden%new line%&8     &c%{currency_symbol}%125.000%new line%%new line%&8→ &7Vorteile des Rangs&8:%new line%&8     &7&a+100%% Mehr Jobgehalt%new line%&8     &7&a+1 Weiteres Plot%new line%&8     &7&a+1 Weiteres Home%new line%%new line%%new line%&8%{server_title_stripped}%"
+    else:
+        set slot 49 of metadata tag "ranks_menu" of {_player} to 1 of barrier named "&cUnbekannter Rang..." with lore "&8→ &7Schalte erstmal den Rang davor frei.%new line%%new line%&8%{server_title_stripped}%"
+    open (metadata tag "ranks_menu" of {_player}) to {_player}
+
+    if group of {_player} is "Inhaber" or "Administrator" or "Supporter" or "Moderator" or "Content" or "Freund" or "Meister" or "Crafter":
+        set slot 31 of metadata tag "ranks_menu" of {_player} to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGQ5ZDA0M2FkYzg4NGI5NzliNGY0MmJkYjM1MGYyYTMwMTMyN2NhYjQ5YzRjZTJkZTQyYThmNDYwMWZlOWRiZiJ9fX0=""}]}}" named "&5Baron" with lore "&8→ &7Kosten für diesen Rang&8:%new line%&8     &c100 Spielstunden%new line%&8     &c%{currency_symbol}%1.500.000%new line%%new line%&8→ &7Vorteile des Rangs&8:%new line%&8     &7&a+300%% Mehr Jobgehalt%new line%&8     &7&a+1 Weiteres Plot%new line%&8     &7&a+1 Weiteres Home%new line%&8     &7&a+/fly Befehl Zugang%new line%&8     &7&a+/feed Befehl Zugang%new line%%new line%%new line%&8%{server_title_stripped}%"
+    else:
+        set slot 31 of metadata tag "ranks_menu" of {_player} to 1 of barrier named "&cUnbekannter Rang..." with lore "&8→ &7Schalte erstmal den Rang davor frei.%new line%%new line%&8%{server_title_stripped}%"
+    open (metadata tag "ranks_menu" of {_player}) to {_player}
+
+on inventory click:
+    if event-inventory = (metadata tag "ranks_menu" of player):
+        cancel event
+        close inventory of player
+
+        if name of event-item is "&eReisender":
+            if group of player is "Neuling":
+                if {hours::%uuid of player%} < 2:
+                    send "%{server_prefix}%&cAnforderungen für diesen Rang nicht erfüllt." to player
+                    stop
+                if {balance::%uuid of player%} >= 25000:
+                    remove 25000 from {balance::%uuid of player%}
+                    set {treefeller::%uuid of player%} to true
+                    set group of player to "Reisender"
+                    
+                    send title "&5%prefix of player%Erspielt!" with subtitle "&7Du hast einen neuen Rang erspielt." to player for 100 tick with fadein 30 tick and fade out 30 tick
+                    broadcast "%new line%%prefix of player%%player% &7hat den Rang &e&nReisender&7 erspielt!%new line%&8(/ranks)%new line%"
+                    loop 10 times:
+                        add 0.1 to {_pitch}
+                        play sound "block.note_block.flute" with volume 2.0 and pitch 0.5+{_pitch} to player
+                        play sound "block.note_block.didgeridoo" with volume 2.0 and pitch 0.5+{_pitch} to player
+                        make 10 of flame 0 above player with offset vector(0.3, 1.7, 0.3) with extra 0.0001
+                        wait 4 tick
+                else:
+                    send "%{server_prefix}%&cAnforderungen für diesen Rang nicht erfüllt." to player
+            else:
+                send "%{server_prefix}%Du hast &eReisender&7 schon erspielt." to player
+
+        if name of event-item is "&aAnwohner":
+            if group of player is "Reisender":
+                if {hours::%uuid of player%} < 8:
+                    send "%{server_prefix}%&cAnforderungen für diesen Rang nicht erfüllt." to player
+                    stop
+                if {balance::%uuid of player%} >= 50000:
+                    remove 50000 from {balance::%uuid of player%}
+                    set {veinminer::%uuid of player%} to true
+                    set group of player to "Anwohner"
+                    
+                    send title "&5%prefix of player%Erspielt!" with subtitle "&7Du hast einen neuen Rang erspielt." to player for 100 tick with fadein 30 tick and fade out 30 tick
+                    broadcast "%new line%%prefix of player%%player% &7hat den Rang &a&nAnwohner&7 erspielt!%new line%&8(/ranks)%new line%"
+                    loop 10 times:
+                        add 0.1 to {_pitch}
+                        play sound "block.note_block.flute" with volume 2.0 and pitch 0.5+{_pitch} to player
+                        play sound "block.note_block.didgeridoo" with volume 2.0 and pitch 0.5+{_pitch} to player
+                        make 10 of flame 0 above player with offset vector(0.3, 1.7, 0.3) with extra 0.0001
+                        wait 4 tick
+                else:
+                    send "%{server_prefix}%&cAnforderungen für diesen Rang nicht erfüllt." to player
+            else:
+                send "%{server_prefix}%Du hast &aAnwohner&7 schon erspielt." to player
+
+        if name of event-item is "&2Bürger":
+            if group of player is "Anwohner":
+                if {hours::%uuid of player%} < 16:
+                    send "%{server_prefix}%&cAnforderungen für diesen Rang nicht erfüllt." to player
+                    stop
+                if {balance::%uuid of player%} >= 75000:
+                    remove 75000 from {balance::%uuid of player%}
+                    set group of player to "Bürger"
+                    
+                    send title "&5%prefix of player%Erspielt!" with subtitle "&7Du hast einen neuen Rang erspielt." to player for 100 tick with fadein 30 tick and fade out 30 tick
+                    broadcast "%new line%%prefix of player%%player% &7hat den Rang &2&nBürger&7 erspielt!%new line%&8(/ranks)%new line%"
+                    loop 10 times:
+                        add 0.1 to {_pitch}
+                        play sound "block.note_block.flute" with volume 2.0 and pitch 0.5+{_pitch} to player
+                        play sound "block.note_block.didgeridoo" with volume 2.0 and pitch 0.5+{_pitch} to player
+                        make 10 of flame 0 above player with offset vector(0.3, 1.7, 0.3) with extra 0.0001
+                        wait 4 tick
+                else:
+                    send "%{server_prefix}%&cAnforderungen für diesen Rang nicht erfüllt." to player
+            else:
+                send "%{server_prefix}%Du hast &2Bürger&7 schon erspielt." to player
+
+        if name of event-item is "&7Meister":
+            if group of player is "Bürger":
+                if {hours::%uuid of player%} < 32:
+                    send "%{server_prefix}%&cAnforderungen für diesen Rang nicht erfüllt." to player
+                    stop
+                if {balance::%uuid of player%} >= 100000:
+                    remove 100000 from {balance::%uuid of player%}
+                    set group of player to "Meister"
+                    
+                    send title "&5%prefix of player%Erspielt!" with subtitle "&7Du hast einen neuen Rang erspielt." to player for 100 tick with fadein 30 tick and fade out 30 tick
+                    broadcast "%new line%%prefix of player%%player% &7hat den Rang &7&nMeister&7 erspielt!%new line%&8(/ranks)%new line%"
+                    loop 10 times:
+                        add 0.1 to {_pitch}
+                        play sound "block.note_block.flute" with volume 2.0 and pitch 0.5+{_pitch} to player
+                        play sound "block.note_block.didgeridoo" with volume 2.0 and pitch 0.5+{_pitch} to player
+                        make 10 of flame 0 above player with offset vector(0.3, 1.7, 0.3) with extra 0.0001
+                        wait 4 tick
+                else:
+                    send "%{server_prefix}%&cAnforderungen für diesen Rang nicht erfüllt." to player
+            else:
+                send "%{server_prefix}%Du hast &7Meister&7 schon erspielt." to player
+
+        if name of event-item is "&6Crafter":
+            if group of player is "Meister":
+                if {hours::%uuid of player%} < 48:
+                    send "%{server_prefix}%&cAnforderungen für diesen Rang nicht erfüllt." to player
+                    stop
+                if {balance::%uuid of player%} >= 125000:
+                    remove 125000 from {balance::%uuid of player%}
+                    set group of player to "Crafter"
+                    
+                    send title "&5%prefix of player%Erspielt!" with subtitle "&7Du hast einen neuen Rang erspielt." to player for 100 tick with fadein 30 tick and fade out 30 tick
+                    broadcast "%new line%%prefix of player%%player% &7hat den Rang &6&nCrafter&7 erspielt!%new line%&8(/ranks)%new line%"
+                    loop 10 times:
+                        add 0.1 to {_pitch}
+                        play sound "block.note_block.flute" with volume 2.0 and pitch 0.5+{_pitch} to player
+                        play sound "block.note_block.didgeridoo" with volume 2.0 and pitch 0.5+{_pitch} to player
+                        make 10 of flame 0 above player with offset vector(0.3, 1.7, 0.3) with extra 0.0001
+                        wait 4 tick
+                else:
+                    send "%{server_prefix}%&cAnforderungen für diesen Rang nicht erfüllt." to player
+            else:
+                send "%{server_prefix}%Du hast &6Crafter&7 schon erspielt." to player
+
+        if name of event-item is "&5Baron":
+            if group of player is "Crafter":
+                if {hours::%uuid of player%} < 100:
+                    send "%{server_prefix}%&cAnforderungen für diesen Rang nicht erfüllt." to player
+                    stop
+                if {balance::%uuid of player%} >= 1500000:
+                    remove 1500000 from {balance::%uuid of player%}
+                    set group of player to "Baron"
+                    
+                    send title "&5%prefix of player%Erspielt!" with subtitle "&7Du hast einen neuen Rang erspielt." to player for 100 tick with fadein 30 tick and fade out 30 tick
+                    broadcast "%new line%%prefix of player%%player% &7hat den Rang &5&nBaron&7 erspielt!%new line%&8(/ranks)%new line%"
+                    loop 10 times:
+                        add 0.1 to {_pitch}
+                        play sound "block.note_block.flute" with volume 2.0 and pitch 0.5+{_pitch} to player
+                        play sound "block.note_block.didgeridoo" with volume 2.0 and pitch 0.5+{_pitch} to player
+                        make 10 of flame 0 above player with offset vector(0.3, 1.7, 0.3) with extra 0.0001
+                        wait 4 tick
+                else:
+                    send "%{server_prefix}%&cAnforderungen für diesen Rang nicht erfüllt." to player
+            else:
+                send "%{server_prefix}%Du hast &5Baron&7 schon erspielt." to player
+
+        setGroup(player)
+        updateScoreboardGroup(player)
+        updateScoreboardBalance(player)
+        updateTablistName(player)
+        if tool of player is tagged with minecraft tag "pickaxes":
+            veinminerActionBar(player)
+        if tool of player is tagged with minecraft tag "axes":
+            treefellerActionBar(player)

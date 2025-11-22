@@ -1,0 +1,14 @@
+function line(start: location, end: location, step: number = 10):: locations:
+  set {_v} to vector between {_start} and {_end}
+  loop {_step} times:
+    set vector length of {_v} to (distance between {_start} and {_end}) / {_step} * loop-counter
+    add {_start} ~ {_v} to {_l::*}
+  return {_l::*}
+
+on right click with diamond hoe:
+  if name of tool of player is "&b&lLaserspielzeug":
+    lerp 1 of sonic boom at line(location 1 infront of head of player, target block of player, round(distance between head of player and target block of player / 1.0)) with extra 0 with force
+
+command /givelaser:
+  trigger:
+    give player 1 of diamond hoe named "&b&lLaserspielzeug"

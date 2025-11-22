@@ -1,0 +1,21 @@
+on load:
+    set {_x} to 2.5
+    set {_y} to 2.0
+    set {_z} to 62.5
+    set {_world} to "world"
+    setBank({_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_x} to -22.5
+    set {_y} to 2.0
+    set {_z} to 41.5
+    set {_world} to "world"
+    setBank({_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_x} to -22.5
+    set {_y} to 2.0
+    set {_z} to 47.5
+    set {_world} to "world"
+    setBank({_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}

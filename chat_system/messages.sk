@@ -1,0 +1,77 @@
+command /tell [<player>] [<text>]:
+    aliases: message,
+    trigger:
+        if arg-1 is not player:
+            if arg-1 and arg-2 are set:
+                set {chat.private.reply.%uuid of player%} to arg 1
+                set {chat.private.reply.%uuid of arg 1%} to player
+                send "&f✉ &lMSG &8| &7An&8: %prefix of arg-1%%arg-1% &8» &7%arg 2%" to player
+                send "&f✉ &lMSG &8| &7Von&8: %prefix of player%%player% &8» &7%arg 2%" to arg 1
+                loop all players:
+                    if {message_watcher::%uuid of loop-player%} is true:
+                        if sender is not console:
+                            send "&c&lMSGW &8| &7%player% &8» &7%arg-1%&8: &f""%arg 2%""" to loop-player
+            else:
+                send "%{server_prefix}%Bitte überprüfe deinen Befehl." to player
+        else:
+            send "%{server_prefix}%&cDu kannst dir selber nicht schreiben." to player
+
+command /msg [<player>] [<text>]:
+    trigger:
+        if arg-1 is not player:
+            if arg-1 and arg-2 are set:
+                set {chat.private.reply.%uuid of player%} to arg 1
+                set {chat.private.reply.%uuid of arg 1%} to player
+                send "&f✉ &lMSG &8| &7An&8: %prefix of arg-1%%arg-1% &8» &7%arg 2%" to player
+                send "&f✉ &lMSG &8| &7Von&8: %prefix of player%%player% &8» &7%arg 2%" to arg 1
+                loop all players:
+                    if {message_watcher::%uuid of loop-player%} is true:
+                        if sender is not console:
+                            send "&c&lMSGW &8| &7%player% &8» &7%arg-1%&8: &f""%arg 2%""" to loop-player
+            else:
+                send "%{server_prefix}%Bitte überprüfe deinen Befehl." to player
+        else:
+            send "%{server_prefix}%&cDu kannst dir selber nicht schreiben." to player
+
+command /reply [<text>]:    
+    aliases: r,
+    trigger:
+        if arg-1 is set:
+            set {_other_player} to {chat.private.reply.%uuid of player%}
+            send "&f✉ &lMSG &8| &7An&8: &f%prefix of {_other_player}%%{_other_player}% &8» &7%arg 1%" to player
+            send "&f✉ &lMSG &8| &7Von&8: &f%prefix of player%%player% &8» &7%arg 1%" to {_other_player}
+            loop all players:
+                if {message_watcher::%uuid of loop-player%} is true:
+                    if sender is not console:
+                        send "&c&lMSGW &8| &7%player% &8» &7%{_other_player}%&8: &f""%arg 1%""" to loop-player
+        else:
+            send "%{server_prefix}%Bitte überprüfe deinen Befehl." to player
+
+command /messagewatcher [<offlineplayer>]:
+    permission: command.messagewatcher
+    aliases: msgw,
+    trigger:
+        if arg-1 is not set:
+            if {message_watcher::%uuid of player%} is not set:
+                set {message_watcher::%uuid of player%} to false
+            if {message_watcher::%uuid of player%} is false:
+                set {message_watcher::%uuid of player%} to true
+                send "%{server_prefix}%&8[&a+&8] &7Der Messagewatcher ist aktiviert."
+                stop
+            if {message_watcher::%uuid of player%} is true:
+                set {message_watcher::%uuid of player%} to false
+                send "%{server_prefix}%&8[&c-&8] &7Der Messagewatcher ist deaktiviert."
+                stop
+        else:
+            if {message_watcher::%uuid of arg-1%} is not set:
+                set {message_watcher::%uuid of arg-1%} to false
+            if {message_watcher::%uuid of arg-1%} is false:
+                set {message_watcher::%uuid of arg-1%} to true
+                send "%{server_prefix}%&8[&a+&8] &7Der Messagewatcher ist aktiviert." to arg-1
+                send "%{server_prefix}%&8[&a+&8] &7Der Messagewatcher ist für &f%arg-1% &7aktiviert."
+                stop
+            if {message_watcher::%uuid of arg-1%} is true:
+                set {message_watcher::%uuid of arg-1%} to false
+                send "%{server_prefix}%&8[&c-&8] &7Der Messagewatcher ist deaktiviert." to arg-1
+                send "%{server_prefix}%&8[&c-&8] &7Der Messagewatcher ist für &f%arg-1% &7deaktiviert."
+                stop

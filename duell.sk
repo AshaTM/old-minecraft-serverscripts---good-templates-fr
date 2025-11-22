@@ -1,0 +1,147 @@
+on load:
+    delete {request::*}
+    delete {duell_active}
+
+# nur eine Duellanfrage senden (keine Annahme/Teleport)
+command /duell [<offline player>]:
+    trigger:
+        if {duell_active} is true:
+            send "🪣 &f&lDUELL &8| &7Ein &5&nDuell&7 ist grade Aktiv." to player
+            stop
+        set {_p} to arg-1 
+        set {_u} to uuid of arg-1
+        if arg-1 is set:
+            if {_p} is online:
+                if {_p} is not player:
+                    if {request::player::%{_u}%} is set:
+                        send "🪣 &f&lDUELL &8| &7Dieser Spieler hat bereits eine offene Duellanfrage. Bitte warte." to player
+                        stop
+                    send "🪣 &f&lDUELL &8| %prefix of player%%player% &7hat dir ein Duell vorgeschlagen." to {_p}
+                    send formatted "<command:/duellaccept>&a[KLICK HIER] &7um das Duell zu beginnen." to {_p}
+                    send "&8(Die Anfrage ist 30 Sekunden gültig.)" to {_p}
+                    send "🪣 &f&lDUELL &8| &7Du hast eine Duellanfrage an %prefix of {_p}%%{_p}% gesendet – gültig für 30 Sekunden." to player
+                    set {request::player::%{_u}%} to player
+                    wait 30 seconds
+                    if {request::player::%{_u}%} is set:
+                        delete {request::player::%{_u}%}
+                        send "🪣 &f&lDUELL &8| &cDeine Duellanfrage an %prefix of {_p}%%{_p}% ist abgelaufen." to player
+                        send "🪣 &f&lDUELL &8| &cDie Duellanfrage von %prefix of player%%player% ist nicht mehr gültig." to {_p}
+                else:
+                    send "🪣 &f&lDUELL &8| &7Du kannst kein Duell mit dir selbst starten." to player
+            else:
+                send "🪣 &f&lDUELL &8| &7Spieler ist aktuell nicht online." to player
+        else:
+            send "🪣 &f&lDUELL &8| &7Du musst einen gültigen Spielernamen angeben." to player
+
+command /duellaccept:
+    trigger:
+        if {duell_active} is true:
+            send "🪣 &f&lDUELL &8| &7Ein &5&nDuell&7 ist grade Aktiv." to player
+            stop
+        set {_u} to uuid of player
+        if {request::player::%{_u}%} is not set:
+            send "🪣 &f&lDUELL &8| &7Keine aktive Duellanfrage vorhanden." to player
+            stop
+        set {_requester} to {request::player::%{_u}%}
+        if {_requester} is not online:
+            delete {request::player::%{_u}%}
+            send "🪣 &f&lDUELL &8| &7Der anfragende Spieler ist nicht mehr online." to player
+            stop
+        # lokale Variablen (nur für diesen Trigger)
+        set {_playerONE} to {_requester}
+        set {_playerTWO} to player
+        # persistente Speicherung (UUIDs) für spätere Nutzung
+        set {duel::playerONE} to uuid of {_playerONE}
+        set {duel::playerTWO} to uuid of {_playerTWO}
+        duellStart({_playerONE},{_playerTWO})
+        # Bestätigungen
+        send "🪣 &f&lDUELL &8| &aDu hast die Duellanfrage von %prefix of {_requester}%%{_requester}% &aangenommen." to player
+        send "🪣 &f&lDUELL &8| &aDeine Duellanfrage wurde von %prefix of player% angenommen." to {_requester}
+        # Anfrage löschen
+        delete {request::player::%{_u}%}
+
+function duellStart(playerONE: offlineplayer, playerTWO: offlineplayer):
+    set {duell_active} to true
+    wait 5 ticks
+    send "%{server_prefix}%&cDas Duell startet in 10 Sekunden!" to {_playerONE} and {_playerTWO}
+    wait 5 seconds
+    send "%{server_prefix}%&cDas Duell startet in 5 Sekunden!" to {_playerONE} and {_playerTWO}
+    wait 1 seconds
+    send "%{server_prefix}%&cDas Duell startet in 4 Sekunden!" to {_playerONE} and {_playerTWO}
+    wait 1 seconds
+    send "%{server_prefix}%&cDas Duell startet in 3 Sekunden!" to {_playerONE} and {_playerTWO}
+    wait 1 seconds
+    send "%{server_prefix}%&cDas Duell startet in 2 Sekunden!" to {_playerONE} and {_playerTWO}
+    wait 1 seconds
+    send "%{server_prefix}%&cDas Duell startet in 1 Sekunden!" to {_playerONE} and {_playerTWO}
+    wait 1 seconds
+    if {_playerONE} and {_playerTWO} are online:
+        send "%{server_prefix}%&cDas Duell beginnt!" to {_playerONE} and {_playerTWO}
+        set {_location} to location(0.5, 0.0, -642.5, world "world")
+        teleport {_playerONE} 20 north of {_location}
+        set yaw of {_location} to -180
+        teleport {_playerTWO} 20 south of {_location}
+        set {activeInDuell::%{_playerONE}%} to true
+        set {activeInDuell::%{_playerTWO}%} to true
+    else:
+        send "%{server_prefix}%&cDas Duell wurde abgebrochen." to {_playerONE} and {_playerTWO}
+    setDuellTimer({_playerONE},{_playerTWO})
+    loop 250 times:
+        if {duel_stopper} is set:
+            delete {duel_stopper}
+            stop
+        wait 1 second
+    if {duell_active} is set:
+        if {activeInDuell::%{_playerONE}%} is not set:
+            send "%{server_prefix}%%prefix of {_playerTWO}%%{_playerTWO}% &5hat das Duell gegen %prefix of {_playerONE}%%{_playerONE}% &5gewonnen." to all players
+            duellReset({_playerONE},{_playerTWO})
+            stop
+        if {activeInDuell::%{_playerTWO}%} is not set:
+            send "%{server_prefix}%%prefix of {_playerONE}%%{_playerONE}% &5hat das Duell gegen %prefix of {_playerTWO}%%{_playerTWO}% &5gewonnen." to all players
+            duellReset({_playerONE},{_playerTWO})
+            stop
+        else:
+            send "%{server_prefix}%&5Im Duell %prefix of {_playerTWO}%%{_playerTWO}% &5gegen %prefix of {_playerONE}%%{_playerONE}% &5konnte kein Sieger festgestellt werden." to all players
+            duellReset({_playerONE},{_playerTWO})
+    
+function duellReset(playerONE: offlineplayer, playerTWO: offlineplayer):
+    teleportToSpawn({_playerONE})
+    teleportToSpawn({_playerTWO})
+    if {_playerONE} is online:
+        delete {activeInDuell::%{_playerONE}%}
+    if {_playerTWO} is online:
+        delete {activeInDuell::%{_playerTWO}%}
+    delete {duell_active}
+    set {duel_stopper} to true
+
+on login:
+    if {activeInDuell::%uuid of player%} is set:
+        delete {activeInDuell::%uuid of player%}
+        wait 1 seconds
+        teleportToSpawn(player)
+on death:
+    if victim is player:
+        if attacker is player:
+            if {activeInDuell::%uuid of attacker%} is set:
+                delete {activeInDuell::%uuid of victim%}
+                send "%{server_prefix}%%prefix of attacker%%attacker% &5hat %prefix of victim%%victim% &5im Duell getötet." to all players
+                loop 10 times:
+                    launch star or creeper or large ball coloured white fading to gold at attacker with duration random number between 0.5 and 2
+                    wait 1 second
+                if {duell_active} is set:
+                    send "%{server_prefix}%%prefix of attacker%%attacker% &5hat das Duell gegen %prefix of victim%%victim% &5gewonnen." to all players
+                    duellReset(attacker,victim)
+
+function setDuellTimer(playerONE: offlineplayer, playerTWO: offlineplayer):
+    set {_timer} to 250
+    loop {_timer} times:
+        if {duell_active} is set:
+            remove 1 from {_timer}
+            send action bar "&5&n%{_timer}% Sekunden&5 verbleiben im Duell" to {_playerONE} and {_playerTWO}
+        else:
+            delete {_timer}
+            stop loop
+        wait 1 second
+
+every 600 seconds:
+    delete {duell_active}

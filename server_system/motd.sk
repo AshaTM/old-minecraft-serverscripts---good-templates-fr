@@ -1,0 +1,19 @@
+on login:
+    wait 3 tick
+    motd(player)
+
+function motd(player: player):
+    if {tutorial_done::%uuid of {_player}%} is true:
+        play sound "block.note_block.bell" with volume 0.5 and pitch 1.0 to {_player}
+        make 5 of cloud at {_player} with offset vector(0.25, 1.0, 0.25) with extra 0.001
+        send title "%{server_title}%" with subtitle "&7Willkommen zurück, %{_player}%!" to {_player} for 40 tick with fadein 10 tick and fade out 10 tick
+        send "" to {_player}
+        send "" to {_player}
+        send "   %{server_title}%" to {_player}
+        send "   &7Willkommen zurück %{_player}%, frohe Festtage!" to {_player}
+        if difference between now and {lastVoted::%uuid of {_player}%} > 10 hours:
+            send "   &8&o(Vergiss nicht dein&o(e) &8Vote-Schlüssel Abzuholen ""/vote"")" to {_player}
+        else:
+            send "   &8&o(Danke das du für den Server gevotet hast!)" to {_player}
+        send "" to {_player}
+        send "" to {_player}

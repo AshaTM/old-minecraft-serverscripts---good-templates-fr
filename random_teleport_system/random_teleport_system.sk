@@ -1,0 +1,131 @@
+function openRandomTeleportGUI(player: player):
+    make 2 of cloud at {_player} with offset vector(0.5, 0.5, 0.5) with extra 0
+    play sound "block.note_block.bit" with volume 0.25 and pitch 1.2 at {_player} to {_player}
+    open (metadata tag "random_teleport_menu" of {_player}) to {_player}
+
+on login:
+    set metadata tag "random_teleport_menu" of player to hopper inventory named "Zufallsteleport"
+    set slot 1 and 3 of metadata tag "random_teleport_menu" of player to gray stained glass pane named "&r"
+    set slot 0 of metadata tag "random_teleport_menu" of player to player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzljODg4MWU0MjkxNWE5ZDI5YmI2MWExNmZiMjZkMDU5OTEzMjA0ZDI2NWRmNWI0MzliM2Q3OTJhY2Q1NiJ9fX0=""}]}}" named "&aOverworld" with lore "&8→ &7Zufallsteleport innerhalb%new line%   &7der Overworld-Dimension.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 2 of metadata tag "random_teleport_menu" of player to player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDgzNTcxZmY1ODlmMWE1OWJiMDJiODA4MDBmYzczNjExNmUyN2MzZGNmOWVmZWJlZGU4Y2YxZmRkZSJ9fX0=""}]}}" named "&cNether" with lore "&8→ &7Zufallsteleport innerhalb%new line%   &7der Nether-Dimension.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 4 of metadata tag "random_teleport_menu" of player to player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzZjYWM1OWIyYWFlNDg5YWEwNjg3YjVkODAyYjI1NTVlYjE0YTQwYmQ2MmIyMWViMTE2ZmE1NjljZGI3NTYifX19""}]}}" named "&eEnd" with lore "&8→ &7Zufallsteleport innerhalb%new line%   &7der End-Dimension.%new line%%new line%&8%{server_title_stripped}%"
+
+on inventory click:
+    if event-inventory = (metadata tag "random_teleport_menu" of player):
+        cancel event
+        if name of event-item is "&aOverworld":
+            close inventory of player
+            set {_waited} to difference between {random_teleport.%{_player}%.lastused} and now
+            if {_waited} is less than 2.5 seconds:
+                message "%{server_prefix}%&cWarte einen Moment bevor du diesen Befehl erneut ausführst." to {_player}
+                stop
+            randomTeleport(player, "world_overworld")
+            wait 5 tick
+            send action bar "%{server_prefix}%Zufallsteleport inerhlb der &aOverworld&7..." to player
+            wait 1.5 second
+            send action bar "%{server_prefix}%&7x&8: &f%x-coordinate of player%&8, &7y&8: &f%y-coordinate of player%&8, &7z&8: &f%z-coordinate of player% world&8: &7%world of player%" to player
+            stop
+            
+        if name of event-item is "&cNether":
+            close inventory of player
+            set {_waited} to difference between {random_teleport.%{_player}%.lastused} and now
+            if {_waited} is less than 2.5 seconds:
+                message "%{server_prefix}%&cWarte einen Moment bevor du diesen Befehl erneut ausführst." to {_player}
+                stop
+            if {hours::%uuid of player%} < 1:
+                send "%{server_prefix}%&cDu benötigst mindestens eine Spielstunde dafür. &8(/playtime)" to player
+                stop
+            randomTeleport(player, "world_nether")
+            wait 5 tick
+            send action bar "%{server_prefix}%Zufallsteleport inerhalb des &cNethers&7..." to player
+            wait 1.5 second
+            send action bar "%{server_prefix}%&7x&8: &f%x-coordinate of player%&8, &7y&8: &f%y-coordinate of player%&8, &7z&8: &f%z-coordinate of player% &7world&8: &f%world of player%" to player
+            stop
+
+        if name of event-item is "&eEnd":
+            close inventory of player
+            set {_waited} to difference between {random_teleport.%{_player}%.lastused} and now
+            if {_waited} is less than 2.5 seconds:
+                message "%{server_prefix}%&cWarte einen Moment bevor du diesen Befehl erneut ausführst." to {_player}
+                stop
+            if {hours::%uuid of player%} < 2:
+                send "%{server_prefix}%&cDu benötigst mindestens 2 Spielstunden dafür. &8(/playtime)" to player
+                stop
+            randomTeleport(player, "world_the_end")
+            wait 5 tick
+            send action bar "%{server_prefix}%Zufallsteleport inerhalb des &eEnds&7..." to player
+            wait 1.5 second
+            send action bar "%{server_prefix}%&7x&8: &f%x-coordinate of player%&8, &7y&8: &f%y-coordinate of player%&8, &7z&8: &f%z-coordinate of player% &7world&8: &f%world of player%" to player
+            stop
+        else:
+            close inventory of player
+
+command /randomteleport:
+    aliases: rtp
+    trigger:
+        openRandomTeleportGUI(player)
+
+function randomTeleport(player: player, world: text):
+    set {_x} to a random integer between -2048 and 2048
+    set {_z} to a random integer between -2048 and 2048
+    if {_world} is "world_overworld":
+        set {_y} to a random integer between 0 and 100
+    else if {_world} is "world_nether":
+        set {_y} to a random integer between 0 and 128
+    else if {_world} is "world_the_end":
+        set {_y} to a random integer between 0 and 100
+    set {_loc} to block at location at ({_x}, {_y}, {_z}) in {_world}
+    loop all blocks above {_loc}:
+        if loop-block is air:
+            if block below loop-block is not air, bedrock, stone, andesite, diorite, granite, deepslate, lava, magma block, water or fire:
+                if block above loop-block is air:
+                    set {_loc2} to location of loop-block
+                    set y-coordinate of {_loc2} to y-coordinate of {_loc2} - 1.5
+                    teleport {_player} above {_loc2}
+                    set {random_teleport.%{_player}%.lastused} to now
+                    if block 0.5 below {_player} is not solid:
+                        randomTeleport({_player}, {_world})
+                    stop
+    randomTeleport({_player}, {_world})
+
+command /farmwelt:
+    trigger:
+        set {_waited} to difference between {random_teleport.%player%.lastused} and now
+        if {_waited} is less than 2.5 seconds:
+            message "%{server_prefix}%&cWarte einen Moment bevor du diesen Befehl erneut ausführst." to player
+            stop
+        randomTeleport(player, "world_overworld")
+        wait 5 tick
+        send action bar "%{server_prefix}%Zufallsteleport inerhlb der &aOverworld&7..." to player
+        wait 1.5 second
+        send action bar "%{server_prefix}%&7x&8: &f%x-coordinate of player%&8, &7y&8: &f%y-coordinate of player%&8, &7z&8: &f%z-coordinate of player% world&8: &7%world of player%" to player
+
+command /nether:
+    trigger:
+        set {_waited} to difference between {random_teleport.%player%.lastused} and now
+        if {_waited} is less than 2.5 seconds:
+            message "%{server_prefix}%&cWarte einen Moment bevor du diesen Befehl erneut ausführst." to player
+            stop
+        if {hours::%uuid of player%} < 5:
+            send "%{server_prefix}%&cDu benötigst mindestens 5 Spielstunden dafür. &8(/playtime)" to player
+            stop
+        randomTeleport(player, "world_nether")
+        wait 5 tick
+        send action bar "%{server_prefix}%Zufallsteleport inerhalb des &cNethers&7..." to player
+        wait 1.5 second
+        send action bar "%{server_prefix}%&7x&8: &f%x-coordinate of player%&8, &7y&8: &f%y-coordinate of player%&8, &7z&8: &f%z-coordinate of player% &7world&8: &f%world of player%" to player
+
+command /end:
+    trigger:
+        set {_waited} to difference between {random_teleport.%player%.lastused} and now
+        if {_waited} is less than 2.5 seconds:
+            message "%{server_prefix}%&cWarte einen Moment bevor du diesen Befehl erneut ausführst." to player
+            stop
+        if {hours::%uuid of player%} < 10:
+            send "%{server_prefix}%&cDu benötigst mindestens 10 Spielstunden dafür. &8(/playtime)" to player
+            stop
+        randomTeleport(player, "world_the_end")
+        wait 5 tick
+        send action bar "%{server_prefix}%Zufallsteleport inerhalb des &eEnds&7..." to player
+        wait 1.5 second
+        send action bar "%{server_prefix}%&7x&8: &f%x-coordinate of player%&8, &7y&8: &f%y-coordinate of player%&8, &7z&8: &f%z-coordinate of player% &7world&8: &f%world of player%" to player

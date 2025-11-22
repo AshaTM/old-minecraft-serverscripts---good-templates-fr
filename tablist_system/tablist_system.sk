@@ -1,0 +1,6 @@
+function setTablist(player: player):
+    set tab list header of {_player} to "%new line%%{server_title}%%new line%%{server_motto}%%new line%"
+    set tab list footer of {_player} to "%new line%&c&oᴀᴄʜᴛᴜɴɢ &8&o→ &7&oᴅᴇʀ ѕᴇʀᴠᴇʀ ɪѕᴛ ᴀᴋᴛᴜᴇʟʟ ɪᴍ ᴀᴜꜰʙᴀᴜ.%new line%ᴡᴇɴɴ ᴅᴜ ꜰᴇʜʟᴇʀ ᴇɴᴛᴅᴇᴄᴋѕᴛ ᴍᴇʟᴅᴇ ᴅɪᴄʜ ʙɪᴛᴛᴇ.%new line%  ᴅᴀꜱ ꜱʏꜱᴛᴇᴍ ᴡɪʀᴅ ʙᴇɪ ɴᴏᴛᴡᴇɴᴅɪɢᴋᴇɪᴛ ᴀɴɢᴇᴘᴀꜱꜱᴛ.  %new line%%new line%&8&oDiscord: ""/discord""%new line%"
+
+on login:
+    setTablist(player)

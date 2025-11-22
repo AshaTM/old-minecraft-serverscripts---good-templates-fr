@@ -1,0 +1,8 @@
+on left click on white stained glass:
+    loop all entities in radius 0.5 of event-block:
+        if name of loop-entity is "time_bank":
+            cancel event
+            if {time_balance::%uuid of player%} is not -0.01 or -0:
+                send action bar "%{server_prefix}%Dein Zeit-Kontostand beträgt&8: &a%{currency_symbol}%%{time_balance::%uuid of player%}%" to player
+                play sound "block.note_block.bit" with volume 0.5 and pitch 1.0 to player
+                make 2 of cloud at event-block with offset vector(0.5, 0.5, 0.5) with extra 0.001

@@ -1,0 +1,215 @@
+function setCrate(type: integer, x: number, y: number, z: number, world: world):
+    set {_location} to location at {_x}, {_y}, {_z} in world {_world}
+
+    set block above {_location} to light[level=11]
+
+    loop all text displays and item displays and block displays in radius 2 of {_location}:
+        kill loop-entity
+
+    if {_type} = 1:
+        set block at {_location} to brown stained glass
+        set block below block at {_location} to stripped spruce log
+        set block above block at {_location} to spruce pressure plate
+        set block 2 above block at {_location} to light[level=11]
+
+        spawn text display 1.35 above block at {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.5, 0.5, 0.5)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set display component of {_display} to mini message from "<dark_purple>%{server_title}%</dark_purple>"
+
+        spawn text display 1.07 above block at {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set display component of {_display} to mini message from "<gray><bold>Standard Crate</bold></gray>"
+
+        spawn text display 0.75 above block at {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.5, 0.5, 0.5)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set display component of {_display} to mini message from "<gray>Linksklick <dark_gray>→</dark_gray> Crate-Vorschau öffnen%new line%Rechtsklick <dark_gray>→</dark_gray> Crate öffnen</gray>"
+
+        spawn item display 0 above block at {_location}
+        set {_display} to last spawned item display
+        set name of {_display} to "crate_1"
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.8, 0.8, 0.8)
+        set display item of {_display} to wild armor trim smithing template
+
+        spawn item display 0.4 below block at {_location}
+        set {_display} to last spawned item display
+        set display scale of {_display} to vector(0.621, 1.0, 0.621)
+        set yaw of {_display} to 45
+        set display item of {_display} to 1 of cobblestone slab
+
+    if {_type} = 2:
+        set block at {_location} to white stained glass
+        set block below block at {_location} to stripped pale oak log
+        set block above block at {_location} to pale oak pressure plate
+        set block 2 above block at {_location} to light[level=11]
+
+        spawn text display 1.35 above block at {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.5, 0.5, 0.5)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set display component of {_display} to mini message from "<dark_purple>%{server_title}%</dark_purple>"
+
+        spawn text display 1.07 above block at {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set display component of {_display} to mini message from "<white><bold>Craften Crate</bold></white>"
+
+        spawn text display 0.75 above block at {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.5, 0.5, 0.5)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set display component of {_display} to mini message from "<gray>Linksklick <dark_gray>→</dark_gray> Crate-Vorschau öffnen%new line%Rechtsklick <dark_gray>→</dark_gray> Crate öffnen</gray>"
+
+        spawn item display 0 above block at {_location}
+        set {_display} to last spawned item display
+        set name of {_display} to "crate_2"
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.8, 0.8, 0.8)
+        set display item of {_display} to ward armor trim smithing template
+
+        spawn item display 0.4 below block at {_location}
+        set {_display} to last spawned item display
+        set display scale of {_display} to vector(0.621, 1.0, 0.621)
+        set yaw of {_display} to 45
+        set display item of {_display} to 1 of pale oak slab
+
+    if {_type} = 3:
+        set block at {_location} to pink stained glass
+        set block below block at {_location} to stripped cherry log
+        set block above block at {_location} to cherry pressure plate
+        set block 2 above block at {_location} to light[level=11]
+
+        spawn text display 1.35 above block at {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.5, 0.5, 0.5)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set display component of {_display} to mini message from "<dark_purple>%{server_title}%</dark_purple>"
+
+        spawn text display 1.07 above block at {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set display component of {_display} to mini message from "<light_purple><bold>*Girly* Crate</bold></light_purple>"
+
+        spawn text display 0.75 above block at {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.5, 0.5, 0.5)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set display component of {_display} to mini message from "<gray>Linksklick <dark_gray>→</dark_gray> Crate-Vorschau öffnen%new line%Rechtsklick <dark_gray>→</dark_gray> Crate öffnen</gray>"
+
+        spawn item display 0 above block at {_location}
+        set {_display} to last spawned item display
+        set name of {_display} to "crate_3"
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.8, 0.8, 0.8)
+        set display item of {_display} to spire armor trim smithing template
+
+        spawn item display 0.4 below block at {_location}
+        set {_display} to last spawned item display
+        set display scale of {_display} to vector(0.621, 1.0, 0.621)
+        set yaw of {_display} to 45
+        set display item of {_display} to 1 of cherry slab
+    if {_type} = 4:
+        set block at {_location} to orange stained glass
+        set block below block at {_location} to jack o lantern
+        set block above block at {_location} to acacia pressure plate
+        set block 2 above block at {_location} to light[level=11]
+
+        spawn text display 1.35 above block at {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.5, 0.5, 0.5)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set display component of {_display} to mini message from "<dark_purple>%{server_title}%</dark_purple>"
+
+        spawn text display 1.07 above block at {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set display component of {_display} to mini message from "<gold><bold>Halloween Crate</bold></gold>"
+
+        spawn text display 0.75 above block at {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.5, 0.5, 0.5)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set display component of {_display} to mini message from "<gray>Linksklick <dark_gray>→</dark_gray> Crate-Vorschau öffnen%new line%Rechtsklick <dark_gray>→</dark_gray> Crate öffnen</gray>"
+
+        spawn item display 0 above block at {_location}
+        set {_display} to last spawned item display
+        set name of {_display} to "crate_4"
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.8, 0.8, 0.8)
+        set display item of {_display} to witch spawn egg
+
+        spawn item display 0.4 below block at {_location}
+        set {_display} to last spawned item display
+        set display scale of {_display} to vector(0.621, 1.0, 0.621)
+        set yaw of {_display} to 45
+        set display item of {_display} to 1 of resin brick slab
+    if {_type} = 5:
+        set block at {_location} to white stained glass
+        set block below block at {_location} to snow block
+        set block above block at {_location} to pale oak pressure plate
+        set block 2 above block at {_location} to light[level=11]
+
+        spawn text display 1.35 above block at {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.5, 0.5, 0.5)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set display component of {_display} to mini message from "<blue>%{server_title}%</blue>"
+
+        spawn text display 1.07 above block at {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set display component of {_display} to mini message from "<blue><bold>Winter Crate</bold></blue>"
+
+        spawn text display 0.75 above block at {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.5, 0.5, 0.5)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set display component of {_display} to mini message from "<gray><blue>Linksklick</blue> <dark_gray>→</dark_gray> Crate-Vorschau öffnen%new line%<blue>Rechtsklick</blue> <dark_gray>→</dark_gray> Crate öffnen</gray>"
+
+        spawn item display 0 above block at {_location}
+        set {_display} to last spawned item display
+        set name of {_display} to "crate_5"
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.8, 0.8, 0.8)
+        set display item of {_display} to snow golem spawn egg
+
+        spawn item display 0.4 below block at {_location}
+        set {_display} to last spawned item display
+        set display scale of {_display} to vector(0.621, 1.0, 0.621)
+        set yaw of {_display} to 45
+        set display item of {_display} to 1 of quartz slab

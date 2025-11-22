@@ -1,0 +1,25 @@
+on break:
+    if event-block is solid:
+        chance of 2%:
+            drop 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjdmOGQ4YzM5Zjk5MjFhNjRkN2I3NTVkZTMyMmU0NDFmZGVkNGI3NzVhNzY1N2UwYjMxOTZiNmZkYTg2MzY0NiJ9fX0=""}]}}" named "&kdroped_currency_item" at event-block without velocity
+            loop 5 times:
+                drop 1 xp at event-block
+                wait 1 tick
+            set custom name of last dropped item to "&f&n%{currency_symbol}%&6 Geldbeutel"
+            show the custom name of last dropped item
+            set glowing of last dropped item to true
+            make 2 of cloud at event-block with offset vector(0.15, 0.15, 0.15) with extra 0
+
+on inventory pickup:
+    if name of item is "&kdroped_currency_item":
+        cancel event
+
+on pickup of player head:
+    if name of item is "&kdroped_currency_item":
+        cancel event
+        delete event-dropped item
+        set {_currency_amount} to a random number between 1.05 and 6.85
+        add {_currency_amount} to {balance::%uuid of player%}
+        updateScoreboardBalance(player)
+        send action bar "%{server_prefix}%Du hast &a&n%{currency_symbol}%%regex({_currency_amount})%&7 auf dem Boden gefunden!" to player
+        play sound "block.chiseled_bookshelf.pickup" with volume 0.5 and pitch 0.5 to player

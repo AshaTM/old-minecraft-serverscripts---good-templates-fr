@@ -1,0 +1,12 @@
+on load:
+    delete {ambient_particle_locations::*}
+
+every 3 second:
+    make 5 of electric spark at location(0.5, 3.0, -11.5, world "world") with offset vector(0.3, 0.7, 0.3) with extra 0.0001
+    make 1 of cloud 0.5 below {ambient_particle_locations::*} with offset vector(0.7, 0.7, 0.7) with extra 0.0001
+    make 10 of falling spore blossom at location(0.5, 9.0, 10.5, world "world") with offset vector(1.5, 1.0, 1.5) with extra 0.000001
+    make 1 of heart at location(-17.5, 3.85, 46.5, world "world") and location(0.5, 4, -14.4, world "world") with offset vector(0, 0, 0) with extra 0.0001
+
+every 1 tick:
+    make 5 of firework at location(0.5, 5.0, 40.5, world "world") with offset vector(10.5, 10.5, 10.5) with extra 0
+    make 5 of witch at location(0.5, 5.0, 40.5, world "world") with offset vector(10.5, 10.5, 10.5) with extra 0

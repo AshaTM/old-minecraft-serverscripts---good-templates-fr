@@ -1,0 +1,22 @@
+function clearLag():
+    send action bar "%{server_prefix}%&cLösche überflüssige &nItems&c und &nTiere&c in &n1&c Minute..." to all players
+    wait 30 second
+    send action bar "%{server_prefix}%&c&n30&c Sekunden..." to all players
+    wait 25 second
+    send action bar "%{server_prefix}%&c&n5&c Sekunden..." to all players
+    wait 1 second
+    send action bar "%{server_prefix}%&c&n4&c Sekunden..." to all players
+    wait 1 second
+    send action bar "%{server_prefix}%&c&n3&c Sekunden..." to all players
+    wait 1 second
+    send action bar "%{server_prefix}%&c&n2&c Sekunden..." to all players
+    wait 1 second
+    send action bar "%{server_prefix}%&c&n1&c Sekunde..." to all players
+    wait 1 second
+    loop all cows, pigs, chickens, sheeps, boats, iron golems in world "world":
+        if custom name of loop-entity is not set:
+            teleport loop-entity 1024 below loop-entity
+    send action bar "%{server_prefix}%&cLöschen abgeschlossen." to all players
+
+every 23 minutes:
+    clearLag()

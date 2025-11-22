@@ -1,0 +1,7 @@
+on armor change:
+    if name of event-item is "&6&lKürbiskopf":
+        while name of event-item is "&6&lKürbiskopf":
+            add potion effect of haste of tier 5 without particles for 10 seconds to potion effects of player
+            add potion effect of speed of tier 1 without particles for 10 seconds to potion effects of player
+            add potion effect of night vision of tier 5 without particles for 30 seconds to potion effects of player
+            wait 10 seconds

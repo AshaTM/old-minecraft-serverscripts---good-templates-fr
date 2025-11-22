@@ -1,0 +1,185 @@
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+#  PURCHASED SCRIPT NOTICE
+#
+#  This script is a purchased product.
+#  The buyer of this script has obtained a
+#  non-transferable license to use and modify
+#  it for their own server and personal purposes only.
+#
+#  Redistribution, resale, sharing, or public
+#  publication of this script (in whole or in part)
+#  is strictly prohibited.
+#
+#  Only the original buyer is authorized to
+#  - Modify this script for personal use
+#  - Use it on servers they own or manage
+#
+#  Any unauthorized distribution, claim of authorship,
+#  or resale will result in a permanent revocation
+#  of the usage rights and potential legal action.
+#
+#  © 2025 - Ashalinux - All Rights Reserved.
+#
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# SILK SPAWNERS
+
+function setSpawnerMenu(player: player):
+    set metadata tag "spawner_menu" of {_player} to chest inventory with 6 rows named "Spawners (1/5)"
+    set slot numbers from 0 to 8 of metadata tag "spawner_menu" of {_player} to 1 of gray stained glass pane named "&r"
+    set {_slot} to 9
+    loop all entity types:
+        set {_type} to loop-value
+        if {_type} is set:
+            set {_type} to "%{_type}%" in uppercase
+            set slot {_slot} of metadata tag "spawner_menu" of {_player} to 1 of spawner with lore "&8→ &7Type&8: &f&l%{_type}%"
+            add 1 to {_slot}
+    set slot numbers from 45 to 53 of metadata tag "spawner_menu" of {_player} to 1 of gray stained glass pane named "&r"
+    set slot 50 of metadata tag "spawner_menu" of {_player} to 1 of arrow named "&fNext Page &7→"
+
+    set metadata tag "spawner_menu_1" of {_player} to chest inventory with 6 rows named "Spawners (2/5)"
+    set slot numbers from 0 to 8 of metadata tag "spawner_menu_1" of {_player} to 1 of gray stained glass pane named "&r"
+    set {_slot} to 9
+    loop all entity types:
+        add 1 to {_count}
+        if {_count} >= 38:
+            set {_type} to loop-value
+            if {_type} is set:
+                set {_type} to "%{_type}%" in uppercase
+                set slot {_slot} of metadata tag "spawner_menu_1" of {_player} to 1 of spawner with lore "&8→ &7Type&8: &f&l%{_type}%"
+                add 1 to {_slot}
+    set slot numbers from 45 to 53 of metadata tag "spawner_menu_1" of {_player} to 1 of gray stained glass pane named "&r"
+    set slot 48 of metadata tag "spawner_menu_1" of {_player} to 1 of arrow named "&fPrevious Page &7→"
+    set slot 50 of metadata tag "spawner_menu_1" of {_player} to 1 of arrow named "&fNext Page &7→"
+
+    set metadata tag "spawner_menu_2" of {_player} to chest inventory with 6 rows named "Spawners (3/5)"
+    set slot numbers from 0 to 8 of metadata tag "spawner_menu_2" of {_player} to 1 of gray stained glass pane named "&r"
+    set {_slot} to 9
+    set {_count} to 0
+    loop all entity types:
+        add 1 to {_count}
+        if {_count} >= 74:
+            set {_type} to loop-value
+            if {_type} is set:
+                set {_type} to "%{_type}%" in uppercase
+                set slot {_slot} of metadata tag "spawner_menu_2" of {_player} to 1 of spawner with lore "&8→ &7Type&8: &f&l%{_type}%"
+                add 1 to {_slot}
+    set slot numbers from 45 to 53 of metadata tag "spawner_menu_2" of {_player} to 1 of gray stained glass pane named "&r"
+    set slot 48 of metadata tag "spawner_menu_2" of {_player} to 1 of arrow named "&fPrevious Page &7→"
+    set slot 50 of metadata tag "spawner_menu_2" of {_player} to 1 of arrow named "&fNext Page &7→"
+
+    set metadata tag "spawner_menu_3" of {_player} to chest inventory with 6 rows named "Spawners (4/5)"
+    set slot numbers from 0 to 8 of metadata tag "spawner_menu_3" of {_player} to 1 of gray stained glass pane named "&r"
+    set {_slot} to 9
+    set {_count} to 0
+    loop all entity types:
+        add 1 to {_count}
+        if {_count} >= 108:
+            set {_type} to loop-value
+            if {_type} is set:
+                set {_type} to "%{_type}%" in uppercase
+                set slot {_slot} of metadata tag "spawner_menu_3" of {_player} to 1 of spawner with lore "&8→ &7Type&8: &f&l%{_type}%"
+                add 1 to {_slot}
+    set slot numbers from 45 to 53 of metadata tag "spawner_menu_3" of {_player} to 1 of gray stained glass pane named "&r"
+    set slot 48 of metadata tag "spawner_menu_3" of {_player} to 1 of arrow named "&fPrevious Page &7→"
+    set slot 50 of metadata tag "spawner_menu_3" of {_player} to 1 of arrow named "&fNext Page &7→"
+
+    set metadata tag "spawner_menu_4" of {_player} to chest inventory with 6 rows named "Spawners (5/5)"
+    set slot numbers from 0 to 8 of metadata tag "spawner_menu_4" of {_player} to 1 of gray stained glass pane named "&r"
+    set {_slot} to 9
+    set {_count} to 0
+    loop all entity types:
+        add 1 to {_count}
+        if {_count} >= 144:
+            set {_type} to loop-value
+            if {_type} is set:
+                set {_type} to "%{_type}%" in uppercase
+                set slot {_slot} of metadata tag "spawner_menu_4" of {_player} to 1 of spawner with lore "&8→ &7Type&8: &f&l%{_type}%"
+                add 1 to {_slot}
+    set slot numbers from 45 to 53 of metadata tag "spawner_menu_4" of {_player} to 1 of gray stained glass pane named "&r"
+    set slot 48 of metadata tag "spawner_menu_4" of {_player} to 1 of arrow named "&fPrevious Page &7→"
+
+on login:
+    setSpawnerMenu(player)
+
+on inventory click:
+    if event-inventory = (metadata tag "spawner_menu" of player):
+        cancel event
+        if event-item is spawner:
+            give player 1 of spawner with lore "%line 1 of lore of event-item%"
+            send "&f&lSILK SPAWNERS &7You took a Spawner %line 1 of lore of event-item%" to player
+        if event-item is arrow named "&fNext Page &7→":
+            open (metadata tag "spawner_menu_1" of player) to player
+
+    if event-inventory = (metadata tag "spawner_menu_1" of player):
+        cancel event
+        if event-item is spawner:
+            give player 1 of spawner with lore "%line 1 of lore of event-item%"
+            send "&f&lSILK SPAWNERS &7You took a Spawner %line 1 of lore of event-item%" to player
+        if event-item is arrow named "&fNext Page &7→":
+            open (metadata tag "spawner_menu_2" of player) to player
+        if event-item is arrow named "&fPrevious Page &7→":
+            open (metadata tag "spawner_menu" of player) to player
+
+    if event-inventory = (metadata tag "spawner_menu_2" of player):
+        cancel event
+        if event-item is spawner:
+            give player 1 of spawner with lore "%line 1 of lore of event-item%"
+            send "&f&lSILK SPAWNERS &7You took a Spawner %line 1 of lore of event-item%" to player
+        if event-item is arrow named "&fNext Page &7→":
+            open (metadata tag "spawner_menu_3" of player) to player
+        if event-item is arrow named "&fPrevious Page &7→":
+            open (metadata tag "spawner_menu_1" of player) to player
+
+    if event-inventory = (metadata tag "spawner_menu_3" of player):
+        cancel event
+        if event-item is spawner:
+            give player 1 of spawner with lore "%line 1 of lore of event-item%"
+            send "&f&lSILK SPAWNERS &7You took a Spawner %line 1 of lore of event-item%" to player
+        if event-item is arrow named "&fNext Page &7→":
+            open (metadata tag "spawner_menu_4" of player) to player
+        if event-item is arrow named "&fPrevious Page &7→":
+            open (metadata tag "spawner_menu_2" of player) to player
+
+    if event-inventory = (metadata tag "spawner_menu_4" of player):
+        cancel event
+        if event-item is spawner:
+            give player 1 of spawner with lore "%line 1 of lore of event-item%"
+            send "&f&lSILK SPAWNERS &7You took a Spawner %line 1 of lore of event-item%" to player
+        if event-item is arrow named "&fNext Page &7→":
+            open (metadata tag "spawner_menu_5" of player) to player
+        if event-item is arrow named "&fPrevious Page &7→":
+            open (metadata tag "spawner_menu_3" of player) to player
+
+command /spawners:
+    permission: "command.spawners"
+    trigger:
+        open (metadata tag "spawner_menu" of player) to player
+
+on break of spawner:
+    if tool of player is enchanted with silk touch:
+        cancel event
+        set {_type} to "%entity type of event-block%"
+        if entity type of event-block is not set:
+            set {_type} to "undefined"
+        set {_spawner} to 1 of spawner with lore "&8→ &7Type&8: &f&l%{_type} in uppercase%"
+        set entity type of {_spawner} to {_type} parsed as entity type
+        set event-block to air
+        drop {_spawner} at event-block without velocity
+        set custom name of last dropped item to "&f&nSpawner&8 → &7Type&8: &f&l%{_type} in uppercase%"
+        show the custom name of last dropped item
+        set glowing of last dropped item to true
+
+on place of spawner:
+    if lore of tool of player is set:
+        if line 1 of lore of tool of player contains "&7Type&8:":
+            set {_type} to line 1 of lore of tool of player
+            replace all "&8→ &7Type&8: &f&l" with "" in {_type}
+            set entity type of event-block to {_type} in lowercase parsed as entity type
+
+on tool change:
+    if lore of tool of player is set:
+        if line 1 of lore of tool of player contains "&7Type&8:":
+            set {_type} to line 1 of lore of tool of player
+            send action bar "&f&nSpawner&8 → &7Type&8: &f&l%{_type}%" to player

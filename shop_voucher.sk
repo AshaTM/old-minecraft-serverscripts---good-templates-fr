@@ -1,0 +1,46 @@
+on rightclick with paper:
+    if name of event-item is "&5&lFlygutschein":
+        if flight mode of player is false:
+            set flight mode of player to true
+            remove 1 of tool of player from inventory of player
+            send "%{server_prefix}%&aGutschein eingelöst!&8, &7du kannst jetzt fliegen." to player
+            wait 15 minutes
+            if player has permission "command.fly":
+                send "%{server_prefix}%Keine Ahnung warum du den Flygutschein aktiviert hast aber du hast die Rechte zu ""/fly"" schon..." to player
+                stop
+            else:
+                if player is online:
+                    send "%{server_prefix}%&cAchtung &8- &4Dein Flygutschein läuft aus!" to player
+                    wait 2 second
+                    send "%{server_prefix}%&cFLUG-AUS in &l5 &cSekunden." to player
+                    wait 2 second
+                    send "%{server_prefix}%&cFLUG-AUS in &l4 &cSekunden." to player
+                    wait 2 second
+                    send "%{server_prefix}%&cFLUG-AUS in &l3 &cSekunden." to player
+                    wait 2 second
+                    send "%{server_prefix}%&cFLUG-AUS in &l2 &cSekunden." to player
+                    wait 2 second
+                    send "%{server_prefix}%&cFLUG-AUS in &leiner &cSekunde." to player
+                    wait 2 second
+                    set flight mode of player to false
+                    send "%{server_prefix}%Bitte kauf dir ein neues wenn du weiterhin fliegen möchtest." to player
+                else:
+                    add player to {remove_fly_on_join::*}
+        else:
+            send "%{server_prefix}%&cDein Flugmodus ist schon aktiviert." to player
+
+    if name of event-item is "&3&lAbbaugutschein":
+        if player does not have potion effect haste:
+            add potion effect of haste of tier 5 without particles for 15 Minutes to potion effects of player
+            remove 1 of tool of player from inventory of player
+            send "%{server_prefix}%&aGutschein eingelöst!&8, &7du kannst jetzt schneller abbauen." to player
+        else:
+            send "%{server_prefix}%&cDu hast den ""Haste""-Effekt schon aktiviert." to player
+
+on login:
+    if {remove_fly_on_join::*} contains player:
+        set flight mode of player to false
+
+on world change:
+    if flight mode of player is true:
+        set flight mode of player to true

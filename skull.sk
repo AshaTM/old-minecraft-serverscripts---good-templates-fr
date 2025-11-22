@@ -1,0 +1,6 @@
+command /skull [<offlineplayer>]:
+    trigger:
+        if arg-1 is set:
+            give player skull of arg-1
+        else:
+            send "%{server_prefix}%Du musst ein Spieler angeben!"

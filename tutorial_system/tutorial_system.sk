@@ -1,0 +1,297 @@
+command /resettutorial [<offlineplayer>]:
+    permission: command.resettutorial
+    trigger:
+        if arg-1 is set:
+            remove 1 from {total_player_count}
+            set {tutorial_done::%uuid of arg-1%} to false
+            updateTablistName(arg-1)
+            playTutorial(arg-1)
+            send "%{server_prefix}%Tutorial von &f%arg-1% &7wurde zurückgesetzt." to player
+            send "%{server_prefix}%Dein Tutorial wurde zurückgesetzt." to arg-1
+        else:
+            send "%{server_prefix}%&cÜberprüfe deine Argumente." to player
+
+on login:
+    playTutorial(player)
+
+on logout:
+    if {tutorial_done::%uuid of player%} is false:
+        delete {tutorial_done::%uuid of player%}
+
+function playTutorial(player: player):
+    if {tutorial_done::%uuid of {_player}%} is not set:
+        set {tutorial_done::%uuid of {_player}%} to false
+    if {tutorial_done::%uuid of {_player}%} is false:
+        toggle fastboard of {_player} off
+        set gamemode of {_player} to spectator
+
+        # Spawn
+        set {_location} to location at 0.5, 2.79, -11.5 in world "world"
+        teleport {_player} to {_location}
+        wait 25 tick
+        spawn armor stand at {_location} with nbt from "{Silent:1b,Small:1b,CustomName:[{text:""tutorial_seat_%uuid of {_player}%""}],Invisible:1b,attributes:[{id:""minecraft:gravity"",base:0.001}]}"
+        set {_e} to last spawned armor stand
+        set spectator target of {_player} to {_e}
+        send "%new line%%{server_prefix}%Willkommen auf %{server_title_stripped}%, %{_player}%.%new line%" to {_player}
+        send title "" with subtitle "&7Willkommen, %{_player}%!" to {_player} for 6 seconds with fadein 0 tick and fade out 0 tick
+        if {_player} is online:
+            loop 70 times:
+                push {_e} southwards with speed 0.05
+                wait 2 tick
+            kill {_e}
+
+            # Plaza
+            set {_location} to location at 5.5, 12, 31.5 in world "world"
+            set yaw of {_location} to 10
+            teleport {_player} to {_location}
+            spawn armor stand at {_location} with nbt from "{Silent:1b,Small:1b,CustomName:[{text:""tutorial_seat_%uuid of {_player}%""}],Invisible:1b,attributes:[{id:""minecraft:gravity"",base:0.001}]}"
+            set {_e} to last spawned armor stand
+            set spectator target of {_player} to {_e}
+            send "%new line%%{server_prefix}%Das ist die Plaza von %{server_title_stripped}%.%new line%&8→ &7Hier findest du das wichtigste auf dem Server.%new line%" to {_player}
+            send title "" with subtitle "&7Plaza" to {_player} for 6 seconds with fadein 0 tick and fade out 0 tick
+            if {_player} is online:
+                loop 40 times:
+                    push {_e} westwards with speed 0.03
+                    push {_e} downwards with speed 0.005
+                    wait 2 tick
+                kill {_e}
+
+                # Herzen
+                set {_location} to location at 6.5, 10, 50.5 in world "world"
+                set yaw of {_location} to -90
+                teleport {_player} to {_location}
+                spawn armor stand at {_location} with nbt from "{Silent:1b,Small:1b,CustomName:[{text:""tutorial_seat_%uuid of {_player}%""}],Invisible:1b,attributes:[{id:""minecraft:gravity"",base:0.001}]}"
+                set {_e} to last spawned armor stand
+                set spectator target of {_player} to {_e}
+                send "%new line%%{server_prefix}%Hier findest du Herzen auf %{server_title_stripped}%.%new line%&8→ &7Du fängst mit 3 Herzen an.%new line%" to {_player}
+                send title "" with subtitle "&7Herzen" to {_player} for 6 seconds with fadein 0 tick and fade out 0 tick
+                if {_player} is online:
+                    loop 40 times:
+                        push {_e} northwards with speed 0.03
+                        push {_e} downwards with speed 0.0055
+                        wait 2 tick
+                    kill {_e}
+
+                    # Herzen inside
+                    set {_location} to location at 20.5, 3.5, 47.5 in world "world"
+                    set yaw of {_location} to -100
+                    teleport {_player} to {_location}
+                    spawn armor stand at {_location} with nbt from "{Silent:1b,Small:1b,CustomName:[{text:""tutorial_seat_%uuid of {_player}%""}],Invisible:1b,attributes:[{id:""minecraft:gravity"",base:0.001}]}"
+                    set {_e} to last spawned armor stand
+                    set spectator target of {_player} to {_e}
+                    if {_player} is online:
+                        loop 45 times:
+                            push {_e} northwards with speed 0.015
+                            push {_e} downwards with speed 0.0025
+                            wait 1 tick
+                        kill {_e}
+
+                        # Zeitbank
+                        set {_location} to location at -6.5, 10, 50.5 in world "world"
+                        set yaw of {_location} to 90
+                        teleport {_player} to {_location}
+                        spawn armor stand at {_location} with nbt from "{Silent:1b,Small:1b,CustomName:[{text:""tutorial_seat_%uuid of {_player}%""}],Invisible:1b,attributes:[{id:""minecraft:gravity"",base:0.001}]}"
+                        set {_e} to last spawned armor stand
+                        set spectator target of {_player} to {_e}
+                        send "%new line%%{server_prefix}%Das ist die Zeitbank von %{server_title_stripped}%.%new line%&8→ &7Jede Sekunde* erhältst Geld das du hier abholen kannst.%new line%" to {_player}
+                        send title "" with subtitle "&7Zeitbank" to {_player} for 6 seconds with fadein 0 tick and fade out 0 tick
+                        if {_player} is online:
+                            loop 35 times:
+                                push {_e} northwards with speed 0.03
+                                push {_e} downwards with speed 0.0055
+                                wait 2 tick
+                            kill {_e}
+
+                            # Zeitbank inside
+                            set {_location} to location at -20.5, 3.5, 40.5 in world "world"
+                            set yaw of {_location} to 64
+                            teleport {_player} to {_location}
+                            spawn armor stand at {_location} with nbt from "{Silent:1b,Small:1b,CustomName:[{text:""tutorial_seat_%uuid of {_player}%""}],Invisible:1b,attributes:[{id:""minecraft:gravity"",base:0.001}]}"
+                            set {_e} to last spawned armor stand
+                            set spectator target of {_player} to {_e}
+                            if {_player} is online:
+                                loop 45 times:
+                                    push {_e} southwards with speed 0.015
+                                    push {_e} downwards with speed 0.0025
+                                    wait 1 tick
+                                kill {_e}
+
+                                # Einkaufsladen
+                                set {_location} to location at 5.5, 15, 45.5 in world "world"
+                                set yaw of {_location} to 0
+                                teleport {_player} to {_location}
+                                spawn armor stand at {_location} with nbt from "{Silent:1b,Small:1b,CustomName:[{text:""tutorial_seat_%uuid of {_player}%""}],Invisible:1b,attributes:[{id:""minecraft:gravity"",base:0.001}]}"
+                                set {_e} to last spawned armor stand
+                                set spectator target of {_player} to {_e}
+                                send "%new line%%{server_prefix}%Das ist der Einkaufsladen von %{server_title_stripped}%.%new line%&8→ &7Hier verkaufst und kaufst du Gegenstände%new line%" to {_player}
+                                send title "" with subtitle "&7Einkaufsladen" to {_player} for 6 seconds with fadein 0 tick and fade out 0 tick
+                                if {_player} is online:
+                                    loop 35 times:
+                                        push {_e} westwards with speed 0.03
+                                        push {_e} downwards with speed 0.0055
+                                        wait 2 tick
+                                    kill {_e}
+
+                                    # Einkaufsladen inside
+                                    set {_location} to location at -17.5, 2.5, 65.5 in world "world"
+                                    set yaw of {_location} to 95
+                                    set pitch of {_location} to 20
+                                    teleport {_player} to {_location}
+                                    spawn armor stand at {_location} with nbt from "{Silent:1b,Small:1b,CustomName:[{text:""tutorial_seat_%uuid of {_player}%""}],Invisible:1b,attributes:[{id:""minecraft:gravity"",base:0.001}]}"
+                                    set {_e} to last spawned armor stand
+                                    set spectator target of {_player} to {_e}
+                                    if {_player} is online:
+                                        loop 70 times:
+                                            push {_e} eastwards with speed 0.03
+                                            push {_e} upwards with speed 0.0025
+                                            wait 1 tick
+                                        kill {_e}
+
+                                        # Plot
+                                        set {_location} to location at -5.5, 6.5, 5.5 in world "world"
+                                        set yaw of {_location} to -50
+                                        set pitch of {_location} to 18
+                                        teleport {_player} to {_location}
+                                        spawn armor stand at {_location} with nbt from "{Silent:1b,Small:1b,CustomName:[{text:""tutorial_seat_%uuid of {_player}%""}],Invisible:1b,attributes:[{id:""minecraft:gravity"",base:0.001}]}"
+                                        set {_e} to last spawned armor stand
+                                        set spectator target of {_player} to {_e}
+                                        send "%new line%%{server_prefix}%Das wars auch schon! %{_player}%.%new line%&8→ &7Viel spaß auf %{server_title_stripped}%%new line%" to {_player}
+                                        send title "" with subtitle "&7Viel spaß, %{_player}%!" to {_player} for 6 seconds with fadein 0 tick and fade out 0 tick
+                                        if {_player} is online:
+                                            loop 50 times:
+                                                push {_e} downwards with speed 0.0025
+                                                wait 1 tick
+                                            kill {_e}
+
+                                            # Return to Spawn
+                                            set {_location} to location at 5.5, 2.5, -12.5 in world "world"
+                                            set yaw of {_location} to 39
+                                            set pitch of {_location} to 15
+                                            teleport {_player} to {_location}
+                                            spawn armor stand at {_location} with nbt from "{Silent:1b,Small:1b,CustomName:[{text:""tutorial_seat_%uuid of {_player}%""}],Invisible:1b,attributes:[{id:""minecraft:gravity"",base:0.001}]}"
+                                            set {_e} to last spawned armor stand
+                                            set spectator target of {_player} to {_e}
+                                            if {_player} is online:
+                                                loop 70 times:
+                                                    push {_e} upwards with speed  0.0035
+                                                    wait 1 tick
+                                                set {tutorial_done::%uuid of {_player}%} to true
+                                                set spectator target of {_player} to {_player}
+                                                teleportToSpawn({_player})
+                                                updateTablistName({_player})
+                                                toggle fastboard of {_player} true
+                                                set gamemode of {_player} to survival
+                                                add 1 to {total_player_count}
+                                                kill {_e}
+                                                if {_player} is online:
+                                                    if slot 0 of inventory of {_player} is air:
+                                                        set slot 0 of inventory of {_player} to 1 of iron pickaxe
+                                                        play sound "block.note_block.cow_bell" with volume 2.0 and pitch 0.5 to {_player}
+                                                        make 10 of cloud at {_player} with offset vector(0.25, 1.0, 0.25) with extra 0.001
+                                                        wait 5 tick
+                                                    if slot 1 of inventory of {_player} is air:
+                                                        set slot 1 of inventory of {_player} to 1 of iron axe
+                                                        play sound "block.note_block.cow_bell" with volume 2.0 and pitch 1.0 to {_player}
+                                                        make 10 of cloud at {_player} with offset vector(0.25, 1.0, 0.25) with extra 0.001
+                                                        wait 5 tick
+                                                    if slot 2 of inventory of {_player} is air:
+                                                        set slot 2 of inventory of {_player} to 1 of iron shovel
+                                                        play sound "block.note_block.cow_bell" with volume 2.0 and pitch 1.5 to {_player}
+                                                        make 10 of cloud at {_player} with offset vector(0.25, 1.0, 0.25) with extra 0.001
+                                                        wait 5 tick
+                                                    if slot 3 of inventory of {_player} is air:
+                                                        set slot 3 of inventory of {_player} to 64 of bread
+                                                        play sound "block.note_block.cow_bell" with volume 2.0 and pitch 1.5 to {_player}
+                                                        make 10 of cloud at {_player} with offset vector(0.25, 1.0, 0.25) with extra 0.001
+                                                        wait 5 tick
+                                                    if slot 8 of inventory of {_player} is air:
+                                                        set slot 8 of inventory of {_player} to 3 of trial key named "&7&lStandard Crate &8| &fSchlüssel" with lore "&8→ &7Rechtklick auf eine &7&lStandard Crate &7um diese zu öffnen."
+                                                        play sound "block.note_block.cow_bell" with volume 2.0 and pitch 1.5 to {_player}
+                                                        make 10 of cloud at {_player} with offset vector(0.25, 1.0, 0.25) with extra 0.001
+                                                        wait 5 tick
+
+                                                    if slot 7 of inventory of {_player} is air:
+                                                        set slot 7 of inventory of {_player} to 1 of cauldron named "&7Neuling &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann von allen Rängen abgebaut werden.%new line%&8     - &7Generiert alle 2 Sekunden.%new line%%new line%&8%{server_title_stripped}%"
+                                                        play sound "block.note_block.cow_bell" with volume 2.0 and pitch 1.5 to {_player}
+                                                        make 10 of cloud at {_player} with offset vector(0.25, 1.0, 0.25) with extra 0.001
+                                                        wait 5 tick
+                                                    if helmet of {_player} is air:
+                                                        set helmet of {_player} to 1 of glass block
+                                                        play sound "block.note_block.cow_bell" with volume 2.0 and pitch 1.5 to {_player}
+                                                        make 10 of cloud at {_player} with offset vector(0.25, 1.0, 0.25) with extra 0.001
+                                                    if chestplate of {_player} is air:
+                                                        set chestplate of {_player} to 1 of iron chestplate
+                                                        play sound "block.note_block.cow_bell" with volume 2.0 and pitch 1.5 to {_player}
+                                                        make 10 of cloud at {_player} with offset vector(0.25, 1.0, 0.25) with extra 0.001
+                                                    if leggings of {_player} is air:
+                                                        set leggings of {_player} to 1 of iron leggings
+                                                        play sound "block.note_block.cow_bell" with volume 2.0 and pitch 1.5 to {_player}
+                                                        make 10 of cloud at {_player} with offset vector(0.25, 1.0, 0.25) with extra 0.001
+                                                    if boots of {_player} is air:
+                                                        set boots of {_player} to 1 of iron boots
+                                                        play sound "block.note_block.cow_bell" with volume 2.0 and pitch 1.5 to {_player}
+                                                        make 10 of cloud at {_player} with offset vector(0.25, 1.0, 0.25) with extra 0.001
+                                                    give {_player} 64*3 of oak log
+                                                    play sound "block.note_block.cow_bell" with volume 2.0 and pitch 0.5 to {_player}
+                                                    make 10 of cloud at {_player} with offset vector(0.25, 1.0, 0.25) with extra 0.001
+                                                    wait 5 tick
+                                                    give {_player} 64*3 of dark oak log
+                                                    play sound "block.note_block.cow_bell" with volume 2.0 and pitch 0.5 to {_player}
+                                                    make 10 of cloud at {_player} with offset vector(0.25, 1.0, 0.25) with extra 0.001
+                                                    wait 5 tick
+                                                    give {_player} 64*2 of stone
+                                                    play sound "block.note_block.cow_bell" with volume 2.0 and pitch 0.5 to {_player}
+                                                    make 10 of cloud at {_player} with offset vector(0.25, 1.0, 0.25) with extra 0.001
+                                                    wait 5 tick
+                                                    give {_player} 64*1 of sand
+                                                    play sound "block.note_block.cow_bell" with volume 2.0 and pitch 0.5 to {_player}
+                                                    make 10 of cloud at {_player} with offset vector(0.25, 1.0, 0.25) with extra 0.001
+                                                    wait 5 tick
+                                                    give {_player} 64*1 of potato
+                                                    play sound "block.note_block.cow_bell" with volume 2.0 and pitch 0.5 to {_player}
+                                                    make 10 of cloud at {_player} with offset vector(0.25, 1.0, 0.25) with extra 0.001
+                                                    wait 5 tick
+                                                    give {_player} 64*1 of coal
+                                                    play sound "block.note_block.cow_bell" with volume 2.0 and pitch 0.5 to {_player}
+                                                    make 10 of cloud at {_player} with offset vector(0.25, 1.0, 0.25) with extra 0.001
+                                                    wait 5 tick
+                                                    make console execute "skeco add %{_player}% 20000"
+                                                    play sound "block.note_block.cow_bell" with volume 2.0 and pitch 0.5 to {_player}
+                                                    make 10 of cloud at {_player} with offset vector(0.25, 1.0, 0.25) with extra 0.001
+                                                    wait 5 tick
+                                                send title "%{server_title}%" with subtitle "&aTutorial Abgeschlossen!" to {_player} for 3 seconds with fadein 5 tick and fade out 5 tick
+                                                send "%{server_prefix}%Tutorial &aerfolgreich &7abgeschlossen." to {_player}
+                                            else:
+                                                kill {_e}
+                                                stop
+                                        else:
+                                            kill {_e}
+                                            stop
+                                    else:
+                                        kill {_e}
+                                        stop
+                                else:
+                                    kill {_e}
+                                    stop
+                            else:
+                                kill {_e}
+                                stop
+                        else:
+                            kill {_e}
+                            stop
+                    else:
+                        kill {_e}
+                        stop
+                else:
+                    kill {_e}
+                    stop
+            else:
+                kill {_e}
+                stop
+        else:
+            kill {_e}
+            stop
+
+on player stop spectating:
+    if {tutorial_done::%uuid of player%} is false:
+        cancel event

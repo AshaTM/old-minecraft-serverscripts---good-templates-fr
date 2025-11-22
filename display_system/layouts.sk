@@ -1,0 +1,109 @@
+function setDisplay(text: text, sub_text: text, item: item, type: integer, yaw: number, pitch: number, x: number, y: number, z: number, world: world):
+    set {_location} to location at {_x}, {_y}, {_z} in world {_world}
+    set yaw of {_location} to {_yaw}
+    set pitch of {_location} to {_pitch}
+
+    set block at {_location} to light[level=11]
+
+    loop all text displays and item displays and block displays in radius 3 of {_location}:
+        kill loop-entity
+
+    if {_type} is 3:
+        spawn text display at {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to fixed
+        set display scale of {_display} to vector(1.5, 1.5, 1.5)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set display component of {_display} to mini message from "<dark_purple>%{server_title}%</dark_purple>"
+
+        spawn text display 1.25 below {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to fixed
+        set display scale of {_display} to vector(5, 5, 5)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set display component of {_display} to mini message from {_text}
+
+        spawn text display 1.7 below {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to fixed
+        set display scale of {_display} to vector(2, 2, 2)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set the line width of {_display} to 1024
+        set display component of {_display} to mini message from "<gray>%{_sub_text}%</gray>"
+
+        spawn item display 2.7 below {_location}
+        set {_display} to last spawned item display
+        set display billboard of {_display} to fixed
+        set display scale of {_display} to vector(1.5, 1.5, 1.5)
+        set display item of {_display} to 1 of {_item}
+
+
+
+    if {_type} is 2:
+        spawn text display at {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.5, 0.5, 0.5)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set display component of {_display} to mini message from "<gray>%{server_title}%</gray>"
+
+        spawn text display 0.4 below {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(1.5, 1.5, 1.5)
+        set display component of {_display} to mini message from {_text}
+
+        spawn text display 0.55 below {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.5, 0.5, 0.5)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set the line width of {_display} to 1024
+        set display component of {_display} to mini message from "<gray>%{_sub_text}%</gray>"
+
+        spawn item display 0.8 below {_location}
+        set {_display} to last spawned item display
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.25, 0.25, 0.25)
+        set display item of {_display} to 1 of {_item}
+
+
+
+    if {_type} is 1:
+
+        spawn item display 0.1 above {_location}
+        set {_display} to last spawned item display
+        set display billboard of {_display} to fixed
+        set display scale of {_display} to vector(0.15, 0.15, 0.15)
+        set display item of {_display} to 1 of {_item}
+
+        spawn text display 0.2 below {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.45, 0.45, 0.45)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set display component of {_display} to mini message from "<dark_purple>%{server_title}%</dark_purple>"
+
+        spawn text display 0.5 below {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(1, 1, 1)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set display component of {_display} to mini message from "<dark_purple>ℹ</dark_purple> <white>%{_text}%</white>"
+
+        spawn text display 1.45 below {_location}
+        set {_display} to last spawned text display
+        set display text shadowed of {_display} to true
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(0.5, 0.5, 0.5)
+        set display text background color of {_display} to bukkitColor(0,0,0,0)
+        set the line width of {_display} to 8192
+        set display component of {_display} to mini message from "<gray>%{_sub_text}%"

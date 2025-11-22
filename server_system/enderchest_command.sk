@@ -1,0 +1,15 @@
+command /enderchest [<offlineplayer>]:
+    aliases: ec, enderc, echest,
+    trigger:
+        if arg-1 is set:
+            if arg-1 is online:
+                if player has permission "command.enderchest.others":
+                    open enderchest of arg-1 to player
+                    send action bar "%{server_prefix}%Öffne &dEnderchest &7von &f%arg-1%&7..." to player
+                else:
+                    send "%{server_prefix}%&cDazu hast du keine Berechtigung." to player
+            else:
+                send "%{server_prefix}%Bitte gib einen &fSpieler &7an, der &aonline &7ist." to player
+        else:
+            open enderchest of player to player
+            send action bar "%{server_prefix}%Öffne deine &dEnderchest&7..." to player

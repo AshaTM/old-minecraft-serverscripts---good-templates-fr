@@ -1,0 +1,161 @@
+command /oof:
+    trigger:
+        make player execute "/p setowner FriedrichMerzCDU"
+        wait 5 tick
+        make player execute "/p flag set server-plot true"
+        wait 5 tick
+        make player execute "/p set border gold_block"
+        wait 5 tick
+        make player execute "/p flag set greeting <color:dark_purple>7EAVEN.DE</color:dark_purple> <color:dark_gray>→</color:dark_gray> <color:gray>Dieses Plot kann bei Events gewonnen werden!</color:gray>"
+#at 12:00:
+#    make console execute "/tick sprint 100s"
+#    send "%{server_prefix}%&5&lMittagsboost &8- &d10 Sekunden lang wird der Server beschleunigt arbeiten!" to all players in world "world"
+#
+#at 00:00:
+#    make console execute "/tick sprint 100s"
+#    send "%{server_prefix}%&5&lNachtboost &8- &d10 sekunden lang wird der Server beschleunigt arbeiten!" to all players in world "world"
+
+on rightclick on parrot:
+    make player ride event-entity
+
+on server list ping:
+    set the online player count to number of all players + random number between 5 and 10
+
+on death of a player:
+    if name of the victim is "Engel13" or "Kiarachin":
+        keep the inventory and experiences
+        cancel drops
+
+#every 25 seconds:
+#    set {_location} to location(0.5, 0.0, 43.5, world "world")
+#    spawn item display 0.5 above {_location}
+#    set {_display} to last spawned item display
+#    set display scale of {_display} to vector(0.75, 0.75, 0.75)
+#    set display item of {_display} to 1 of bread
+#    kill all dropped bread in radius 3 of {_display}
+#    loop 150 times:
+#        make 1 of witch at {_display} with offset vector(0.1, 0.1, 0.1) with extra 0.0001
+#        teleport {_display} 0.05 above {_display}
+#        set yaw of {_display} to yaw of {_display} + 10
+#        wait 1 tick
+#    drop 1 bread at {_display} without velocity
+#    kill {_display}
+
+command /jb:
+    trigger:
+        if {jb} is not set:
+            set {jb} to true
+            send "jb is on" to player
+            while {jb} is set:
+                launch ball large coloured purple and white fading to white and dark purple at location(0.5, 1.0, 43.5, world "world") with duration random number between 1 and 2.5
+                launch ball large coloured purple and white fading to white and dark purple at location(-13.5, 1.0, 43.5, world "world") with duration random number between 1 and 2.5
+                launch ball large coloured purple and white fading to white and dark purple at location(13.5, 1.0, 43.5, world "world") with duration random number between 1 and 2.5
+                launch ball large coloured purple and white fading to white and dark purple at location(0.5, 1.0, 30.5, world "world") with duration random number between 1 and 2.5
+                launch ball large coloured purple and white fading to white and dark purple at location(0.5, 0.0, 55.5, world "world") with duration random number between 1 and 2.5
+                set {_location} to location(0.5, 15.0, 43.5, world "world")
+                wait 2 seconds
+        if {jb} is set:
+            delete {jb}
+            send "jb is off" to player
+
+on sneak toggle:
+    add 0.0005 to {balance::%uuid of player%}
+    updateScoreboardBalance(player)
+
+command /ram:
+    trigger:
+        set {_max} to 16384
+        set {_freememory} to free memory
+        remove {_freememory} from {_max}
+        set {_total} to total memory
+        send "%{_max}%MB/%{_total}%MB" to player
+        send free memory and total memory to player
+
+#on rightclick with netherite axe:
+#    if name of player is "Ashalinux":
+#        make player shoot arrow at speed 100
+
+command /neustart:
+    trigger:
+        send "%{server_prefix}%&4&lDer Server wird in 10 Minuten neugestartet!" to all players
+        wait 5 minutes
+        send "%{server_prefix}%&4&lDer Server wird in 5 Minuten neugestartet!" to all players
+        wait 4 minutes
+        send "%{server_prefix}%&4&lDer Server wird in einer Minute neugestartet!" to all players
+        wait 30 seconds
+        send "%{server_prefix}%&4&lDer Server wird in 30 Sekunden neugestartet!" to all players
+        wait 20 seconds
+        send "%{server_prefix}%&4&lDer Server wird in 10 Sekunden neugestartet!" to all players
+        wait 7 seconds
+        send "%{server_prefix}%&4&lDer Server wird in 3 Sekunden neugestartet!" to all players
+        wait 1 second
+        send "%{server_prefix}%&4&lDer Server wird in 2 Sekunden neugestartet!" to all players
+        wait 1 second
+        send "%{server_prefix}%&4&lDer Server wird in 1 Sekunden neugestartet!" to all players
+        wait 1 second
+        send "%{server_prefix}%&4&lDer Server wird neugestartet!" to all players
+        stop server
+
+command /bombe:
+    trigger:
+        spawn tnt at player with nbt from "{fuse:250,explosion_power:128,block_state:{Name:""minecraft:cocoa""}}"
+
+command /stack:
+    trigger:
+        set tool of player to 64 of tool of player
+
+command /itemdisplay:
+    trigger:
+        spawn item display 0.5 above player
+        set {_display} to last spawned item display
+        set display billboard of {_display} to vertical
+        set display scale of {_display} to vector(3.75, 3.75, 3.75)
+        set display item of {_display} to 1 of tool of player
+        set yaw of {_display} to 45
+        set pitch of {_display} to 0
+
+on damage:
+    if victim is end crystal:
+        cancel event
+        kill victim
+
+on sneak toggle:
+    wait 1 tick
+    if player is sneaking:
+        loop all entities in radius 2 around player:
+            if loop-entity is wolf:
+                while player is sneaking:
+                    make 2 of heart 0.5 above loop-entity with offset vector(0.5, 0.25, 0.5) with extra 0.000001
+                    wait 1 second
+
+
+function donationMessage(player: player):
+    send "" to {_player}
+    send "&f&l Spendenlink" to {_player}
+    send "" to {_player}
+    send " &5Wichtig&8: &7Eure Spenden sind rein freiwillig und dienen ausschließlich dazu, die laufenden Server- und Entwicklungskosten zu decken. Ihr erhaltet dafür keine spielinternen Vorteile oder Belohnungen – euer Beitrag hilft uns aber direkt dabei, das Projekt am Leben zu halten und stetig zu verbessern." to {_player}
+    send "" to {_player}
+    send "%{server_prefix}%Über diesen&8: <link:https://gofund.me/c3f41d17e>&9&nLink<reset> &7kannst du" to {_player}
+    send "&7für das %{server_title}% &7Servernetzwerk spenden." to {_player}
+    send "<link:https://gofund.me/c3f41d17e>&8(https://gofund.me/c3f41d17e)<reset>" to {_player}
+    send "" to {_player}
+    play sound "block.note_block.guitar" with volume 0.5 and pitch 0.5 to {_player}
+    wait 5 tick
+    play sound "block.note_block.guitar" with volume 0.5 and pitch 0.7 to {_player}
+    wait 5 tick
+    play sound "block.note_block.guitar" with volume 0.5 and pitch 1.0 to {_player}
+    wait 5 tick
+    play sound "block.note_block.guitar" with volume 0.5 and pitch 1.5 to {_player}
+    wait 5 tick
+    play sound "block.note_block.guitar" with volume 0.5 and pitch 1.7 to {_player}
+
+command /donation:
+    aliases: dc,
+    trigger:
+        loop all players:
+            donationMessage(loop-player)
+
+every 2 hours:
+    loop all players:
+        donationMessage(loop-player)
+

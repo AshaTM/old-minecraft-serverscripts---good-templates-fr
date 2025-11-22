@@ -1,0 +1,20 @@
+function resetTrash(player: player):
+    set metadata tag "trash_menu" of {_player} to chest inventory with 2 rows named "Persönlicher Mülleimer"
+    set slot 17 of metadata tag "trash_menu" of {_player} to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAzZTE5NjM0YjAwNzUxZTdiOWM4MDM1ZmQ5ZWQ0OThlMDcwY2FkMzI5OWNkNmJhZTlkOTk0ZGIzYmRjOTFhIn19fQ==""}]}}" named "&cGegenstände endgültig löschen."
+
+on login:
+    resetTrash(player)
+
+command /trash:
+    trigger:
+        open (metadata tag "trash_menu" of player) to player
+
+on inventory click:
+    if event-inventory = (metadata tag "trash_menu" of player):
+
+        if name of event-item contains "&cGegenstände endgültig löschen.":
+            cancel event
+            close inventory of player
+            resetTrash(player)
+            open (metadata tag "trash_menu" of player) to player
+            send "%{server_prefix}%Dein Mülleimer wurde geleert." to player

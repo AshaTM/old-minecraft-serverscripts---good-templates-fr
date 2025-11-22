@@ -1,0 +1,52 @@
+command /sit:
+    trigger:
+        sitDown(player)
+
+function sitDown(player: player):
+    if {_player} is not sneaking:
+        set {_waited} to difference between {cake.%uuid of {_player}%.lastused} and now
+        if {_waited} is less than 2 seconds:
+            stop
+        if block 0.3 below {_player} is solid:
+            if {_player} is riding:
+                send action bar "%{server_prefix}%Du sitzt bereits.." to {_player}
+                play sound "block.redstone_torch.burnout" with volume 0.25 and pitch 2.0 to {_player}
+            else:
+                loop all entities in radius 0.6 of location of {_player}:
+                    if loop-entity is not {_player}:
+                        loop-entity is riding:
+                            send action bar "%{server_prefix}%Da sitzt schon ein Spieler in der Nähe." to {_player}
+                            stop
+                spawn armor stand 2 below {_player} with nbt from "{Invisible:1b,NoGravity:1b,Invulnerable:1b,DisabledSlots:4144959,ArmorItems:[{},{},{},{}],CustomName:'{""text"":""seat_%uuid of {_player}%""}'}"
+                make {_player} ride last spawned armor stand
+                set {cake.%uuid of {_player}%.lastused} to now
+                set maximum health of last spawned armor stand to 0
+                send action bar "%{server_prefix}%Du hast dich hingesetzt. &f↓" to {_player}
+                play sound "block.bamboo_wood.fall" with volume 0.5 and pitch 0.5 to {_player}
+                while {_player} is riding:
+                    if block 0.25 below {_player} is air:
+                        make {_player} dismount their vehicle
+                        send action bar "%{server_prefix}%Dein Sitzblock ist verschwunden..." to {_player}
+                    else:
+                        add nbt from "{Rotation:[%yaw of {_player}%f,0f]}" to nbt of vehicle of {_player}
+                        chance of 15%:
+                            apply regeneration potion of tier 3 without any particles whilst hiding the potion icon to {_player} for 2 ticks
+                            apply saturation potion of tier 1 without any particles whilst hiding the potion icon to {_player} for 2 ticks
+                            make 1 of heart 2 above {_player} with offset vector(0, 0, 0) with extra 0
+                        wait 15 tick
+        else:
+            send action bar "%{server_prefix}%&cDu kannst dich hier nicht hinsetzen." to {_player}
+    else:
+        send action bar "%{server_prefix}%&cDu kannst nicht im ducken sitzen." to {_player}
+
+on dismount:
+    if name of vehicle of event-entity contains "seat_%uuid of player%":
+        kill vehicle of player
+        send action bar "%{server_prefix}%Du bist aufgestanden. &f↑" to player
+        play sound "block.bamboo_wood.fall" with volume 0.1 and pitch 2.0 to player
+        push player upwards with speed 0.70
+        set {cake.%uuid of {_player}%.lastused} to now -2 seconds
+
+on damage of player:
+    if name of vehicle of victim contains "seat_%uuid of victim%":
+        dismount the passenger of vehicle of victim

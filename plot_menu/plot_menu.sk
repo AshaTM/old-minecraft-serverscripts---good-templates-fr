@@ -1,0 +1,96 @@
+on walk on green stained glass:
+    if block below event-block is test block[mode=accept]:
+        teleportToSpawn(player)
+        openPlotGUI(player)
+
+command /plotmenu:
+    trigger:
+        openPlotGUI(player)
+
+function openPlotGUI(player: player):
+    play sound "block.note_block.bit" with volume 0.25 and pitch 1.2 at {_player} to {_player}
+    set metadata tag "plot_menu" of {_player} to chest inventory with 6 rows named "Plotverwaltung"
+    set slot numbers from 0 to 54 of metadata tag "plot_menu" of {_player} to 1 of gray stained glass pane named "&r"
+    set slot 0, 1, 7, 8, 9, 17, 18, 26, 27, 35, 36, 45, 44, 46, 52 and 53 of metadata tag "plot_menu" of {_player} to 1 of black stained glass pane named "&r"
+    if {_player} does not have permission "operator":
+        set slot 22 of metadata tag "plot_menu" of {_player} to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDAzZTE5NjM0YjAwNzUxZTdiOWM4MDM1ZmQ5ZWQ0OThlMDcwY2FkMzI5OWNkNmJhZTlkOTk0ZGIzYmRjOTFhIn19fQ==""}]}}" named "&cDas auf dem stehende Plot löschen" with lore "&8→ &7Lösche das Plot, auf dem du aktuell stehst.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 29 of metadata tag "plot_menu" of {_player} to 1 of oak sapling named "&fBiomwunsch?" with lore "&8→ &7Schreib uns einfach!%new line%   &8● &7Wünsche erst ab dem Rang &2Bürger&7.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 33 of metadata tag "plot_menu" of {_player} to 1 of smooth stone slab named "&fRandwunsch?" with lore "&8→ &7Schreib uns einfach!%new line%   &8● &7Wünsche erst ab dem Rang &2Bürger&7.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 40 of metadata tag "plot_menu" of {_player} to 1 of field masoned banner pattern named "&fMergewunsch?" with lore "&8→ &7Schreib uns einfach!%new line%   &8● &7Wünsche erst ab dem Rang &2Bürger&7.%new line%%new line%&8%{server_title_stripped}%"
+    
+
+    if {_player} has permission "plots.plot.1" or "plots.plot.2" or "plots.plot.3" or "plots.plot.4" or "plots.plot.5" or "plots.plot.6" or "plots.plot.7":
+        if number of owned plots of {_player} >= 1:
+            set slot 10 of metadata tag "plot_menu" of {_player} to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjNkMDJjZGMwNzViYjFjYzVmNmZlM2M3NzExYWU0OTc3ZTM4YjkxMGQ1MGVkNjAyM2RmNzM5MTNlNWU3ZmNmZiJ9fX0=""}]}}" named "&fZum &n1.&f Plot Teleportieren..." with lore "&8→ &7Teleportiert dich zu einem deiner Plots.%new line%%new line%&8%{server_title_stripped}%"
+        else:
+            set slot 10 of metadata tag "plot_menu" of {_player} to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMGEyMWViNGM1Nzc1MDcyOWE0OGI4OGU5YmJkYjk4N2ViNjI1MGE1YmMyMTU3YjU5MzE2ZjVmMTg4N2RiNSJ9fX0=""}]}}" named "&fDas &f&n1.&f Plot Automatisch Beanspruchen" with lore "&8→ &7Klick hier um ein Plot automatisch zu beanspruchen.%new line%%new line%&8%{server_title_stripped}%"
+    else:
+        set slot 10 of metadata tag "plot_menu" of {_player} to 1 of barrier named "&cNoch nicht freigeschaltet..." with lore "&8→ &7Du benötigst einen höheren Rang.%new line%%new line%&8%{server_title_stripped}%"
+    if {_player} has permission "plots.plot.2" or "plots.plot.3" or "plots.plot.4" or "plots.plot.5" or "plots.plot.6" or "plots.plot.7":
+        if number of owned plots of {_player} >= 2:
+            set slot 11 of metadata tag "plot_menu" of {_player} to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjNkMDJjZGMwNzViYjFjYzVmNmZlM2M3NzExYWU0OTc3ZTM4YjkxMGQ1MGVkNjAyM2RmNzM5MTNlNWU3ZmNmZiJ9fX0=""}]}}" named "&fZum &n2.&f Plot Teleportieren..." with lore "&8→ &7Teleportiert dich zu einem deiner Plots.%new line%%new line%&8%{server_title_stripped}%"
+        else:
+            set slot 11 of metadata tag "plot_menu" of {_player} to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMGEyMWViNGM1Nzc1MDcyOWE0OGI4OGU5YmJkYjk4N2ViNjI1MGE1YmMyMTU3YjU5MzE2ZjVmMTg4N2RiNSJ9fX0=""}]}}" named "&fDas &f&n2.&f Plot Automatisch Beanspruchen" with lore "&8→ &7Klick hier um ein Plot automatisch zu beanspruchen.%new line%%new line%&8%{server_title_stripped}%"
+    else:
+        set slot 11 of metadata tag "plot_menu" of {_player} to 1 of barrier named "&cNoch nicht freigeschaltet..." with lore "&8→ &7Du benötigst einen höheren Rang.%new line%%new line%&8%{server_title_stripped}%"
+    if {_player} has permission "plots.plot.3" or "plots.plot.4" or "plots.plot.5" or "plots.plot.6" or "plots.plot.7":
+        if number of owned plots of {_player} >= 3:
+            set slot 12 of metadata tag "plot_menu" of {_player} to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjNkMDJjZGMwNzViYjFjYzVmNmZlM2M3NzExYWU0OTc3ZTM4YjkxMGQ1MGVkNjAyM2RmNzM5MTNlNWU3ZmNmZiJ9fX0=""}]}}" named "&fZum &n3.&f Plot Teleportieren..." with lore "&8→ &7Teleportiert dich zu einem deiner Plots.%new line%%new line%&8%{server_title_stripped}%"
+        else:
+            set slot 12 of metadata tag "plot_menu" of {_player} to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMGEyMWViNGM1Nzc1MDcyOWE0OGI4OGU5YmJkYjk4N2ViNjI1MGE1YmMyMTU3YjU5MzE2ZjVmMTg4N2RiNSJ9fX0=""}]}}" named "&fDas &f&n3.&f Plot Automatisch Beanspruchen" with lore "&8→ &7Klick hier um ein Plot automatisch zu beanspruchen.%new line%%new line%&8%{server_title_stripped}%"
+    else:
+        set slot 12 of metadata tag "plot_menu" of {_player} to 1 of barrier named "&cNoch nicht freigeschaltet..." with lore "&8→ &7Du benötigst einen höheren Rang.%new line%%new line%&8%{server_title_stripped}%"
+    if {_player} has permission "plots.plot.4" or "plots.plot.5" or "plots.plot.6" or "plots.plot.7":
+        if number of owned plots of {_player} >= 4:
+            set slot 13 of metadata tag "plot_menu" of {_player} to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjNkMDJjZGMwNzViYjFjYzVmNmZlM2M3NzExYWU0OTc3ZTM4YjkxMGQ1MGVkNjAyM2RmNzM5MTNlNWU3ZmNmZiJ9fX0=""}]}}" named "&fZum &n4.&f Plot Teleportieren..." with lore "&8→ &7Teleportiert dich zu einem deiner Plots.%new line%%new line%&8%{server_title_stripped}%"
+        else:
+            set slot 13 of metadata tag "plot_menu" of {_player} to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMGEyMWViNGM1Nzc1MDcyOWE0OGI4OGU5YmJkYjk4N2ViNjI1MGE1YmMyMTU3YjU5MzE2ZjVmMTg4N2RiNSJ9fX0=""}]}}" named "&fDas &f&n4.&f Plot Automatisch Beanspruchen" with lore "&8→ &7Klick hier um ein Plot automatisch zu beanspruchen.%new line%%new line%&8%{server_title_stripped}%"
+    else:
+        set slot 13 of metadata tag "plot_menu" of {_player} to 1 of barrier named "&cNoch nicht freigeschaltet..." with lore "&8→ &7Du benötigst einen höheren Rang.%new line%%new line%&8%{server_title_stripped}%"
+    if {_player} has permission "plots.plot.5" or "plots.plot.6" or "plots.plot.7":
+        if number of owned plots of {_player} >= 5:
+            set slot 14 of metadata tag "plot_menu" of {_player} to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjNkMDJjZGMwNzViYjFjYzVmNmZlM2M3NzExYWU0OTc3ZTM4YjkxMGQ1MGVkNjAyM2RmNzM5MTNlNWU3ZmNmZiJ9fX0=""}]}}" named "&fZum &n5.&f Plot Teleportieren..." with lore "&8→ &7Teleportiert dich zu einem deiner Plots.%new line%%new line%&8%{server_title_stripped}%"
+        else:
+            set slot 14 of metadata tag "plot_menu" of {_player} to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMGEyMWViNGM1Nzc1MDcyOWE0OGI4OGU5YmJkYjk4N2ViNjI1MGE1YmMyMTU3YjU5MzE2ZjVmMTg4N2RiNSJ9fX0=""}]}}" named "&fDas &f&n5.&f Plot Automatisch Beanspruchen" with lore "&8→ &7Klick hier um ein Plot automatisch zu beanspruchen.%new line%%new line%&8%{server_title_stripped}%"
+    else:
+        set slot 14 of metadata tag "plot_menu" of {_player} to 1 of barrier named "&cNoch nicht freigeschaltet..." with lore "&8→ &7Du benötigst einen höheren Rang.%new line%%new line%&8%{server_title_stripped}%"
+    if {_player} has permission "plots.plot.6" or "plots.plot.7":
+        if number of owned plots of {_player} >= 6:
+            set slot 15 of metadata tag "plot_menu" of {_player} to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjNkMDJjZGMwNzViYjFjYzVmNmZlM2M3NzExYWU0OTc3ZTM4YjkxMGQ1MGVkNjAyM2RmNzM5MTNlNWU3ZmNmZiJ9fX0=""}]}}" named "&fZum &n6.&f Plot Teleportieren..." with lore "&8→ &7Teleportiert dich zu einem deiner Plots.%new line%%new line%&8%{server_title_stripped}%"
+        else:
+            set slot 15 of metadata tag "plot_menu" of {_player} to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMGEyMWViNGM1Nzc1MDcyOWE0OGI4OGU5YmJkYjk4N2ViNjI1MGE1YmMyMTU3YjU5MzE2ZjVmMTg4N2RiNSJ9fX0=""}]}}" named "&fDas &f&n6.&f Plot Automatisch Beanspruchen" with lore "&8→ &7Klick hier um ein Plot automatisch zu beanspruchen.%new line%%new line%&8%{server_title_stripped}%"
+    else:
+        set slot 15 of metadata tag "plot_menu" of {_player} to 1 of barrier named "&cNoch nicht freigeschaltet..." with lore "&8→ &7Du benötigst einen höheren Rang.%new line%%new line%&8%{server_title_stripped}%"
+    if {_player} has permission "plots.plot.7":
+        if number of owned plots of {_player} >= 7:
+            set slot 16 of metadata tag "plot_menu" of {_player} to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjNkMDJjZGMwNzViYjFjYzVmNmZlM2M3NzExYWU0OTc3ZTM4YjkxMGQ1MGVkNjAyM2RmNzM5MTNlNWU3ZmNmZiJ9fX0=""}]}}" named "&fZum &n7.&f Plot Teleportieren..." with lore "&8→ &7Teleportiert dich zu einem deiner Plots.%new line%%new line%&8%{server_title_stripped}%"
+        else:
+            set slot 16 of metadata tag "plot_menu" of {_player} to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMGEyMWViNGM1Nzc1MDcyOWE0OGI4OGU5YmJkYjk4N2ViNjI1MGE1YmMyMTU3YjU5MzE2ZjVmMTg4N2RiNSJ9fX0=""}]}}" named "&fDas &f&n7.&f Plot Automatisch Beanspruchen" with lore "&8→ &7Klick hier um ein Plot automatisch zu beanspruchen.%new line%%new line%&8%{server_title_stripped}%"
+    else:
+        set slot 16 of metadata tag "plot_menu" of {_player} to 1 of barrier named "&cNoch nicht freigeschaltet..." with lore "&8→ &7Du benötigst einen höheren Rang.%new line%%new line%&8%{server_title_stripped}%"
+
+    open (metadata tag "plot_menu" of {_player}) to {_player}
+
+on inventory click:
+    if event-inventory = (metadata tag "plot_menu" of player):
+        cancel event
+        close inventory of player
+
+        if name of event-item contains "Das auf dem stehende Plot löschen":
+            make player execute "plot delete"
+        if name of event-item contains "1.&f Plot Teleportieren...":
+            make player execute "plot home 1"
+        if name of event-item contains "2.&f Plot Teleportieren...":
+            make player execute "plot home 2"
+        if name of event-item contains "3.&f Plot Teleportieren...":
+            make player execute "plot home 3"
+        if name of event-item contains "4.&f Plot Teleportieren...":
+            make player execute "plot home 4"
+        if name of event-item contains "5.&f Plot Teleportieren...":
+            make player execute "plot home 5"
+        if name of event-item contains "6.&f Plot Teleportieren...":
+            make player execute "plot home 6"
+        if name of event-item contains "7.&f Plot Teleportieren...":
+            make player execute "plot home 7"
+        if name of event-item contains "Plot Automatisch Beanspruchen":
+            make player execute "plot auto"

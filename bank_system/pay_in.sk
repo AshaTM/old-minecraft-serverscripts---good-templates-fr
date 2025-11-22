@@ -1,0 +1,5 @@
+on right click on blue stained glass:
+    loop all entities in radius 0.5 of event-block:
+        if name of loop-entity is "bank_container":
+            cancel event
+            openBankGUI(player)

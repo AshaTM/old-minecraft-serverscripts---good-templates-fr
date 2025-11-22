@@ -1,0 +1,9 @@
+command /feed:
+	trigger:
+		set {_waited} to difference between {feed_cmmand.%player%.lastused} and now
+		if {_waited} is less than 5 minute:
+			send "%{server_prefix}%%difference between a minute and {_waited}% musst du noch warten." to player
+			stop
+		feed player
+		set {feed_cmmand.%player%.lastused} to now
+		send "%{server_prefix}%Der Server hat dich gefüttert... :)" to player

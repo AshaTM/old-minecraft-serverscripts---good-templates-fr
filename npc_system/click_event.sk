@@ -1,0 +1,50 @@
+on rightclick on armor stand:
+    if name of event-entity is "random_teleport_§knpc":
+        cancel event
+        openRandomTeleportGUI(player)
+    if name of event-entity is "repair_§knpc":
+        cancel event
+        openRepairGUI(player, tool of player)
+    if name of event-entity is "discord_§knpc":
+        cancel event
+        openDiscordGUI(player)
+    if name of event-entity is "warps_§knpc":
+        cancel event
+        openWarpsGUI(player)
+    if name of event-entity is "jobs_§knpc":
+        cancel event
+        openJobsGUI(player)
+    if name of event-entity is "menu_§knpc":
+        cancel event
+        openMenuGUI(player)
+    if name of event-entity is "head_§knpc":
+        cancel event
+        giveHead(player)
+    if name of event-entity is "ranks_§knpc":
+        cancel event
+        openRanksGUI(player)
+    if name of event-entity is "black_market_§knpc":
+        cancel event
+        openBlackMarketGUI(player)
+    if name of event-entity is "chat_color_§knpc":
+        cancel event
+        updateChatcolorsUI(player)
+    if name of event-entity is "auctionhouse_§knpc":
+        cancel event
+        make player execute "/auctionhouse"
+    if name of event-entity is "prize_draw_§knpc":
+        cancel event
+        if {price_draw::*} contains uuid of player:
+            send "%{server_prefix}%&cDu bist schon in der Verlosungsliste..." to player
+            stop
+        add uuid of player to {price_draw::*}
+        send "%new line%%{server_prefix}%&5%player% hat sich in die F1 Verlosung eingetragen!%new line%" to all players
+        
+        
+        
+command /winner:
+    trigger:
+        set {_winner} to one of {price_draw::*} parsed as offline player
+        send {_winner} to player
+        send "%{server_prefix}%&5In der diesjährigen Halloween Verlosung hat &n%{_winner}%&5 gewonnen." to all players
+        

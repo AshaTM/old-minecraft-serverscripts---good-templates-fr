@@ -1,0 +1,102 @@
+function openJobsGUI(player: player):
+    play sound "block.note_block.bit" with volume 0.25 and pitch 1.2 at {_player} to {_player}
+    open (metadata tag "jobs_menu" of {_player}) to {_player}
+
+on login:
+    set metadata tag "jobs_menu" of player to chest inventory with 3 rows named "Jobs"
+    set slot numbers from 0 to 54 of metadata tag "jobs_menu" of player to 1 of gray stained glass pane named "&r"
+    
+    set {_item} to iron pickaxe
+    add hide attributes to item flags of {_item}
+    loop all attribute types:
+        add default loop-value modifier of {_item} to loop-value modifier of {_item}
+    set slot 10 of metadata tag "jobs_menu" of player to 1 of {_item} named "&fMinenarbeiter" with lore "&8→ &7Wähle diesen Beruf.%new line%%new line%&8%{server_title_stripped}%"
+
+    set {_item} to iron axe
+    add hide attributes to item flags of {_item}
+    loop all attribute types:
+        add default loop-value modifier of {_item} to loop-value modifier of {_item}
+    set slot 11 of metadata tag "jobs_menu" of player to 1 of {_item} named "&fHolzfäller" with lore "&8→ &7Wähle diesen Beruf.%new line%%new line%&8%{server_title_stripped}%"
+
+    set {_item} to iron shovel
+    add hide attributes to item flags of {_item}
+    loop all attribute types:
+        add default loop-value modifier of {_item} to loop-value modifier of {_item}
+    set slot 12 of metadata tag "jobs_menu" of player to 1 of {_item} named "&fSchaufler" with lore "&8→ &7Wähle diesen Beruf.%new line%%new line%&8%{server_title_stripped}%"
+
+    set {_item} to iron sword
+    add hide attributes to item flags of {_item}
+    loop all attribute types:
+        add default loop-value modifier of {_item} to loop-value modifier of {_item}
+    set slot 13 of metadata tag "jobs_menu" of player to 1 of {_item} named "&fJäger" with lore "&8→ &7Wähle diesen Beruf.%new line%%new line%&8%{server_title_stripped}%"
+
+    set {_item} to fishing rod
+    add hide attributes to item flags of {_item}
+    loop all attribute types:
+        add default loop-value modifier of {_item} to loop-value modifier of {_item}
+    set slot 14 of metadata tag "jobs_menu" of player to 1 of {_item} named "&fAngler" with lore "&8→ &7Wähle diesen Beruf.%new line%%new line%&8%{server_title_stripped}%"
+
+
+    set slot 16 of metadata tag "jobs_menu" of player to 1 of writable book named "&cKündigen" with lore "&8→ &7Kündige deinen Beruf.%new line%%new line%&8%{server_title_stripped}%"
+
+on inventory click:
+    if event-inventory = (metadata tag "jobs_menu" of player):
+        cancel event
+
+        if name of event-item is "&cKündigen":
+            if {job::%uuid of player%} is "Arbeitslos":
+                send "%{server_prefix}%&cDu bist in keinem &lBeruf&c." to player
+                play sound "block.note_block.bit" with volume 0.15 and pitch 0.2 to player
+            else:
+                set {job::%uuid of player%} to "Arbeitslos"
+                send "%{server_prefix}%Du bist jetzt &carbeitslos&7." to player
+                play sound "block.note_block.bell" with volume 0.15 and pitch 0.7 to player
+
+        if name of event-item is "&fMinenarbeiter":
+            if {job::%uuid of player%} is "Minenarbeiter":
+                send "%{server_prefix}%&cDu bist bereits im Beruf &lMinenarbeiter&c." to player
+                play sound "block.note_block.bit" with volume 0.15 and pitch 0.2 to player
+            else:
+                set {job::%uuid of player%} to "Minenarbeiter"
+                send "%{server_prefix}%Du bist jetzt im Beruf &fMinenarbeiter&7." to player
+                play sound "block.note_block.bell" with volume 0.15 and pitch 1.0 to player
+
+        if name of event-item is "&fHolzfäller":
+            if {job::%uuid of player%} is "Holzfäller":
+                send "%{server_prefix}%&cDu bist bereits im Beruf &lHolzfäller&c." to player
+                play sound "block.note_block.bit" with volume 0.15 and pitch 0.2 to player
+            else:
+                set {job::%uuid of player%} to "Holzfäller"
+                send "%{server_prefix}%Du bist jetzt im Beruf &fHolzfäller&7." to player
+                play sound "block.note_block.bell" with volume 0.15 and pitch 1.0 to player
+
+        if name of event-item is "&fSchaufler":
+            if {job::%uuid of player%} is "Schaufler":
+                send "%{server_prefix}%&cDu bist bereits im Beruf &lSchaufler&c." to player
+                play sound "block.note_block.bit" with volume 0.15 and pitch 0.2 to player
+            else:
+                set {job::%uuid of player%} to "Schaufler"
+                send "%{server_prefix}%Du bist jetzt im Beruf &fSchaufler&7." to player
+                play sound "block.note_block.bell" with volume 0.15 and pitch 1.0 to player
+
+        if name of event-item is "&fJäger":
+            if {job::%uuid of player%} is "Jäger":
+                send "%{server_prefix}%&cDu bist bereits im Beruf &lJäger&c." to player
+                play sound "block.note_block.bit" with volume 0.15 and pitch 0.2 to player
+            else:
+                set {job::%uuid of player%} to "Jäger"
+                send "%{server_prefix}%Du bist jetzt im Beruf &fJäger&7." to player
+                play sound "block.note_block.bell" with volume 0.15 and pitch 1.0 to player
+
+        if name of event-item is "&fAngler":
+            if {job::%uuid of player%} is "Angler":
+                send "%{server_prefix}%&cDu bist bereits im Beruf &lAngler&c." to player
+                play sound "block.note_block.bit" with volume 0.15 and pitch 0.2 to player
+            else:
+                set {job::%uuid of player%} to "Angler"
+                send "%{server_prefix}%Du bist jetzt im Beruf &fAngler&7." to player
+                play sound "block.note_block.bell" with volume 0.15 and pitch 1.0 to player
+
+
+        close inventory of player
+        updateScoreboardJob(player)

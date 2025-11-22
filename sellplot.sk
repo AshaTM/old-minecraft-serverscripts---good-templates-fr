@@ -1,0 +1,19 @@
+command /giveplot [<offlineplayer>]:
+    trigger:
+        if {balance::%uuid of player%} >= 800000:
+            if arg-1 is set:
+                if location of player is not in the road:
+                    if owner of plot ID of plot at player is player:
+                        remove 250000 from {balance::%uuid of player%}
+                        updateScoreboardBalance(player)
+                        set plot owner of ID of plot at player to arg-1
+                        send "%{server_prefix}%&aDas &nPlot&a wurde &nerfolgreich&a übertragen..." to player
+                        send "%{server_prefix}%&aDas &nPlot&a &f%ID of plot at player%&a wurde &nan dich&a übertragen..." to arg-1
+                    else:
+                        send "%{server_prefix}%&cDu bist nicht der Plot-Owner des Plots auf dem du stehst, deshalb kannst du es nicht übertragen..." to player
+                else:
+                    send "%{server_prefix}%&cDu kannst die Straße nicht übertragen..." to player
+            else:
+                send "%{server_prefix}%&cDu musst den Spieler angeben an den das Plot übertragen möchtest...%new line%&8(&7Kosten&8: &c%{currency_symbol}%800.000&8)" to player
+        else:
+            send "%{server_prefix}%&cDu hast nicht genügend Geld für eine Übertragung. &8(%{currency_symbol}%%{balance::%uuid of player%}%/%{currency_symbol}%800.000)"

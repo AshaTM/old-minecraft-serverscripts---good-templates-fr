@@ -1,0 +1,109 @@
+command /vote:
+    trigger:
+        send "" to player
+        send "&7Vielen Dank, dass du den Server unterstützen möchtest." to player
+        send "&7Mit deinem Vote hilfst du uns, sichtbarer zu werden und neue Spieler zu erreichen." to player
+        send "" to player
+        send "&7So funktioniert das Voten:" to player
+        send "&7• Klicke auf den untenstehenden Link." to player
+        send "&7• Gib auf der Webseite deinen Minecraft-Namen korrekt ein." to player
+        send "&7• Bestätige anschließend deinen Vote." to player
+        send "" to player
+        send "<link:https://minecraft-server.eu/vote/index/23591>&9[Jetzt für den Server voten]<reset>" to player
+        send "&8(https://minecraft-server.eu/vote/index/23591)" to player
+        send "" to player
+        send "&7Du hast bisher insgesamt &a%{votes::%uuid of player%}% &7Mal gevotet." to player
+        send "" to player
+
+on login:
+    if {votes::%uuid of player%} is not set:
+        set {votes::%uuid of player%} to 0
+    if {lastVoted::%uuid of player%} is not set:
+        set {lastVoted::%uuid of player%} to now - 1 day
+
+on vote:
+    set {lastVoted::%uuid of player%} to now
+    add 1 to {votes::%uuid of player%}
+    set {_votes} to {votes::%uuid of player%}
+
+    broadcast ""
+    broadcast "&8[&aVote&8] &a%player% &7hat für den Server gevotet."
+    broadcast "&8[&aVote&8] &7Er/Sie hat nun insgesamt &a%{_votes}% &7Votes abgegeben."
+    broadcast ""
+
+    play sound "block.note_block.bit" with volume 0.5 and pitch 2.0 at player to player
+    make 2 of cloud at player with offset vector(0.5, 0.5, 0.5) with extra 0.001
+
+    set {_item} to trial key named "&7&lStandard Crate &8| &fSchlüssel" with lore "&8→ &7Rechtsklick auf eine &7&lStandard Crate &7um diese zu öffnen."
+    if player has space for {_item}:
+        give 1 of {_item} to player
+    else:
+        drop {_item} at location of player
+        send "%{server_prefix}%&cDein Inventar ist voll, der Vote Crate Schlüssel wurde vor dir gedroppt!" to player
+    send "&aDu hast einen &fVote Crate Schlüssel &aerhalten!" to player
+
+    set {_item} to trial key named "&9&lWinter Crate &8| &fSchlüssel" with lore "&8→ &7Rechtsklick auf eine &9&lWinter Crate &7um diese zu öffnen."
+    if player has space for {_item}:
+        give 1 of {_item} to player
+    else:
+        drop {_item} at location of player
+        send "%{server_prefix}%&cDein Inventar ist voll, der Vote Crate Schlüssel wurde vor dir gedroppt!" to player
+    send "&aDu hast einen &fVote Crate Schlüssel &aerhalten!" to player
+
+    if {_votes} >= 10:
+        if {votemilestone::10::%uuid of player%} is not set:
+            add 1 to {hearts::%uuid of player%}
+            set maximum health of player to {hearts::%uuid of player%}
+            send ""
+            set {votemilestone::10::%uuid of player%} to true
+            send "&6WOW! Schon &e10 Votes&6! Danke dir ❤️"
+            send "&7Ab jetzt bekommst du bei jedem Vote einen &fCraften Crate &7Schlüssel dazu!"
+
+        set {_item} to trial key named "&f&lCraften Crate &8| &fSchlüssel" with lore "&8→ &7Rechtsklick auf eine &f&lCraften Crate &7um diese zu öffnen."
+        if player has space for {_item}:
+            give 1 of {_item} to player
+        else:
+            drop {_item} at location of player
+            send "%{server_prefix}%&cKein Platz im Inventar! Craften Crate Schlüssel wurde vor dir gedroppt." to player
+        send "&aBonus: &fCraften Crate &aSchlüssel erhalten!" to player
+
+    if {_votes} >= 25:
+        if {votemilestone::25::%uuid of player%} is not set:
+            set {votemilestone::25::%uuid of player%} to true
+            send "&dWOW, schon &d25 Votes&7! Du bist der Hammer!"
+            send "&7Ab jetzt bekommst du zusätzlich noch einen &d*Girly* Crate &7Schlüssel!"
+
+        set {_item} to trial key named "&d&l*Girly* Crate &8| &fSchlüssel" with lore "&8→ &7Rechtsklick auf eine &d&l*Girly* Crate &7um diese zu öffnen."
+        if player has space for {_item}:
+            give 1 of {_item} to player
+        else:
+            drop {_item} at location of player
+            send "%{server_prefix}%&cKein Platz im Inventar! *Girly* Crate Schlüssel wurde vor dir gedroppt." to player
+        send "&aExtra Bonus: &d*Girly* Crate &aSchlüssel erhalten!" to player
+
+
+
+every 26 minutes:
+    loop all players:
+        if difference between now and {lastVoted::%uuid of loop-player%} > 20 hours:
+            set {_bar} to boss bar with id "vote_bossbar" with title "&4Hinweis: Du kannst mit &n/vote&4 für den Server voten." with color red with progress 100
+            set bar flag darken sky of {_bar} to true
+            add loop-player to {_bar}
+
+            send "" to loop-player
+            send "&8[&4Erinnerung&8] &7Du hast heute noch nicht gevotet." to loop-player
+            send "&8[&4Erinnerung&8] &7Mit &4/vote &7kannst du das jederzeit nachholen." to loop-player
+            send "&8[&4Erinnerung&8] &7Vielen Dank für deine Unterstützung!" to loop-player
+            send "" to loop-player
+
+            if {isAfk::%uuid of loop-player%} is 0:
+                send title "&4Jetzt voten!" with subtitle "&7Nutze &4/vote &7um für den Server zu voten." to loop-player for 180 ticks with fadein 5 ticks and fade out 5 ticks
+
+            apply potion of darkness of tier 255 without particles to loop-player for 3 seconds
+            play sound "block.anvil.place" with volume 1.5 and pitch 2.0 to loop-player
+
+            loop 19 times:
+                wait 10 tick
+                set bar progress of {_bar} to bar progress of {_bar} - 6.5
+
+            delete boss bar with id "vote_bossbar"

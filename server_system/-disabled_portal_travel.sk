@@ -1,0 +1,3 @@
+on portal:
+    cancel event
+    send "%{server_prefix}%Das reisen mit Portalen ist deaktivert." to player

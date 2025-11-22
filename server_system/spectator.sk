@@ -1,0 +1,11 @@
+command /spectator:
+    trigger:
+        if gamemode of player is spectator:
+            set gamemode of player to survival
+            send "%{server_prefix}%&cDu bist aus dem Beobachtungsmodus raus." to player
+            stop
+        else:
+            set gamemode of player to spectator
+            send "%{server_prefix}%&aDu bist jetzt im Beobachtungsmodus." to player
+            stop
+        

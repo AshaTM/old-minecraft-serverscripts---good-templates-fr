@@ -1,0 +1,40 @@
+on load:
+    set {_type} to 1
+    set {_x} to 12.5
+    set {_y} to 3.0
+    set {_z} to -9.5
+    set {_world} to "world"
+    setCrate({_type}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_type} to 2
+    set {_x} to 14.5
+    set {_y} to 3.0
+    set {_z} to -5.5
+    set {_world} to "world"
+    setCrate({_type}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_type} to 3
+    set {_x} to 12.5
+    set {_y} to 3.0
+    set {_z} to -1.5
+    set {_world} to "world"
+    setCrate({_type}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    #set {_type} to 4
+    #set {_x} to 0.5
+    #set {_y} to 3.0
+    #set {_z} to 17.5
+    #set {_world} to "world"
+    #setCrate({_type}, {_x}, {_y}, {_z}, {_world})
+    #add location at {_x}, {_y}, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_type} to 5
+    set {_x} to 0.5
+    set {_y} to 3.0
+    set {_z} to 17.5
+    set {_world} to "world"
+    setCrate({_type}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}, {_z} in world {_world} to {ambient_particle_locations::*}

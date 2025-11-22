@@ -1,0 +1,48 @@
+command /vanish:
+    aliases: v
+    permission: command.vanish
+    trigger:
+        if {vanish.%uuid of player%} is not set:
+            set {vanish.%uuid of player%} to true
+            # Verstecke den Spieler vor allen, außer bestimmten Gruppen
+            loop all players:
+                if loop-player is player:
+                    continue
+                else if group of loop-player is "Inhaber" or "Administrator" or "Moderator" or "Content" or "Freund":
+                    reveal player to loop-player
+                    updateTablistName(player)
+                else:
+                    hide player from loop-player
+                    updateTablistName(player)
+            send "%{server_prefix}%&aDu bist jetzt im Vanish." to player
+        else:
+            delete {vanish.%uuid of player%}
+            # Zeige den Spieler wieder allen
+            reveal player to players
+            updateTablistName(player)
+            send "%{server_prefix}%&cDu bist jetzt nicht mehr im Vanish." to player
+
+on join:
+    # 1) Falls der joinende Spieler selbst im Vanish ist: verberge ihn für alle existierenden Spieler (außer erlaubte Gruppen)
+    if {vanish.%uuid of player%} is set:
+        loop all players:
+            if loop-player is player:
+                continue
+            else if group of loop-player is "Inhaber" or "Administrator" or "Moderator" or "Content" or "Freund":
+                reveal player to loop-player
+                updateTablistName(player)
+            else:
+                hide player from loop-player
+                updateTablistName(player)
+
+    # 2) Für den joinenden Spieler: alle aktuell im Vanish befindlichen Spieler verbergen (außer erlaubte Gruppen)
+    loop all players:
+        if {vanish.%uuid of loop-player%} is set:
+            if loop-player is player:
+                continue
+            else if group of player is "Inhaber" or "Administrator" or "Moderator" or "Content" or "Freund":
+                reveal loop-player to player
+                updateTablistName(loop-player)
+            else:   
+                hide loop-player from player
+                updateTablistName(loop-player)

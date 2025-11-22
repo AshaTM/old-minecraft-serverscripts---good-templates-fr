@@ -1,0 +1,17 @@
+command deconstruct:
+    trigger:
+        if target of player is armor stand:
+            kill target of player
+        else:
+            set {_location} to location of target block of player
+
+            loop all text displays and item displays and block displays in radius 0.7 of location 0.7 above {_location}:
+                kill loop-entity
+            loop all text displays and item displays and block displays in radius 0.7 of {_location}:
+                kill loop-entity
+
+            set block above {_location} to air
+            set block at {_location} to air
+            set block below {_location} to air
+            set block 2 above {_location} to air
+            send "%{server_prefix}%Container erfolgreich dekonstruiert." to player

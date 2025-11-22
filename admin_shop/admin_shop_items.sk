@@ -1,0 +1,832 @@
+on load:
+    set {_item} to oak log
+    set {_buy} to 1.36
+    set {_sell} to 0.18
+    set {_x} to 8.5
+    set {_y} to 3.0
+    set {_z} to 62.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to spruce log
+    set {_buy} to 1.36
+    set {_sell} to 0.18
+    set {_x} to 11.5
+    set {_y} to 3.0
+    set {_z} to 62.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to birch log
+    set {_buy} to 1.45
+    set {_sell} to 0.19
+    set {_x} to 14.5
+    set {_y} to 3.0
+    set {_z} to 61.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to jungle log
+    set {_buy} to 0.86
+    set {_sell} to 0.13
+    set {_x} to 17.5
+    set {_y} to 3.0
+    set {_z} to 61.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to acacia log
+    set {_buy} to 1.37
+    set {_sell} to 0.18
+    set {_x} to 20.5
+    set {_y} to 3.0
+    set {_z} to 62.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to dark oak log
+    set {_buy} to 0.98
+    set {_sell} to 0.16
+    set {_x} to 23.5
+    set {_y} to 3.0
+    set {_z} to 62.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to mangrove log
+    set {_buy} to 1.26
+    set {_sell} to 0.17
+    set {_x} to 26.5
+    set {_y} to 3.0
+    set {_z} to 62.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to mangrove roots
+    set {_buy} to 0.76
+    set {_sell} to 0.13
+    set {_x} to 28.5
+    set {_y} to 3.0
+    set {_z} to 64.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to cherry log
+    set {_buy} to 1.36
+    set {_sell} to 0.18
+    set {_x} to 26.5
+    set {_y} to 3.0
+    set {_z} to 66.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to pale oak log
+    set {_buy} to 1.96
+    set {_sell} to 0.19
+    set {_x} to 23.5
+    set {_y} to 3.0
+    set {_z} to 67.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to crimson stem
+    set {_buy} to 1.23
+    set {_sell} to 0.17
+    set {_x} to 20.5
+    set {_y} to 3.0
+    set {_z} to 67.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to warped stem
+    set {_buy} to 1.23
+    set {_sell} to 0.17
+    set {_x} to 17.5
+    set {_y} to 3.0
+    set {_z} to 67.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to bamboo block
+    set {_buy} to 1.36
+    set {_sell} to 0.18
+    set {_x} to 14.5
+    set {_y} to 3.0
+    set {_z} to 67.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to stripped bamboo block
+    set {_buy} to 1.36
+    set {_sell} to 0.08
+    set {_x} to 11.5
+    set {_y} to 3.0
+    set {_z} to 68.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to bamboo planks
+    set {_buy} to 0.34
+    set {_sell} to 0.02
+    set {_x} to 8.5
+    set {_y} to 3.0
+    set {_z} to 68.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+
+    set {_item} to coal
+    set {_buy} to 2.36
+    set {_sell} to 0.15
+    set {_x} to -7.5
+    set {_y} to 3.0
+    set {_z} to 68.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to charcoal
+    set {_buy} to 3.45
+    set {_sell} to 0.15
+    set {_x} to -10.5
+    set {_y} to 3.0
+    set {_z} to 68.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to copper ingot
+    set {_buy} to 5.74
+    set {_sell} to 0.20
+    set {_x} to -13.5
+    set {_y} to 3.0
+    set {_z} to 67.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to gold ingot
+    set {_buy} to 8.74
+    set {_sell} to 0.20
+    set {_x} to -16.5
+    set {_y} to 3.0
+    set {_z} to 67.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to iron ingot
+    set {_buy} to 12.74
+    set {_sell} to 0.20
+    set {_x} to -19.5
+    set {_y} to 3.0
+    set {_z} to 67.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to lapis lazuli
+    set {_buy} to 2.64
+    set {_sell} to 0.05
+    set {_x} to -22.5
+    set {_y} to 3.0
+    set {_z} to 67.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to redstone
+    set {_buy} to 9.14
+    set {_sell} to 0.03
+    set {_x} to -25.5
+    set {_y} to 3.0
+    set {_z} to 66.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to netherite scrap
+    set {_buy} to 3670.94
+    set {_sell} to 66.38
+    set {_x} to -27.5
+    set {_y} to 3.0
+    set {_z} to 64.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to glowstone dust
+    set {_buy} to 2.94
+    set {_sell} to 0.20
+    set {_x} to -25.5
+    set {_y} to 3.0
+    set {_z} to 62.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to amethyst shard
+    set {_buy} to 6.63
+    set {_sell} to 3.94
+    set {_x} to -22.5
+    set {_y} to 3.0
+    set {_z} to 62.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to emerald
+    set {_buy} to 143.95
+    set {_sell} to 0.30
+    set {_x} to -19.5
+    set {_y} to 3.0
+    set {_z} to 62.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to diamond
+    set {_buy} to 189.95
+    set {_sell} to 0.20
+    set {_x} to -16.5
+    set {_y} to 3.0
+    set {_z} to 61.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to resin brick
+    set {_buy} to 496.71
+    set {_sell} to 6.37
+    set {_x} to -13.5
+    set {_y} to 3.0
+    set {_z} to 61.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to brick
+    set {_buy} to 3.21
+    set {_sell} to 0.8
+    set {_x} to -10.5
+    set {_y} to 3.0
+    set {_z} to 62.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to nether brick
+    set {_buy} to 3.21
+    set {_sell} to 0.43
+    set {_x} to -7.5
+    set {_y} to 3.0
+    set {_z} to 62.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to cactus block
+    set {_buy} to 16.87
+    set {_sell} to 0.35
+    set {_x} to 8.5
+    set {_y} to 3.0
+    set {_z} to 78.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to sugar cane
+    set {_buy} to 18.87
+    set {_sell} to 0.38
+    set {_x} to 11.5
+    set {_y} to 3.0
+    set {_z} to 78.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to bamboo
+    set {_buy} to 22.44
+    set {_sell} to 0.22
+    set {_x} to 14.5
+    set {_y} to 3.0
+    set {_z} to 77.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to wheat seeds
+    set {_buy} to 7.82
+    set {_sell} to 0.02
+    set {_x} to 17.5
+    set {_y} to 3.0
+    set {_z} to 77.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to pumpkin seeds
+    set {_buy} to 34.27
+    set {_sell} to 0.05
+    set {_x} to 20.5
+    set {_y} to 3.0
+    set {_z} to 76.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to beetroot seeds
+    set {_buy} to 44.27
+    set {_sell} to 0.02
+    set {_x} to 23.5
+    set {_y} to 3.0
+    set {_z} to 76.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to glow berries
+    set {_buy} to 17.68
+    set {_sell} to 0.73
+    set {_x} to 26.5
+    set {_y} to 3.0
+    set {_z} to 76.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to sweet berries
+    set {_buy} to 2.64
+    set {_sell} to 0.05
+    set {_x} to 28.5
+    set {_y} to 3.0
+    set {_z} to 74.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to nether wart
+    set {_buy} to 1.44
+    set {_sell} to 0.11
+    set {_x} to 26.5
+    set {_y} to 3.0
+    set {_z} to 72.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to nether wart
+    set {_buy} to 1.44
+    set {_sell} to 0.11
+    set {_x} to 26.5
+    set {_y} to 3.0
+    set {_z} to 72.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to chorus fruit
+    set {_buy} to 3.52
+    set {_sell} to 0.14
+    set {_x} to 23.5
+    set {_y} to 3.0
+    set {_z} to 72.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to potato
+    set {_buy} to 17.68
+    set {_sell} to 0.42
+    set {_x} to 20.5
+    set {_y} to 3.0
+    set {_z} to 71.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to wheat
+    set {_buy} to 17.68
+    set {_sell} to 0.20
+    set {_x} to 17.5
+    set {_y} to 3.0
+    set {_z} to 71.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to melon slice
+    set {_buy} to 36.68
+    set {_sell} to 0.05
+    set {_x} to 14.5
+    set {_y} to 3.0
+    set {_z} to 72.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to melon
+    set {_buy} to 220.08
+    set {_sell} to 0.61
+    set {_x} to 11.5
+    set {_y} to 3.0
+    set {_z} to 72.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to pumpkin
+    set {_buy} to 205.62
+    set {_sell} to 0.68
+    set {_x} to 8.5
+    set {_y} to 3.0
+    set {_z} to 72.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to dirt
+    set {_buy} to 0.72
+    set {_sell} to 0.11
+    set {_x} to -7.5
+    set {_y} to 3.0
+    set {_z} to 78.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to grass block
+    set {_buy} to 0.92
+    set {_sell} to 0.14
+    set {_x} to -10.5
+    set {_y} to 3.0
+    set {_z} to 78.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to gravel
+    set {_buy} to 1.52
+    set {_sell} to 0.15
+    set {_x} to -13.5
+    set {_y} to 3.0
+    set {_z} to 77.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to cobblestone
+    set {_buy} to 0.42
+    set {_sell} to 0.12
+    set {_x} to -16.5
+    set {_y} to 3.0
+    set {_z} to 77.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to andesite
+    set {_buy} to 1.03
+    set {_sell} to 0.17
+    set {_x} to -19.5
+    set {_y} to 3.0
+    set {_z} to 76.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to diorite
+    set {_buy} to 1.03
+    set {_sell} to 0.17
+    set {_x} to -22.5
+    set {_y} to 3.0
+    set {_z} to 76.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to granite
+    set {_buy} to 1.03
+    set {_sell} to 0.17
+    set {_x} to -25.5
+    set {_y} to 3.0
+    set {_z} to 76.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to white wool
+    set {_buy} to 29.41
+    set {_sell} to 0.67
+    set {_x} to -22.5
+    set {_y} to 3.0
+    set {_z} to 72.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to ice
+    set {_buy} to 2.51
+    set {_sell} to 0.28
+    set {_x} to -25.5
+    set {_y} to 3.0
+    set {_z} to 72.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to stone
+    set {_buy} to 1.03
+    set {_sell} to 0.07
+    set {_x} to -27.5
+    set {_y} to 3.0
+    set {_z} to 74.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to lava bucket
+    set {_buy} to 48.34
+    set {_sell} to 14.51
+    set {_x} to -19.5
+    set {_y} to 3.0
+    set {_z} to 71.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to clay ball
+    set {_buy} to 6.34
+    set {_sell} to 1.53
+    set {_x} to -16.5
+    set {_y} to 3.0
+    set {_z} to 71.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to sand
+    set {_buy} to 1.52
+    set {_sell} to 0.09
+    set {_x} to -13.5
+    set {_y} to 3.0
+    set {_z} to 72.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to red sand
+    set {_buy} to 1.52
+    set {_sell} to 0.09
+    set {_x} to -10.5
+    set {_y} to 3.0
+    set {_z} to 72.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to white concrete powder
+    set {_buy} to 1.52
+    set {_sell} to 0.09
+    set {_x} to -7.5
+    set {_y} to 3.0
+    set {_z} to 72.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to shulker shell
+    set {_buy} to 9410.45
+    set {_sell} to 20.14
+    set {_x} to 8.5
+    set {_y} to 11.0
+    set {_z} to 78.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to magma cream
+    set {_buy} to 16.45
+    set {_sell} to 4.37
+    set {_x} to 11.5
+    set {_y} to 11.0
+    set {_z} to 78.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to slime ball
+    set {_buy} to 63.45
+    set {_sell} to 0.32
+    set {_x} to 14.5
+    set {_y} to 11.0
+    set {_z} to 77.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to ender pearl item
+    set {_buy} to 21.32
+    set {_sell} to 0.20
+    set {_x} to 17.5
+    set {_y} to 11.0
+    set {_z} to 77.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to string
+    set {_buy} to 5.54
+    set {_sell} to 1.11
+    set {_x} to 20.5
+    set {_y} to 11.0
+    set {_z} to 76.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to feather
+    set {_buy} to 3.54
+    set {_sell} to 0.10
+    set {_x} to 20.5
+    set {_y} to 11.0
+    set {_z} to 76.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to rotten flesh
+    set {_buy} to 3.76
+    set {_sell} to 0.09
+    set {_x} to 23.5
+    set {_y} to 11.0
+    set {_z} to 76.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to gunpowder
+    set {_buy} to 8.61
+    set {_sell} to 0.10
+    set {_x} to 26.5
+    set {_y} to 11.0
+    set {_z} to 76.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to spider eye
+    set {_buy} to 4.28
+    set {_sell} to 0.10
+    set {_x} to 28.5
+    set {_y} to 11.0
+    set {_z} to 74.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to blaze rod
+    set {_buy} to 123.28
+    set {_sell} to 0.10
+    set {_x} to 26.5
+    set {_y} to 11.0
+    set {_z} to 72.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to bone
+    set {_buy} to 5.53
+    set {_sell} to 0.05
+    set {_x} to 23.5
+    set {_y} to 11.0
+    set {_z} to 72.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to egg item
+    set {_buy} to 4.95
+    set {_sell} to 0.13
+    set {_x} to 20.5
+    set {_y} to 11.0
+    set {_z} to 71.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to glow ink sac
+    set {_buy} to 54.41
+    set {_sell} to 0.20
+    set {_x} to 17.5
+    set {_y} to 11.0
+    set {_z} to 71.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to string
+    set {_buy} to 4.81
+    set {_sell} to 0.13
+    set {_x} to 14.5
+    set {_y} to 11.0
+    set {_z} to 72.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to saddle
+    set {_buy} to 36.37
+    set {_sell} to 4.15
+    set {_x} to 11.5
+    set {_y} to 11.0
+    set {_z} to 72.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to name tag
+    set {_buy} to 821.45
+    set {_sell} to 83.22
+    set {_x} to 8.5
+    set {_y} to 11.0
+    set {_z} to 72.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to beef
+    set {_buy} to 4.45
+    set {_sell} to 0.19
+    set {_x} to -12.5
+    set {_y} to 1.0
+    set {_z} to -2.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to fishing rod
+    set {_buy} to 120.50
+    set {_sell} to 16.0
+    set {_x} to 13.5
+    set {_y} to 1.0
+    set {_z} to 37.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to salmon
+    set {_buy} to 46.41
+    set {_sell} to 14.1
+    set {_x} to 16.5
+    set {_y} to 1.0
+    set {_z} to 38.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to pufferfish
+    set {_buy} to 460.41
+    set {_sell} to 24.0
+    set {_x} to 15.5
+    set {_y} to 1.0
+    set {_z} to 41.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to cod
+    set {_buy} to 16.41
+    set {_sell} to 10.32
+    set {_x} to 15.5
+    set {_y} to 1.0
+    set {_z} to 36.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_item} to cookie
+    set {_buy} to 9.41
+    set {_sell} to 2.32
+    set {_x} to 0.5
+    set {_y} to 1.0
+    set {_z} to 45.5
+    set {_world} to "world"
+    setShopItem({_buy}, {_sell}, {_item}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}+1, {_z} in world {_world} to {ambient_particle_locations::*}
+

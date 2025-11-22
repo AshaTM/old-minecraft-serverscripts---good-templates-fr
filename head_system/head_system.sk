@@ -1,0 +1,36 @@
+command /head:
+    trigger:
+        giveHead(player)
+
+function giveHead(player: player):
+    if difference between now and {heads_cooldown::%uuid of {_player}%} is not less than 12 hours:
+        set {heads_cooldown::%uuid of {_player}%} to now
+        add player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjdmOGQ4YzM5Zjk5MjFhNjRkN2I3NTVkZTMyMmU0NDFmZGVkNGI3NzVhNzY1N2UwYjMxOTZiNmZkYTg2MzY0NiJ9fX0=""}]}}" named "%{server_prefix}%&7Geldsack-Kopf" to {_items::*}
+        add player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTMxN2UwYWYwYTlhMDEzN2U5NWUzODdiOTQ0YTg2MGZkZTIzMmEzYzVmN2Q1ZGNjMzI2MTg5M2FmMjExODhkYiJ9fX0=""}]}}" named "%{server_prefix}%&7Entwickler-Kopf" to {_items::*}
+        add player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGY4YmVlN2EwODkwMWM1MGFmOTJiNTRkOWFlODc0YjFhY2NkYzA1NmI0NWJhYWE4YWZlOWI0MmYxNTE2MjlkNiJ9fX0=""}]}}" named "%{server_prefix}%&7Himmel-Kopf" to {_items::*}
+        add player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjdmOGQ4YzM5Zjk5MjFhNjRkN2I3NTVkZTMyMmU0NDFmZGVkNGI3NzVhNzY1N2UwYjMxOTZiNmZkYTg2MzY0NiJ9fX0=""}]}}" named "%{server_prefix}%&7Geldsack-Kopf" to {_items::*}
+        add player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTQ0MTBkNDAzMjEwM2IwNzU1ZmIwMTY3OTEwOWYxMjk5MTE4MjJiNDdiYmU0YjUzM2IyNTYxYzc3ZmNmZDBhZiJ9fX0=""}]}}" named "%{server_prefix}%&7Machtling-Kopf" to {_items::*}
+        add player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWZmN2I5N2U2NDY1NTM0ZjM4YjJhZmI0MDUxYzk0OWYyNjczYTY0ZjE0NTNlZjY5ODY1OTQyNGFhNWM0ZWYxZiJ9fX0=""}]}}" named "%{server_prefix}%&7Herz-Kopf" to {_items::*}
+        add player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDkxMDdkODJmNzJmZDk0OTE2OGI1MGU1NDZhMGY4YzhiNzNkMzU5ZDcxNWFlYjUwNjczMjVmMWQ2YzQ4MTM3NyJ9fX0=""}]}}" named "%{server_prefix}%&7Kuchen-Kopf" to {_items::*}
+        add player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDhlMTcyZGNmNTZiYjg0ZWFjOWMxYzlhNTViYzIwODMwMTU0MmQ2NTc4NGIzYmI0MzkyZTdjNWIwNzZjZTljIn19fQ==""}]}}" named "%{server_prefix}%&7OptiFog-Kopf" to {_items::*}
+        add player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmNjZGIyNDc5ZmM0MWJlNzdlMDY3NzdkYjA2YjMxNDRhMDdkYTNhOWQ5YzRkYTcwNGZhMTQ4YWIwNDQzYTBhNCJ9fX0=""}]}}" named "%{server_prefix}%&7Wohin?-Kopf" to {_items::*}
+        add player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWM1NmRkYmVmMWI4MWJkNTdjOWIxYzZkNWQxYjc4YjU0NzM3YjcxOTkyOWIyOWMyYTkzMGE1ZjdjMmFlNGE4NiJ9fX0=""}]}}" named "%{server_prefix}%&7YouTube-Kopf" to {_items::*}
+        add player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTgzMzNjZjUzMGM2YTg5Zjg1OTc1ZmRlYmM5Y2UzNGE4NmY3MmI4NWJjZmJkODdmMjRhNmUzZGI0ZDUzY2E4ZCJ9fX0=""}]}}" named "%{server_prefix}%&7Gmod?-Kopf" to {_items::*}
+        add player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYThlNDE1YjVjMWViNDU2NjNkYTZmZGFlNTc5OGRkMTk5YjIxNGQ0NzY3NmIzOTJjYTMwNmY3OTI5M2M5N2Y4NCJ9fX0=""}]}}" named "%{server_prefix}%&7TokTik-Kopf" to {_items::*}
+        add player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWU3ODk5YjQ4MDY4NTg2OTdlMjgzZjA4NGQ5MTczZmU0ODc4ODY0NTM3NzQ2MjZiMjRiZDhjZmVjYzc3YjNmIn19fQ==""}]}}" named "%{server_prefix}%&7Deutschland-Kopf" to {_items::*}
+        add player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2NhYWIyOTEwMWE3OTBiYzIyMWE5YTI5MjJlYjM5ODFmNTMzNWM5YmNjNzNhYTM0OWI1Y2VkNTgwMWU0MGMxYSJ9fX0=""}]}}" named "%{server_prefix}%&7Schpaten-Kopf" to {_items::*}
+        add player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmMxYzE0NmJjYTI4M2Q2Mjg1MDFiYzY3ZDk3MDQxNzAwNDdmMTYzYWI5ZDJmYmI4ODgzYjZmMjNlZDQ0YWFjIn19fQ==""}]}}" named "%{server_prefix}%&7Supermarktkettenkopf" to {_items::*}
+        
+        set {_item} to a random element out of {_items::*}
+        if {_player} has space for 1 of {_item}:
+            give {_player} 1 of {_item}
+        else:
+            drop {_item} at {_player}
+            message "%{server_prefix}%&7Kein Platz im Inventar &c(Kopf fallengelassen)..." to {_player}
+        message "" to {_player}
+        message "%{server_prefix}%&aTäglichen &lKopf &aAbgeholt!" to {_player}
+        message "%name of {_item}% erhalten!" to {_player}
+        message "" to {_player}
+    else:
+        message "%{server_prefix}%&cTäglichen &lKopf&c schon abgeholt..." to {_player}
+        play sound "block.redstone_torch.burnout" with volume 0.25 and pitch 2.0 to {_player}

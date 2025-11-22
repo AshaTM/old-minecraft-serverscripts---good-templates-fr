@@ -1,0 +1,31 @@
+local function updateServerStatus():
+    set {_location} to location(-5.5, 1.15, 48.9, world "world")
+
+    set {_max} to 24576
+    set {_freememory} to free memory
+    remove {_freememory} from {_max}
+    set {_total} to total memory
+
+    set {_tps} to "%tps%"
+    replace all "," and "and " with "" in {_tps}
+    loop all text displays in radius 0.25 of {_location}:
+        set display component of loop-entity to mini message from "<color:dark_purple>%{server_title}%</color:dark_purple> <color:dark_gray>→</color:dark_gray> <color:gray>Serverstatus</color:gray>%new line%%new line%<color:gray>TPS</color:gray><color:dark_gray>:</color:dark_gray> <color:dark_purple><underlined>%{_tps}%</underlined></color:dark_purple>%new line%<color:gray>Spieler Total</color:gray><color:dark_gray>:</color:dark_gray> <color:white>%{total_player_count}%</color:white>%new line%<color:gray>Spieler Aktuell</color:gray><color:dark_gray>:</color:dark_gray> <color:white>%number of all players%</color:white>%new line%<color:gray>Beanspruchte Plots</color:gray><color:dark_gray>:</color:dark_gray> <color:white>%number of all plot ids in world "world"%%new line%<color:gray>Dedotated Wam</color:gray><color:dark_gray>:</color:dark_gray> <color:white>%{_max}%MB</color:white>%new line%%new line%<color:dark_gray>%now%</color:dark_gray>"
+
+on load:
+    set {_location} to location(-5.5, 1.15, 48.9, world "world")
+    set yaw of {_location} to 180
+
+    loop all text displays and item displays and block displays in radius 0.25 of {_location}:
+        kill loop-entity
+
+    set block at {_location} to light[level=11]
+    spawn text display at {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to fixed
+    set display scale of {_display} to vector(0.75, 0.75, 0.75)
+    set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set the line width of {_display} to 1024
+
+every second:
+    updateServerStatus()

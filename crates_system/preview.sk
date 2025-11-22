@@ -1,0 +1,99 @@
+on login:
+    set metadata tag "1_crate_menu" of player to chest inventory with 1 row named "Standard Crate"
+    set slot numbers from 0 to 54 of metadata tag "1_crate_menu" of player to 1 of gray stained glass pane named "&r"
+    set slot 0 of metadata tag "1_crate_menu" of player to 8 of golden apple named "&e8x GOLDENE ÄPFEL" with lore "&8→ &711%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 1 of metadata tag "1_crate_menu" of player to 3 of diamond named "&b3x DIAMANTEN" with lore "&8→ &724%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 2 of metadata tag "1_crate_menu" of player to 32 of gold ingot named "&632x GOLDBARREN" with lore "&8→ &745%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 3 of metadata tag "1_crate_menu" of player to 4 of netherite scrap named "&c4x NETHERITE SCHROTT" with lore "&8→ &74%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    # Additional filler/trash items for Standard Crate
+    set slot 4 of metadata tag "1_crate_menu" of player to 16 of iron ingot named "&f16x EISENBARREN" with lore "&8→ &715%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 5 of metadata tag "1_crate_menu" of player to 8 of cooked beef named "&6&l8 GEKOCHTES RIND" with lore "&8→ &715%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 6 of metadata tag "1_crate_menu" of player to 16 of oak planks named "&7&l16 EICHHOLZPLANKEN" with lore "&8→ &715%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 7 of metadata tag "1_crate_menu" of player to 1 of villager spawn egg named "&7&l1x Villager Spawnei" with lore "&8→ &70.5%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+
+    set metadata tag "2_crate_menu" of player to chest inventory with 1 row named "Craften Crate"
+    set slot numbers from 0 to 54 of metadata tag "2_crate_menu" of player to 1 of gray stained glass pane named "&r"
+    set slot 0 of metadata tag "2_crate_menu" of player to 32 of golden carrot named "&632x GOLDENE KAROTTEN" with lore "&8→ &710%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 1 of metadata tag "2_crate_menu" of player to 16 of diamond named "&b16x DIAMANTEN" with lore "&8→ &722%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 2 of metadata tag "2_crate_menu" of player to 32 of experience bottle named "&532 XP FLASCHEN" with lore "&8→ &740%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 3 of metadata tag "2_crate_menu" of player to 1 of spawner named "&91x SPAWNER" with lore "&8→ &73%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    # Additional filler/trash items for Craften Crate
+    set slot 4 of metadata tag "2_crate_menu" of player to 4 of netherite scrap named "&c4x NETHERITE SCHROTT" with lore "&8→ &715%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 5 of metadata tag "2_crate_menu" of player to 16 of chicken named "&7&l16 ROHES HÜHNCHEN" with lore "&8→ &720%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 6 of metadata tag "2_crate_menu" of player to 16 of cobblestone named "&7&l16 PFLASTERSTEIN" with lore "&8→ &715%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 7 of metadata tag "2_crate_menu" of player to 1 of feather named "&7&lSchmutzige Feder" with lore "&8→ &77%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 8 of metadata tag "2_crate_menu" of player to 4 of wheat named "&6&l4x WEIZEN" with lore "&8→ &73%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+
+    set metadata tag "3_crate_menu" of player to chest inventory with 1 row named "*Girly* Crate"
+    set slot numbers from 0 to 54 of metadata tag "3_crate_menu" of player to 1 of gray stained glass pane named "&r"
+    set slot 0 of metadata tag "3_crate_menu" of player to 4 of shulker shell named "&54x SHULKER SCHALEN" with lore "&8→ &79%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 1 of metadata tag "3_crate_menu" of player to 1 of beacon named "&b1x BEACON" with lore "&8→ &715%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 2 of metadata tag "3_crate_menu" of player to 1 of elytra named "&71x ELYTRA" with lore "&8→ &720%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 3 of metadata tag "3_crate_menu" of player to 1 of spawner named "&1x SPAWNER" with lore "&8→ &72%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    # Additional filler/trash items for Girly Crate
+    set slot 4 of metadata tag "3_crate_menu" of player to 2 of trial key named "&72x SCHLÜSSEL FÜR&8: &f&lCraften Crate" with lore "&8→ &715%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 5 of metadata tag "3_crate_menu" of player to 8 of pink dye named "&d&l8 PINKER FARBEN" with lore "&8→ &720%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 6 of metadata tag "3_crate_menu" of player to 3 of rabbit foot named "&7&l3 HASENFÜßE" with lore "&8→ &712%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 7 of metadata tag "3_crate_menu" of player to 1 of bone named "&7&lAltes Gebein" with lore "&8→ &76%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 8 of metadata tag "3_crate_menu" of player to 4 of white wool named "&f&l4x WOLLE" with lore "&8→ &72%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+
+    set metadata tag "4_crate_menu" of player to chest inventory with 1 row named "Halloween Crate"
+    set slot numbers from 0 to 54 of metadata tag "4_crate_menu" of player to 1 of gray stained glass pane named "&r"
+    set slot 0 of metadata tag "4_crate_menu" of player to 4 of shulker shell named "&52x SHULKER SCHALEN" with lore "&8→ &78%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 1 of metadata tag "4_crate_menu" of player to 2 of beacon named "&b1x BEACON" with lore "&8→ &718%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 2 of metadata tag "4_crate_menu" of player to 1 of netherite axe named "&5&lHenkeraxt" with lore "&7Schärfe X &8(10)%new line%&8→ &72%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 3 of metadata tag "4_crate_menu" of player to 1 of carved pumpkin named "&6&lKürbiskopf" with lore "&5Schneller Abbauen & Nachtsicht solange der Kürbis auf dem Kopf ist.%new line%&8→ &73%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 4 of metadata tag "4_crate_menu" of player to 2 of spawner named "&92x SPAWNER" with lore "&8→ &72%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    # Additional filler/trash items for Halloween Crate
+    set slot 5 of metadata tag "4_crate_menu" of player to 2 of trial key named "&72x SCHLÜSSEL FÜR&8: &f&lCraften Crate" with lore "&8→ &727%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 6 of metadata tag "4_crate_menu" of player to 8 of spider eye named "&8&l8 SPINNENÄUGER" with lore "&8→ &718%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 7 of metadata tag "4_crate_menu" of player to 4 of rotten flesh named "&7&l4 VERFALLENES FLEISCH" with lore "&8→ &714%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+    set slot 8 of metadata tag "4_crate_menu" of player to 4 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjI2ZTAzMTg2MDI0YzRiZDRjYjQ0NGY4YzYwNzUxZTQ4ODgzOTNhYjE1NGY0YTgzNTcxNDQwMWRkNDM4YTM0MiJ9fX0=""}]}}" named "&54x Süßigkeitentüte" with lore "&6Halloween Spezial-Item &8- &dHalloween 2025%new line%&8→ &712%% &7Wahrscheinlichkeit zu erhalten. %new line%%new line%&8%{server_title_stripped}%"
+
+    set metadata tag "5_crate_menu" of player to chest inventory with 1 row named "Winter Crate"
+    set slot numbers from 0 to 54 of metadata tag "5_crate_menu" of player to 1 of gray stained glass pane named "&r"
+    set slot 0 of metadata tag "5_crate_menu" of player to 64 of snow block named "&f64x SCHNEE" with lore "&8→ &710%% &7Wahrscheinlichkeit zu erhalten.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 1 of metadata tag "5_crate_menu" of player to 64 of cookie named "&e64x WEIHNACHTSKEKSE" with lore "&8→ &710%% &7Wahrscheinlichkeit zu erhalten.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 2 of metadata tag "5_crate_menu" of player to 1 of milk bucket named "&f1x GLAS MILCH" with lore "&8→ &710%% &7Wahrscheinlichkeit zu erhalten.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 3 of metadata tag "5_crate_menu" of player to 1 of snow golem spawn egg named "&f1x SCHNEEGOLEM" with lore "&8→ &75%% &7Wahrscheinlichkeit zu erhalten.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 4 of metadata tag "5_crate_menu" of player to 1 of beacon named "&b1x BEACON" with lore "&8→ &75%% &7Wahrscheinlichkeit zu erhalten.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 5 of metadata tag "5_crate_menu" of player to 5 of flow banner pattern named "&a5x $1.000 &8→ &7Gutschein" with lore "" with lore "&8→ &75%% &7Wahrscheinlichkeit zu erhalten.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 6 of metadata tag "5_crate_menu" of player to 1 of cake named "&dWEIHNACHTSKUCHEN" with lore "&8→ &75%% &7Wahrscheinlichkeit zu erhalten.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 7 of metadata tag "5_crate_menu" of player to 1 of netherite pickaxe named "&5&lNordpol Spitzhacke" with lore "&7Glück &8(10)%new line%&8→ &70.2%% &7Wahrscheinlichkeit zu erhalten.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 8 of metadata tag "5_crate_menu" of player to 1 of bow named "&5&lArmor's Bogen" with lore "&7Power &8(10)%new line%&8→ &70.2%% &7Wahrscheinlichkeit zu erhalten.%new line%%new line%&8%{server_title_stripped}%"
+
+on inventory click:
+    if event-inventory = (metadata tag "1_crate_menu" of player) or (metadata tag "2_crate_menu" of player) or (metadata tag "3_crate_menu" of player) or (metadata tag "4_crate_menu" of player) or (metadata tag "5_crate_menu" of player):
+        cancel event
+        close inventory of player
+        send "%{server_prefix}%&4&lEy! &cDas ist nur die Crate Vorschau!"
+        play sound "block.redstone_torch.burnout" with volume 0.25 and pitch 2.0 to player
+        damage player by 0.0001
+
+on left click on brown stained glass or white stained glass or pink stained glass or orange stained glass:
+    loop all entities in radius 0.0001 of event-block:
+        if name of loop-entity is "crate_1":
+            cancel event
+            open (metadata tag "1_crate_menu" of player) to player
+            message "%{server_prefix}%Öffne Vorschau für&8: &7&lStandard Crate&7..." to player
+            play sound "block.note_block.guitar" with volume 0.25 and pitch 1.6 to player
+        if name of loop-entity is "crate_2":
+            cancel event
+            open (metadata tag "2_crate_menu" of player) to player
+            message "%{server_prefix}%Öffne Vorschau für&8: &f&lCraften Crate&7..." to player
+            play sound "block.note_block.guitar" with volume 0.25 and pitch 1.6 to player
+        if name of loop-entity is "crate_3":
+            cancel event
+            open (metadata tag "3_crate_menu" of player) to player
+            message "%{server_prefix}%Öffne Vorschau für&8: &d&l*Girly* Crate&7..." to player
+            play sound "block.note_block.guitar" with volume 0.25 and pitch 1.6 to player
+        if name of loop-entity is "crate_4":
+            cancel event
+            open (metadata tag "4_crate_menu" of player) to player
+            message "%{server_prefix}%Öffne Vorschau für&8: &6&lHalloween Crate&7..." to player
+            play sound "block.note_block.guitar" with volume 0.25 and pitch 1.6 to player
+        if name of loop-entity is "crate_5":
+            cancel event
+            open (metadata tag "5_crate_menu" of player) to player
+            message "%{server_prefix}%Öffne Vorschau für&8: &9&lWinter Crate&7..." to player
+            play sound "block.note_block.guitar" with volume 0.25 and pitch 1.6 to player

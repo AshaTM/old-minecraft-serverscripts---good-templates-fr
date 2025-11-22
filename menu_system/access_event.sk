@@ -1,0 +1,15 @@
+on swap hand items:
+    if player is not sneaking:
+        cancel event
+        
+        if {jailed::*} contains player:
+            stop
+
+        if pitch of player >= 60:
+            sitDown(player)
+            stop
+        if pitch of player <= -60:
+            sizeSwap(player)
+            stop
+        else:
+            openMenuGUI(player)

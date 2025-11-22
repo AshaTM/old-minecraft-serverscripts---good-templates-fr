@@ -1,0 +1,7 @@
+on login:
+    if {job::%uuid of player%} is not set:
+        set {job::%uuid of player%} to "Arbeitslos"
+
+command /jobs:
+    trigger:
+        openJobsGUI(player)

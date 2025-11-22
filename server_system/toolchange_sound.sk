@@ -1,0 +1,2 @@
+on tool change:
+    play sound "block.chiseled_bookshelf.pickup" with volume 0.05 and pitch 1.5 to player

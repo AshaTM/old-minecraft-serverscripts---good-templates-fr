@@ -1,0 +1,108 @@
+command /moderation [<offlineplayer>] [<number>]:
+    permission: command.moderation
+    trigger:
+        if arg-1 or arg-2 is not set:
+            send "%{server_prefix}%Gründe&8:" to player
+            send "&f(&l1&f)  &8→ &7Werbung &8→ &730 Minuten" to player
+            send "&f(&l2&f)  &8→ &7Cheating/Hacking &8→ &73 Tage" to player
+            send "&f(&l3&f)  &8→ &7Trolling/Schlechtes Verhalten &8→ &71 Tag" to player
+            send "&f(&l4&f)  &8→ &7X-Ray/Softhacks &8→ &710 Minuten" to player
+            send "&f(&l5&f)  &8→ &7Chat-Verstöße &8→ &75 Minuten" to player
+            send "&f(&l6&f)  &8→ &7Fehlverhalten (Kick) &8→ &7Kick" to player
+            send "&f(&l7&f)  &8→ &7Rechtsbruch &8→ &cPermanent" to player
+            send "&f(&l8&f)  &8→ &7Unangebrachtes Bauwerk (pornographisch/beleidigend) &8→ &76 Stunden + Kick" to player
+            send "&f(&l9&f)  &8→ &7Spamming &8→ &730 Minuten" to player
+            send "&f(&l10&f) &8→ &7Beleidigung &8→ &712 Stunden" to player
+            send "&f(&l11&f) &8→ &7Doxxing/Teilen privater Daten &8→ &cPermanent" to player
+            send "&f(&l12&f) &8→ &7Exploit-/Glitch-Abuse &8→ &77 Tage" to player
+            send "&f(&l13&f) &8→ &7Impersonation / Team-Imitation &8→ &73 Tage" to player
+            send "&f(&l14&f) &8→ &7Account-Sharing / Verkauf &8→ &77 Tage" to player
+            send "&f(&l15&f) &8→ &7Griefing (Zerstörung von Bauten) &8→ &714 Tage" to player
+            send "&f(&l16&f) &8→ &7Item-/Economy-Scamming &8→ &77 Tage" to player
+            send "&f(&l17&f) &8→ &7Verstoß gegen Werberegeln (mehrfach) &8→ &712 Stunden" to player
+            send "&f(&l18&f) &8→ &7Ausnutzung von bezahlten Diensten (Betrug) &8→ &77 Tage" to player
+            send "&f(&l19&f) &8→ &7Verbreitung illegaler Inhalte &8→ &cPermanent" to player
+            send "&f(&l20&f) &8→ &7Sonstige Regelverstöße &8→ &724 Stunden" to player
+            send "%{server_prefix}%Befehl&8: &7""/moderation (Spielername) (Nummer)""" to player
+        else:
+            # 1: Werbung
+            if arg-2 is 1:
+                ban and kick arg-1 due to "%new line%%new line%%{server_title}%%new line%&7Du wurdest vom Netzwerk entfernt.%new line%Grund&8: &c&nWerbung%new line%%new line%&7Bei Fragen: &9&nhttps://discord.gg/7eaven&7%new line%%new line%Banzeitpunkt&8: &f%now%%new line%&7Bandauer&8: &f30 Minuten%new line%%new line%" for 30 minutes
+                send "&4🛡 &lMODERATION &8| &c%arg-1% &4wurde vom Netzwerk entfernt. &cGrund&8: &4&nWerbung" to all players
+            # 2: Cheating/Hacking
+            if arg-2 is 2:
+                ban and kick arg-1 due to "%new line%%new line%%{server_title}%%new line%&7Du wurdest dauerhaft entfernt wegen Cheating/Hacking.%new line%Grund&8: &c&nCheating/Hacking%new line%%new line%&7Bei Einspruch: &9&nhttps://discord.gg/7eaven&7%new line%%new line%Banzeitpunkt&8: &f%now%%new line%&7Bandauer&8: &f3 Tage%new line%%new line%" for 3 days
+                send "&4🛡 &lMODERATION &8| &c%arg-1% &4wurde vom Netzwerk entfernt. &cGrund&8: &4&nCheating/Hacking" to all players
+            # 3: Trolling / schlechtes Verhalten
+            if arg-2 is 3:
+                ban and kick arg-1 due to "%new line%%new line%%{server_title}%%new line%&7Du wurdest entfernt.%new line%Grund&8: &c&nTrolling/Schlechtes Verhalten%new line%%new line%&7Bei Fragen: &9&nhttps://discord.gg/7eaven&7%new line%%new line%Banzeitpunkt&8: &f%now%%new line%&7Bandauer&8: &f1 Tag%new line%%new line%" for 1 day
+                send "&4🛡 &lMODERATION &8| &c%arg-1% &4wurde entfernt. &cGrund&8: &4&nTrolling/Schlechtes Verhalten" to all players
+            # 4: X-Ray / Softhacks
+            if arg-2 is 4:
+                ban and kick arg-1 due to "%new line%%new line%%{server_title}%%new line%&7Du wurdest entfernt.%new line%Grund&8: &c&nX-Ray/Softhacks%new line%%new line%&7Bei Fragen: &9&nhttps://discord.gg/7eaven&7%new line%%new line%Banzeitpunkt&8: &f%now%%new line%&7Bandauer&8: &f10 Minuten%new line%%new line%" for 10 minutes
+                send "&4🛡 &lMODERATION &8| &c%arg-1% &4wurde entfernt. &cGrund&8: &4&nX-Ray/Softhacks" to all players
+            # 5: Chat-Verstöße
+            if arg-2 is 5:
+                ban and kick arg-1 due to "%new line%%new line%%{server_title}%%new line%&7Du wurdest entfernt.%new line%Grund&8: &c&nChat-Verstöße%new line%%new line%&7Bei Fragen: &9&nhttps://discord.gg/7eaven&7%new line%%new line%Banzeitpunkt&8: &f%now%%new line%&7Bandauer&8: &f5 Minuten%new line%%new line%" for 5 minutes
+                send "&4🛡 &lMODERATION &8| &c%arg-1% &4wurde entfernt. &cGrund&8: &4&nChat-Verstöße" to all players
+            # 6: Kick (Fehlverhalten)
+            if arg-2 is 6:
+                kick arg-1 due to "%new line%%new line%%{server_title}%%new line%&7Du wurdest vom Server gekickt.%new line%Grund&8: &c&nFehlverhalten%new line%%new line%&7Bei Fragen: &9&nhttps://discord.gg/7eaven&7%new line%%new line%Banzeitpunkt&8: &f%now%%new line%&4Das ist nur ein Kick%new line%%new line%"
+                send "&4🛡 &lMODERATION &8| &c%arg-1% &4wurde gekickt. &cGrund&8: &4&nFehlverhalten" to all players
+            # 7: Rechtsbruch
+            if arg-2 is 7:
+                ban and kick arg-1 due to "%new line%%new line%%{server_title}%%new line%&7Du wurdest wegen Rechtsbruchs permanent entfernt.%new line%Grund&8: &c&nRechtsbruch%new line%%new line%&7Rechtsfälle können an Behörden weitergegeben werden.%new line%%new line%Banzeitpunkt&8: &f%now%%new line%&7Bandauer&8: &fPermanent%new line%%new line%" for 420 years
+                send "&4🛡 &lMODERATION &8| &c%arg-1% &4wurde wegen Rechtsbruchs entfernt. &cGrund&8: &4&nRechtsbruch" to all players
+            # 8: Unangebrachtes Bauwerk
+            if arg-2 is 8:
+                kick arg-1 due to "%new line%%new line%%{server_title}%%new line%&7Du wurdest entfernt wegen eines unangebrachten Bauwerks.%new line%Grund&8: &c&nUnangebrachtes Bauwerk%new line%%new line%&7Bitte kontaktiere das Team für weitere Informationen.%new line%%new line%Banzeitpunkt&8: &f%now%%new line%&7Maßnahme&8: &fKick + manuelle Überprüfung%new line%%new line%"
+                send "&4🛡 &lMODERATION &8| &c%arg-1% &4wurde entfernt wegen unangebrachtem Bauwerk." to all players
+            # 9: Spamming
+            if arg-2 is 9:
+                ban and kick arg-1 due to "%new line%%new line%%{server_title}%%new line%&7Du wurdest wegen Spamming entfernt.%new line%Grund&8: &c&nSpamming%new line%%new line%&7Bei Fragen: &9&nhttps://discord.gg/7eaven&7%new line%%new line%Banzeitpunkt&8: &f%now%%new line%&7Bandauer&8: &f30 Minuten%new line%%new line%" for 30 minutes
+                send "&4🛡 &lMODERATION &8| &c%arg-1% &4wurde entfernt. &cGrund&8: &4&nSpamming" to all players
+            # 10: Beleidigung
+            if arg-2 is 10:
+                ban and kick arg-1 due to "%new line%%new line%%{server_title}%%new line%&7Du wurdest wegen Beleidigung entfernt.%new line%Grund&8: &c&nBeleidigung%new line%%new line%&7Bei Fragen: &9&nhttps://discord.gg/7eaven&7%new line%%new line%Banzeitpunkt&8: &f%now%%new line%&7Bandauer&8: &f12 Stunden%new line%%new line%" for 12 hours
+                send "&4🛡 &lMODERATION &8| &c%arg-1% &4wurde entfernt. &cGrund&8: &4&nBeleidigung" to all players
+            # 11: Doxxing / Teilen privater Daten (Permanent)
+            if arg-2 is 11:
+                ban and kick arg-1 due to "%new line%%new line%%{server_title}%%new line%&7Du wurdest dauerhaft vom Netzwerk entfernt.%new line%Grund&8: &c&nDoxxing / Teilen privater Daten%new line%%new line%&7Dies ist ein schwerwiegender Verstoß.%new line%%new line%Banzeitpunkt&8: &f%now%%new line%&7Bandauer&8: &fPermanent%new line%%new line%" for 420 years
+                send "&4🛡 &lMODERATION &8| &c%arg-1% &4wurde dauerhaft entfernt. &cGrund&8: &4&nDoxxing" to all players
+            # 12: Exploit-/Glitch-Abuse
+            if arg-2 is 12:
+                ban and kick arg-1 due to "%new line%%new line%%{server_title}%%new line%&7Du wurdest wegen Exploit-Abuse entfernt.%new line%Grund&8: &c&nExploit-Abuse%new line%%new line%&7Bei Fragen: &9&nhttps://discord.gg/7eaven&7%new line%%new line%Banzeitpunkt&8: &f%now%%new line%&7Bandauer&8: &f7 Tage%new line%%new line%" for 7 days
+                send "&4🛡 &lMODERATION &8| &c%arg-1% &4wurde entfernt. &cGrund&8: &4&nExploit-Abuse" to all players
+            # 13: Team-Imitation / Impersonation
+            if arg-2 is 13:
+                ban and kick arg-1 due to "%new line%%new line%%{server_title}%%new line%&7Du wurdest wegen Team-Imitation entfernt.%new line%Grund&8: &c&nTeam-Imitation%new line%%new line%&7Bei Fragen: &9&nhttps://discord.gg/7eaven&7%new line%%new line%Banzeitpunkt&8: &f%now%%new line%&7Bandauer&8: &f3 Tage%new line%%new line%" for 3 days
+                send "&4🛡 &lMODERATION &8| &c%arg-1% &4wurde entfernt. &cGrund&8: &4&nTeam-Imitation" to all players
+            # 14: Account-Sharing / Verkauf
+            if arg-2 is 14:
+                ban and kick arg-1 due to "%new line%%new line%%{server_title}%%new line%&7Du wurdest wegen Account-Sharing/Verkauf entfernt.%new line%Grund&8: &c&nAccount-Sharing/Verkauf%new line%%new line%&7Bei Fragen: &9&nhttps://discord.gg/7eaven&7%new line%%new line%Banzeitpunkt&8: &f%now%%new line%&7Bandauer&8: &f7 Tage%new line%%new line%" for 7 days
+                send "&4🛡 &lMODERATION &8| &c%arg-1% &4wurde entfernt. &cGrund&8: &4&nAccount-Sharing" to all players
+            # 15: Griefing
+            if arg-2 is 15:
+                ban and kick arg-1 due to "%new line%%new line%%{server_title}%%new line%&7Du wurdest wegen Griefing entfernt.%new line%Grund&8: &c&nGriefing%new line%%new line%&7Bei Fragen: &9&nhttps://discord.gg/7eaven&7%new line%%new line%Banzeitpunkt&8: &f%now%%new line%&7Bandauer&8: &fPermanent%new line%%new line%" for 420 years
+                send "&4🛡 &lMODERATION &8| &c%arg-1% &4wurde entfernt. &cGrund&8: &4&nGriefing" to all players
+            # 16: Item-/Economy-Scamming
+            if arg-2 is 16:
+                ban and kick arg-1 due to "%new line%%new line%%{server_title}%%new line%&7Du wurdest wegen Scamming entfernt.%new line%Grund&8: &c&nItem-/Economy-Scamming%new line%%new line%&7Bei Fragen: &9&nhttps://discord.gg/7eaven&7%new line%%new line%Banzeitpunkt&8: &f%now%%new line%&7Bandauer&8: &f7 Tage%new line%%new line%" for 7 days
+                send "&4🛡 &lMODERATION &8| &c%arg-1% &4wurde entfernt. &cGrund&8: &4&nScamming" to all players
+            # 17: Wiederholte Werbeverstöße
+            if arg-2 is 17:
+                ban and kick arg-1 due to "%new line%%new line%%{server_title}%%new line%&7Du wurdest wegen wiederholter Werbeverstöße entfernt.%new line%Grund&8: &c&nWiederholte Werbung%new line%%new line%&7Bei Fragen: &9&nhttps://discord.gg/7eaven&7%new line%%new line%Banzeitpunkt&8: &f%now%%new line%&7Bandauer&8: &f12 Stunden%new line%%new line%" for 12 hours
+                send "&4🛡 &lMODERATION &8| &c%arg-1% &4wurde entfernt. &cGrund&8: &4&nWiederholte Werbung" to all players
+            # 18: Betrug mit bezahlten Diensten
+            if arg-2 is 18:
+                ban and kick arg-1 due to "%new line%%new line%%{server_title}%%new line%&7Du wurdest wegen Betrugs entfernt.%new line%Grund&8: &c&nBetrug%new line%%new line%&7Bei Fragen: &9&nhttps://discord.gg/7eaven&7%new line%%new line%Banzeitpunkt&8: &f%now%%new line%&7Bandauer&8: &f7 Tage%new line%%new line%" for 7 days
+                send "&4🛡 &lMODERATION &8| &c%arg-1% &4wurde entfernt. &cGrund&8: &4&nBetrug" to all players
+            # 19: Verbreitung illegaler Inhalte (Permanent)
+            if arg-2 is 19:
+                ban and kick arg-1 due to "%new line%%new line%%{server_title}%%new line%&7Du wurdest dauerhaft entfernt wegen Verbreitung illegaler Inhalte.%new line%Grund&8: &c&nVerbreitung illegaler Inhalte%new line%%new line%&7Dies ist ein schwerwiegender Verstoß.%new line%%new line%Banzeitpunkt&8: &f%now%%new line%&7Bandauer&8: &fPermanent%new line%%new line%" for 420 years
+                send "&4🛡 &lMODERATION &8| &c%arg-1% &4wurde dauerhaft entfernt. &cGrund&8: &4&nVerbreitung illegaler Inhalte" to all players
+            # 20: Sonstige Regelverstöße
+            if arg-2 is 20:
+                ban and kick arg-1 due to "%new line%%new line%%{server_title}%%new line%&7Du wurdest entfernt.%new line%Grund&8: &c&nSonstige Regelverstöße%new line%%new line%&7Bei Fragen: &9&nhttps://discord.gg/7eaven&7%new line%%new line%Banzeitpunkt&8: &f%now%%new line%&7Bandauer&8: &f24 Stunden%new line%%new line%" for 24 hours
+                send "&4🛡 &lMODERATION &8| &c%arg-1% &4wurde entfernt. &cGrund&8: &4&nSonstige Regelverstöße" to all players
+            log "MODERATION: %player% hat %arg-1% mit dem Grund %arg-2% bestraft." to file "playerdata/moderation.log"

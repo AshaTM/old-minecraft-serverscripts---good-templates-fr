@@ -1,0 +1,69 @@
+command /milanshine35:
+    trigger:
+        set {_item} to diamond pickaxe named "&f&nQuinn's Spitzhacke" with lore "&8- League of Legends Importware"
+        enchant {_item} with efficiency 10
+        enchant {_item} with unbreaking 10
+        enchant {_item} with mending 10
+        enchant {_item} with lure 10
+        give player 1 of {_item}
+
+        set {_item} to diamond axe named "&f&nCassiopeia's Axt" with lore "&8- League of Legends Importware"
+        enchant {_item} with efficiency 10
+        enchant {_item} with unbreaking 10
+        enchant {_item} with mending 10
+        give player 1 of {_item}
+
+        set {_item} to diamond shovel named "&f&nZiggs's Schaufel" with lore "&8- League of Legends Importware"
+        enchant {_item} with efficiency 10
+        enchant {_item} with unbreaking 10
+        enchant {_item} with mending 10
+        give player 1 of {_item}
+
+        set {_item} to diamond sword named "&f&nNeeko's Schwert" with lore "&8- League of Legends Importware"
+        enchant {_item} with sharpness 10
+        enchant {_item} with unbreaking 10
+        enchant {_item} with mending 10
+        enchant {_item} with fire aspect 10
+        give player 1 of {_item}
+
+        set {_item} to bow named "&f&nJinx's Canone" with lore "&8- League of Legends Importware"
+        enchant {_item} with infinity 10
+        enchant {_item} with unbreaking 10
+        enchant {_item} with mending 10
+        enchant {_item} with flame 10
+        give player 1 of {_item}
+
+        set {_item} to arrow named "&f&nUlti" with lore "&8- League of Legends Importware"
+        give player 1 of {_item}
+
+        set {_item} to enchanted golden apple named "&f&nBuff" with lore "&8- League of Legends Importware"
+        give player 32 of {_item}
+
+        send "&4Willkommen im Adminmodus Milan."
+
+        make player execute "/give %player% firework_rocket[fireworks={flight_duration:3,explosions:[{shape:""small_ball"",has_twinkle:1,has_trail:1,colors:[I;11743532,2437522],fade_colors:[I;1973019,11743532,3887386,2437522,8073150,4312372,14602026,6719955,12801229,15435844]}]}] 64"
+        set chestplate of player to elytra named "&f&lDie Geflügelten Flügel des Rah"
+
+command /test [<offlineplayer>]:
+    trigger:
+        teleport player 20 above arg-1
+        push player downwards with speed 1
+        while block below player is air:
+            launch large ball coloured white fading to gold at player with duration -1
+            wait 1 tick
+        loop 10 times:
+            launch large ball coloured white fading to gold at location 2 below or 1 below player with duration -1
+            wait 1 tick
+
+on right click on happy ghast:
+    if uuid of event-entity is "7dcf394c-8bfb-49f4-84d5-3deaecd6fcc6":
+        if uuid of player is not "39236d2a-b751-41c8-a31c-71b92bc3697f":
+            cancel event
+            send "&cDieser Happy Ghast gehört einem anderen Spieler." to player
+        else:
+            set scale attribute of event-entity to 0.3
+            set flying speed attribute of event-entity to 0.13
+
+on shoot:
+    if shooter is skeleton:
+        stop

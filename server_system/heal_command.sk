@@ -1,0 +1,17 @@
+command /heal [<offlineplayer>]:
+    permission: command.heal
+    trigger:
+        if arg-1 is set:
+            if arg-1 is online:
+                set health of arg-1 to 30
+                set hunger of arg-1 to 30
+                clear all the potion effects of player
+                send "%{server_prefix}%Du hast &f%arg-1% &7geheilt." to player
+                send "%{server_prefix}%&f%player% &7hat dich geheilt." to arg-1
+            else:
+                send "%{server_prefix}%Bitte gib einen &fSpieler &7an, der &aonline &7ist." to player
+        else:
+            set health of player to 30
+            set hunger of player to 30
+            clear all the potion effects of player
+            send "%{server_prefix}%Du hast dich geheilt." to player

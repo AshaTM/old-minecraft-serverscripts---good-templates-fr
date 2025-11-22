@@ -1,0 +1,9 @@
+command /teamchat [<text>]:
+    aliases: tc,
+    trigger:
+        if arg-1 is set:
+            loop all players:
+                if group of loop-player is "Inhaber" or "Administrator" or "Supporter" or "Moderator" or "Freund":
+                    send "&4Team&4&lChat &8- %prefix of player%%player%&8: &f%arg-1%" to loop-player
+        else:
+            send "%{server_prefix}%&cBitte gib eine Nachricht an." to player

@@ -1,0 +1,5 @@
+command /resethearts [<offlineplayer>]:
+    permission: command.resethearts
+    trigger:
+        set {hearts::%uuid of arg-1%} to 3
+        set maximum health of player to {hearts::%uuid of arg-1%}

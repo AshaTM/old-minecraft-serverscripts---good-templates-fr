@@ -1,0 +1,80 @@
+command /sethome [<text>]:
+    trigger:
+        if arg 1 is not set:
+            send "%{server_prefix}%&7Nutzung&8: &7/sethome <Name>" to player
+            stop
+
+        if {home_limit::%uuid of player%} is not set:
+            set {home_limit::%uuid of player%} to 0
+
+        set {_maxHomes} to 3
+        if group of player is "Reisender":
+            set {_maxHomes} to 4
+        else if group of player is "Anwohner":
+            set {_maxHomes} to 5
+        else if group of player is "Bürger":
+            set {_maxHomes} to 6
+        else if group of player is "Meister":
+            set {_maxHomes} to 7
+        else if group of player is "Crafter":
+            set {_maxHomes} to 8
+        else if group of player is "Inhaber" or "Supporter" or "Moderator" or "Content" or "Baron":
+            set {_maxHomes} to 10
+
+        if {home::%uuid of player%::%arg-1%} is set:
+            remove 1 from {home_limit::%uuid of player%}
+            set {home::%uuid of player%::%arg-1%} to position of player
+            set {home_name::%uuid of player%::%arg-1%} to arg-1
+            send "%{server_prefix}%&7Home &8""&6%arg-1%&8"" &7wurde überschrieben." to player
+            add 1 to {home_limit::%uuid of player%}
+        else:
+            if {home_limit::%uuid of player%} < {_maxHomes}:
+                set {home::%uuid of player%::%arg-1%} to position of player
+                set {home_name::%uuid of player%::%arg-1%} to arg-1
+                send "%{server_prefix}%&7Home &8""&6%arg-1%&8"" &7wurde gesetzt." to player
+                add 1 to {home_limit::%uuid of player%}
+            else:
+                send "%{server_prefix}%&cDu hast dein Home-Limit von &c&n%{_maxHomes}%&c Homes erreicht." to player
+                send "%{server_prefix}%&7Erhöhe deinen Rang, um mehr Homes setzen zu können." to player
+
+command /home [<text>]:
+    trigger:
+        if arg 1 is set:
+            if {home::%uuid of player%::%arg-1%} is set:
+                teleport player to {home::%uuid of player%::%arg-1%}
+                send "%{server_prefix}%&7Teleportiere zu Home&8: &8""&6%arg-1%&8""&7..." to player
+            else:
+                send "%{server_prefix}%&cDas Home&8: &8""&6%arg-1%&8"" &cexistiert nicht." to player
+        else:
+            send "%{server_prefix}%&7Nutzung&8: &7/home <Name>" to player
+
+on tab complete of "/home":
+    set tab completions for position 1 to {home_name::%uuid of player%::*}
+
+command /delhome [<text>]:
+    trigger:
+        if arg 1 is set:
+            if {home::%uuid of player%::%arg-1%} is set:
+                delete {home::%uuid of player%::%arg-1%}
+                delete {home_name::%uuid of player%::%arg-1%}
+                send "%{server_prefix}%&7Home&8: &8""&6%arg-1%&8"" &7wurde gelöscht." to player
+                remove 1 from {home_limit::%uuid of player%}
+            else:
+                send "%{server_prefix}%&cDas Home&8: &8""&c%arg-1%&8""  &cexistiert nicht." to player
+        else:
+            send "%{server_prefix}%&7Nutzung&8: &7/delhome <Name>" to player
+
+on tab complete of "/delhome":
+    set tab completions for position 1 to {home_name::%uuid of player%::*}
+
+command /listhomes:
+    aliases: homes, listhomes, lhomes, lh
+    trigger:
+        if {home::%uuid of player%::*} is set:
+            send "%{server_prefix}%&7Deine Homes&8:" to player
+            loop {home_name::%uuid of player%::*}:
+                add 1 to {_numbering}
+                send formatted "&8(&7%{_numbering}%.&8) &8""&6%loop-value%&8"" &8→ <tooltip:&7Zum Home&8: &6%loop-value% &7teleportieren lassen.><command:/home %loop-value%>&8(&7Teleportieren&8)<reset>" to player
+            send "&8(Nutze /home <Name> zum Teleportieren.)" to player
+        else:
+            send "%{server_prefix}%&7Du hast noch keine Homes gesetzt." to player

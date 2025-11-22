@@ -1,0 +1,50 @@
+function setHeartShop(x: number, y: number, z: number, world: world):
+
+    set {_location} to location at {_x}, {_y}, {_z} in world {_world}
+
+    set block at {_location} to red stained glass
+    set block below {_location} to stripped mangrove log
+    set block above {_location} to mangrove pressure plate
+    set block 2 above {_location} to light[level=11]
+
+    loop all text displays and item displays and block displays in radius 0.9 of location 0.9 above {_location}:
+        kill loop-entity
+    loop all text displays and item displays and block displays in radius 0.9 of {_location}:
+        kill loop-entity
+
+    spawn text display 1.88 above {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to vertical
+    set display scale of {_display} to vector(0.5, 0.5, 0.5)
+    set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set display component of {_display} to mini message from "<gray>%{server_title}%</gray>"
+
+    spawn text display 1.625 above {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to vertical
+    set display scale of {_display} to vector(0.8, 0.8, 0.8)
+    set display component of {_display} to mini message from "<red><bold>HERZEN</bold></red>"
+
+    spawn text display 1.35 above {_location}
+    set {_display} to last spawned text display
+    set display text shadowed of {_display} to true
+    set display billboard of {_display} to vertical
+    set display scale of {_display} to vector(0.45, 0.45, 0.45)
+    set display text background color of {_display} to bukkitColor(0,0,0,0)
+    set the line width of {_display} to 1024
+    set display component of {_display} to mini message from "<gray><red>Linksklick</red> <dark_gray>→</dark_gray> Kosten für ein weiteres <red>Herz</red> abfragen.%new line%<red>Rechtsklick</red> <dark_gray>→</dark_gray> Weiteres <red>Herz</red> kaufen.</gray>"
+
+    spawn item display 0.4 above {_location}
+    set {_display} to last spawned item display
+    set display billboard of {_display} to vertical
+    set display scale of {_display} to vector(0.5, 0.5, 0.5)
+    set display item of {_display} to 1 of potion of healing
+    set name of {_display} to "heart_shop"
+
+    spawn item display 0.15 above {_location}
+    set {_display} to last spawned item display
+    set yaw of {_display} to 45
+    set display scale of {_display} to vector(0.7, 0.8, 0.7)
+    set display item of {_display} to 1 of mangrove slab

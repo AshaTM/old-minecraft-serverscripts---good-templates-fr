@@ -1,0 +1,46 @@
+on left click:
+    if event-block is tagged with paper tag "doors":
+        gamemode of player is survival
+        if tool of player is air:
+            if {knock_cooldown::%player%} is set:
+                send "%{server_prefix}%&cWarte einen Moment bevor du wieder klingelst..." to player
+                stop
+
+            set {knock_cooldown::%player%} to true
+            set {knock_cooldown_end::%player%} to now + 6000 milliseconds
+
+            add 1 to {knock_session::%player%}
+            set {_session} to {knock_session::%player%}
+
+            loop all players:
+                if distance between loop-player and event-block <= 7:
+                    send "&7&o%player% klingelt an einer Tür." to loop-player
+
+            play sound "block.bell.use" with volume 0.1 and pitch 1.75 to all players at event-block
+            wait 12 ticks
+            play sound "block.bell.use" with volume 0.1 and pitch 1.35 to all players at event-block
+            wait 12 ticks
+            play sound "block.bell.use" with volume 0.1 and pitch 1.55 to all players at event-block
+            wait 12 ticks
+            play sound "block.bell.use" with volume 0.1 and pitch 1.0 to all players at event-block
+            wait 24 ticks
+            play sound "block.bell.use" with volume 0.1 and pitch 1.0 to all players at event-block
+            wait 12 ticks
+            play sound "block.bell.use" with volume 0.1 and pitch 1.55 to all players at event-block
+            wait 12 ticks
+            play sound "block.bell.use" with volume 0.1 and pitch 1.75 to all players at event-block
+            wait 12 ticks
+            play sound "block.bell.use" with volume 0.1 and pitch 1.35 to all players at event-block
+
+every 1 tick:
+    loop all players:
+        if {knock_cooldown::%loop-player%} is set:
+            if {knock_cooldown_end::%loop-player%} is set:
+                if now >= {knock_cooldown_end::%loop-player%}:
+                    delete {knock_cooldown::%loop-player%}
+                    delete {knock_cooldown_end::%loop-player%}
+
+on quit:
+    delete {knock_cooldown::%player%}
+    delete {knock_cooldown_end::%player%}
+    delete {knock_session::%player%}

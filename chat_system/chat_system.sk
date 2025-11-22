@@ -1,0 +1,28 @@
+on chat:
+    if {seletected_chatcolor::%uuid of player%} is not set:
+        set {seletected_chatcolor::%uuid of player%} to "&7"
+    cancel event
+    set {_allowedChars} to "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTäÄüÜöÖßUVWXYZ0123456789 .!?,-<>'^_:;+=€*$§@&%%#[(]{)}\/°☺☹"""
+    set {_messageValid} to true
+    set {_message::*} to message split at ""
+    loop {_message::*}:
+        if {_allowedChars} does not contain loop-value:
+            set {_messageValid} to false
+
+    if {jailed::*} contains player:
+        stop
+
+    if {chat_cooldown::%uuid of player%} is set:
+        if player does not have permission "chat_system.cooldown.bypass":
+            if difference between now and {chat_cooldown::%uuid of player%} is less than 1 seconds:
+                send "%{server_prefix}%Warte einen Moment bevor du wieder schreibst." to player
+                stop
+    set {chat_cooldown::%uuid of player%} to now
+
+    if {_messageValid} is true:
+        if player does not have permission "chat_system.color":
+            broadcast "&8[&7%{hours::%uuid of player%}%Std.&8] %prefix of player%%player% &8» %{seletected_chatcolor::%uuid of player%}%%message%"
+        else:
+            broadcast "&8[&7%{hours::%uuid of player%}%Std.&8] %prefix of player%%player% &8» %{seletected_chatcolor::%uuid of player%}%%colored message%"
+    else:
+        send "%{server_prefix}%&CDeine Nachricht enthält ungültige Zeichen.%new line%&7Erlaubte Zeichen sind&8: &a%{_allowedChars}%&7." to player

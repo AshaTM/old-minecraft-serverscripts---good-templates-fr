@@ -1,0 +1,225 @@
+function openServerShopGUI(player: player):
+    play sound "block.note_block.bit" with volume 0.25 and pitch 1.2 at {_player} to {_player}
+    open (metadata tag "server_shop_menu" of {_player}) to {_player}
+
+on login:
+    set metadata tag "server_shop_menu" of player to chest inventory with 5 rows named "Servershop"
+    set slot numbers from 0 to 54 of metadata tag "server_shop_menu" of player to 1 of gray stained glass pane named "&r"
+    set slot 10 of metadata tag "server_shop_menu" of player to 1 of cauldron named "&7Neuling &8→ &7Generator" with lore "&8→ &7Kosten&8:%new line%&8     - &c%{currency_symbol}%5000%new line%&8     - &7Rang&8: &7Neuling%new line%%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann von allen Rängen abgebaut werden.%new line%&8     - &7Generiert alle 2 Sekunden.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 11 of metadata tag "server_shop_menu" of player to 1 of cauldron named "&eReisender &8→ &7Generator" with lore "&8→ &7Kosten&8:%new line%&8     - &c%{currency_symbol}%10.000%new line%&8     - &7Rang&8: &eReisender%new line%%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &eReisender &7und höher abgebaut werden.%new line%&8     - &7Generiert alle 1.5 Sekunden.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 12 of metadata tag "server_shop_menu" of player to 1 of cauldron named "&aAnwohner &8→ &7Generator" with lore "&8→ &7Kosten&8:%new line%&8     - &c%{currency_symbol}%15.000%new line%&8     - &7Rang&8: &aAnwohner%new line%%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &aAnwohner &7und höher abgebaut werden.%new line%&8     - &7Generiert jede Sekunde.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 13 of metadata tag "server_shop_menu" of player to 1 of cauldron named "&2Bürger &8→ &7Generator" with lore "&8→ &7Kosten&8:%new line%&8     - &c%{currency_symbol}%20.000%new line%&8     - &7Rang&8: &2Bürger%new line%%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &2Bürger &7und höher abgebaut werden.%new line%&8     - &7Generiert jede Sekunde.%new line%&8     - &7Doppelte Erz-Wahrscheinlichkeit.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 14 of metadata tag "server_shop_menu" of player to 1 of cauldron named "&7Meister &8→ &7Generator" with lore "&8→ &7Kosten&8:%new line%&8     - &c%{currency_symbol}%20.000%new line%&8     - &7Rang&8: &7Meister%new line%%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &7Meister &7und höher abgebaut werden.%new line%&8     - &7Generiert jede halbe Sekunde.%new line%&8     - &7Doppelte Erz-Wahrscheinlichkeit.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 15 of metadata tag "server_shop_menu" of player to 1 of cauldron named "&6Crafter &8→ &7Generator" with lore "&8→ &7Kosten&8:%new line%&8     - &c%{currency_symbol}%50.000%new line%&8     - &7Rang&8: &6Crafter%new line%%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &6Crafter &7abgebaut werden.%new line%&8     - &7Generiert jede halbe Sekunde.%new line%&8     - &7Dreifache Erz-Wahrscheinlichkeit.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 16 of metadata tag "server_shop_menu" of player to 1 of cauldron named "&5Baron &8→ &7Generator" with lore "&8→ &7Kosten&8:%new line%&8     - &c%{currency_symbol}%500.000%new line%&8     - &7Rang&8: &5Baron%new line%%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &5Baron &7abgebaut werden.%new line%&8     - &7Generiert jede viertel Sekunde.%new line%&8     - &7Fünffache Erz-Wahrscheinlichkeit.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 19 of metadata tag "server_shop_menu" of player to 1 of paper named "&5Ein weiteres &lGrundstück" with lore "&8→ &7Kosten&8:%new line%&8     - &c%{currency_symbol}%250.000%new line%&8     - &7Rang&8: &5Baron%new line%%new line%&8→ &7Eigenschaften&8:%new line%&8     - &5Ein Gutschein für ein weiteres Plot kaufen.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 20 of metadata tag "server_shop_menu" of player to 1 of paper named "&6Fly für 15 Minuten" with lore "&8→ &7Kosten&8:%new line%&8     - &c%{currency_symbol}%15.000%new line%&8     - &7Rang&8: &2Bürger%new line%%new line%&8→ &7Eigenschaften&8:%new line%&8     - &5Ein Gutschein für 15 Minuten fly kaufen.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 21 of metadata tag "server_shop_menu" of player to 1 of paper named "&3Abbaubeschleunigung der Stufe 5 für 15 Minuten" with lore "&8→ &7Kosten&8:%new line%&8     - &c%{currency_symbol}%15.000%new line%&8     - &7Rang&8: &2Bürger%new line%%new line%&8→ &7Eigenschaften&8:%new line%&8     - &5Ein Gutschein für 15 Minuten beschleunigt abbauen zu können.%new line%%new line%&8%{server_title_stripped}%"
+    #set slot 28 of metadata tag "server_shop_menu" of player to 1 of trial key named "&6&lHalloween Crate &8| &fSchlüssel" with lore "&8→ &7Kosten&8:%new line%&8     - &c%{currency_symbol}%75.000%new line%%new line%&8→ &7Eigenschaften&8:%new line%&8     - &5Kann bei einer Crate eingelöst werden.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 28 of metadata tag "server_shop_menu" of player to 1 of trial key named "&d&l*Girly* Crate &8| &fSchlüssel" with lore "&8→ &7Kosten&8:%new line%&8     - &c%{currency_symbol}%80.000%new line%%new line%&8→ &7Eigenschaften&8:%new line%&8     - &5Kann bei einer Crate eingelöst werden.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 29 of metadata tag "server_shop_menu" of player to 1 of trial key named "&f&lCraften Crate &8| &fSchlüssel" with lore "&8→ &7Kosten&8:%new line%&8     - &c%{currency_symbol}%30.000%new line%%new line%&8→ &7Eigenschaften&8:%new line%&8     - &5Kann bei einer Crate eingelöst werden.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 30 of metadata tag "server_shop_menu" of player to 1 of trial key named "&7&lStandard Crate &8| &fSchlüssel" with lore "&8→ &7Kosten&8:%new line%&8     - &c%{currency_symbol}%15.000%new line%%new line%&8→ &7Eigenschaften&8:%new line%&8     - &5Kann bei einer Crate eingelöst werden.%new line%%new line%&8%{server_title_stripped}%"
+    set slot 31 of metadata tag "server_shop_menu" of player to 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjI2ZTAzMTg2MDI0YzRiZDRjYjQ0NGY4YzYwNzUxZTQ4ODgzOTNhYjE1NGY0YTgzNTcxNDQwMWRkNDM4YTM0MiJ9fX0=""}]}}" named "&5Süßigkeitentüte" with lore "&8→ &7Kosten&8:%new line%&8     - &c%{currency_symbol}%2.500%new line%%new line%&8→ &7Eigenschaften&8:%new line%&8     - &5Kann überall geöffnet werden.%new line%%new line%&8%{server_title_stripped}%"
+
+
+on inventory click:
+    if event-inventory = (metadata tag "server_shop_menu" of player):
+        cancel event
+        close inventory of player
+
+        if name of event-item is "&7Neuling &8→ &7Generator":
+            if group of player is "Inhaber" or "Supporter" or "Moderator" or "Administrator" or "Content" or "Freund" or "Neuling" or "Reisender" or "Anwohner" or "Crafter" or "Meister" or "Bürger" or "Baron":
+                if {balance::%uuid of player%} >= 5000:
+                    if player has space for 1 of cauldron named "&7Neuling &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann von allen Rängen abgebaut werden.%new line%&8     - &7Generiert alle 2 Sekunden.%new line%%new line%&8%{server_title_stripped}%":
+                        remove 5000 from {balance::%uuid of player%}
+                        updateScoreboardBalance(player)
+                        give player 1 of cauldron named "&7Neuling &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann von allen Rängen abgebaut werden.%new line%&8     - &7Generiert alle 2 Sekunden.%new line%%new line%&8%{server_title_stripped}%"
+                        send "%{server_prefix}%&7Neuling &8→ &7Generator für &c%{currency_symbol}%5000 &7gekauft." to player
+                    else:
+                        send "%{server_prefix}%&cDu hast nicht genügen Platz im Inventar für diesen Generator." to player
+                else:
+                    send "%{server_prefix}%&cDu hast nicht genügend Geld für diesen Generator." to player
+            else:
+                send "%{server_prefix}%&cKann nur vom Rang &7Neuling &cund höher gekauft werden." to player
+        if name of event-item is "&eReisender &8→ &7Generator":
+            if group of player is "Inhaber" or "Supporter" or "Moderator" or "Administrator" or "Content" or "Freund" or "Reisender" or "Anwohner" or "Crafter" or "Meister" or "Bürger":
+                if {balance::%uuid of player%} >= 10000:
+                    if player has space for 1 of cauldron named "&eReisender &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &eReisender &7und höher abgebaut werden.%new line%&8     - &7Generiert alle 1.5 Sekunden.%new line%%new line%&8%{server_title_stripped}%":
+                        remove 10000 from {balance::%uuid of player%}
+                        updateScoreboardBalance(player)
+                        give player 1 of cauldron named "&eReisender &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &eReisender &7und höher abgebaut werden.%new line%&8     - &7Generiert alle 1.5 Sekunden.%new line%%new line%&8%{server_title_stripped}%"
+                        send "%{server_prefix}%&eReisender &8→ &7Generator für &c%{currency_symbol}%10000 &7gekauft." to player
+                    else:
+                        send "%{server_prefix}%&cDu hast nicht genügen Platz im Inventar für diesen Generator." to player
+                else:
+                    send "%{server_prefix}%&cDu hast nicht genügend Geld für diesen Generator." to player
+            else:
+                send "%{server_prefix}%&cKann nur vom Rang &eReisender &cund höher gekauft werden." to player
+        if name of event-item is "&aAnwohner &8→ &7Generator":
+            if group of player is "Inhaber" or "Supporter" or "Moderator" or "Administrator" or "Content" or "Freund" or "Anwohner" or "Crafter" or "Meister" or "Bürger":
+                if {balance::%uuid of player%} >= 15000:
+                    if player has space for 1 of cauldron named "&aAnwohner &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &aAnwohner &7und höher abgebaut werden.%new line%&8     - &7Generiert jede Sekunde.%new line%%new line%&8%{server_title_stripped}%":
+                        remove 15000 from {balance::%uuid of player%}
+                        updateScoreboardBalance(player)
+                        give player 1 of cauldron named "&aAnwohner &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &aAnwohner &7und höher abgebaut werden.%new line%&8     - &7Generiert jede Sekunde.%new line%%new line%&8%{server_title_stripped}%"
+                        send "%{server_prefix}%&aAnwohner &8→ &7Generator für &c%{currency_symbol}%15000 &7gekauft." to player
+                    else:
+                        send "%{server_prefix}%&cDu hast nicht genügen Platz im Inventar für diesen Generator." to player
+                else:
+                    send "%{server_prefix}%&cDu hast nicht genügend Geld für diesen Generator." to player
+            else:
+                send "%{server_prefix}%&cKann nur vom Rang &aAnwohner &cund höher gekauft werden." to player
+        if name of event-item is "&2Bürger &8→ &7Generator":
+            if group of player is "Inhaber" or "Supporter" or "Moderator" or "Administrator" or "Content" or "Freund" or "Crafter" or "Meister" or "Bürger":
+                if {balance::%uuid of player%} >= 20000:
+                    if player has space for 1 of cauldron named "&2Bürger &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &2Bürger &7und höher abgebaut werden.%new line%&8     - &7Generiert jede Sekunde.%new line%&8     - &7Doppelte Erz-Wahrscheinlichkeit.%new line%%new line%&8%{server_title_stripped}%":
+                        remove 20000 from {balance::%uuid of player%}
+                        updateScoreboardBalance(player)
+                        give player 1 of cauldron named "&2Bürger &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &2Bürger &7und höher abgebaut werden.%new line%&8     - &7Generiert jede Sekunde.%new line%&8     - &7Doppelte Erz-Wahrscheinlichkeit.%new line%%new line%&8%{server_title_stripped}%"
+                        send "%{server_prefix}%&2Bürger &8→ &7Generator für &c%{currency_symbol}%20000 &7gekauft." to player
+                    else:
+                        send "%{server_prefix}%&cDu hast nicht genügen Platz im Inventar für diesen Generator." to player
+                else:
+                    send "%{server_prefix}%&cDu hast nicht genügend Geld für diesen Generator." to player
+            else:
+                send "%{server_prefix}%&cKann nur vom Rang &2Bürger &cund höher gekauft werden." to player
+        if name of event-item is "&7Meister &8→ &7Generator":
+            if group of player is "Inhaber" or "Supporter" or "Moderator" or "Administrator" or "Content" or "Freund" or "Meister" or "Crafter":
+                if {balance::%uuid of player%} >= 25000:
+                    if player has space for 1 of cauldron named "&7Meister &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &7Meister &7und höher abgebaut werden.%new line%&8     - &7Generiert jede halbe Sekunde.%new line%&8     - &7Doppelte Erz-Wahrscheinlichkeit.%new line%%new line%&8%{server_title_stripped}%":
+                        remove 25000 from {balance::%uuid of player%}
+                        updateScoreboardBalance(player)
+                        give player 1 of cauldron named "&7Meister &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &7Meister &7und höher abgebaut werden.%new line%&8     - &7Generiert jede halbe Sekunde.%new line%&8     - &7Doppelte Erz-Wahrscheinlichkeit.%new line%%new line%&8%{server_title_stripped}%"
+                        send "%{server_prefix}%&7Meister &8→ &7Generator für &c%{currency_symbol}%25000 &7gekauft." to player
+                    else:
+                        send "%{server_prefix}%&cDu hast nicht genügen Platz im Inventar für diesen Generator." to player
+                else:
+                    send "%{server_prefix}%&cDu hast nicht genügend Geld für diesen Generator." to player
+            else:
+                send "%{server_prefix}%&cKann nur vom Rang &7Meister &cund höher gekauft werden." to player
+        if name of event-item is "&6Crafter &8→ &7Generator":
+            if group of player is "Inhaber" or "Supporter" or "Moderator" or "Administrator" or "Content" or "Freund" or "Crafter" or "Baron":
+                if {balance::%uuid of player%} >= 50000:
+                    if player has space for 1 of cauldron named "&6Crafter &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &6Crafter &7abgebaut werden.%new line%&8     - &7Generiert jede halbe Sekunde.%new line%&8     - &7Dreifache Erz-Wahrscheinlichkeit.%new line%%new line%&8%{server_title_stripped}%":
+                        remove 50000 from {balance::%uuid of player%}
+                        updateScoreboardBalance(player)
+                        give player 1 of cauldron named "&6Crafter &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &6Crafter &7abgebaut werden.%new line%&8     - &7Generiert jede halbe Sekunde.%new line%&8     - &7Dreifache Erz-Wahrscheinlichkeit.%new line%%new line%&8%{server_title_stripped}%"
+                        send "%{server_prefix}%&6Crafter &8→ &7Generator für &c%{currency_symbol}%50000 &7gekauft." to player
+                    else:
+                        send "%{server_prefix}%&cDu hast nicht genügen Platz im Inventar für diesen Generator." to player
+                else:
+                    send "%{server_prefix}%&cDu hast nicht genügend Geld für diesen Generator." to player
+            else:
+                send "%{server_prefix}%&cKann nur vom Rang &6Crafter &cgekauft werden." to player
+        if name of event-item is "&5Baron &8→ &7Generator":
+            if group of player is "Inhaber" or "Supporter" or "Moderator" or "Administrator" or "Content" or "Freund" or "Crafter" or "Baron":
+                if {balance::%uuid of player%} >= 500000:
+                    if player has space for 1 of cauldron named "&5Baron &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &5Baron &7abgebaut werden.%new line%&8     - &7Generiert jede viertel Sekunde.%new line%&8     - &7Fünffache Erz-Wahrscheinlichkeit.%new line%%new line%&8%{server_title_stripped}%":
+                        remove 500000 from {balance::%uuid of player%}
+                        updateScoreboardBalance(player)
+                        give player 1 of cauldron named "&5Baron &8→ &7Generator" with lore "%new line%&8→ &7Eigenschaften&8:%new line%&8     - &7Kann vom Rang &5Baron &7abgebaut werden.%new line%&8     - &7Generiert jede viertel Sekunde.%new line%&8     - &7Fünffache Erz-Wahrscheinlichkeit.%new line%%new line%&8%{server_title_stripped}%"
+                        send "%{server_prefix}%&5Baron &8→ &7Generator für &c%{currency_symbol}%500000 &7gekauft." to player
+                    else:
+                        send "%{server_prefix}%&cDu hast nicht genügen Platz im Inventar für diesen Generator." to player
+                else:
+                    send "%{server_prefix}%&cDu hast nicht genügend Geld für diesen Generator." to player
+            else:
+                send "%{server_prefix}%&cKann nur vom Rang &5Baron &cgekauft werden." to player
+        if name of event-item is "&5Ein weiteres &5&lGrundstück":
+            if group of player is "Inhaber" or "Supporter" or "Moderator" or "Administrator" or "Content" or "Freund" or "Crafter" or "Baron":
+                if {balance::%uuid of player%} >= 250000:
+                    remove 250000 from {balance::%uuid of player%}
+                    updateScoreboardBalance(player)
+                    send "%{server_prefix}%&5Grundstücksgutschein für &c%{currency_symbol}%250.000 &7gekauft." to player
+                    if player has space for 1 of paper named "&5&lGrundstücksgutschein" with lore "&7→ Rechtsklick zum aktivieren.":
+                        give player 1 of paper named "&5&lGrundstücksgutschein" with lore "&7→ Rechtsklick zum aktivieren."
+                    else:
+                        drop 1 of paper named "&5&lGrundstücksgutschein" with lore "&7→ Rechtsklick zum aktivieren." at player
+                else:
+                    send "%{server_prefix}%&cDu hast nicht genügend Geld für diesen Gutschein." to player
+            else:
+                send "%{server_prefix}%&cKann nur vom Rang &5Baron &cgekauft werden." to player
+        if name of event-item is "&6Fly für 15 Minuten":
+            if group of player is "Inhaber" or "Supporter" or "Moderator" or "Administrator" or "Content" or "Freund" or "Crafter" or "Meister" or "Bürger" or "Crafter" or "Baron":
+                if {balance::%uuid of player%} >= 15000:
+                    remove 15000 from {balance::%uuid of player%}
+                    updateScoreboardBalance(player)
+                    send "%{server_prefix}%&5Flygutschein für &c%{currency_symbol}%15.000 &7gekauft." to player
+                    if player has space for 1 of paper named "&5&lFlygutschein" with lore "&7→ Rechtsklick zum aktivieren.":
+                        give player 1 of paper named "&5&lFlygutschein" with lore "&7→ Rechtsklick zum aktivieren."
+                    else:
+                        drop 1 of paper named "&5&lFlygutschein" with lore "&7→ Rechtsklick zum aktivieren." at player
+                else:
+                    send "%{server_prefix}%&cDu hast nicht genügend Geld für diesen Gutschein." to player
+            else:
+                send "%{server_prefix}%&cKann nur vom Rang &5Bürger &cgekauft werden." to player
+        if name of event-item is "&3Abbaubeschleunigung der Stufe 5 für 15 Minuten":
+            if group of player is "Inhaber" or "Supporter" or "Moderator" or "Administrator" or "Content" or "Freund" or "Crafter" or "Meister" or "Bürger" or "Crafter" or "Baron":
+                if {balance::%uuid of player%} >= 15000:
+                    remove 15000 from {balance::%uuid of player%}
+                    updateScoreboardBalance(player)
+                    send "%{server_prefix}%&3Abbaugutschein für &c%{currency_symbol}%15.000 &7gekauft." to player
+                    if player has space for 1 of paper named "&3&lAbbaugutschein" with lore "&7→ Rechtsklick zum aktivieren.":
+                        give player 1 of paper named "&3&lAbbaugutschein" with lore "&7→ Rechtsklick zum aktivieren."
+                    else:
+                        drop 1 of paper named "&3&lAbbaugutschein" with lore "&7→ Rechtsklick zum aktivieren." at player
+                else:
+                    send "%{server_prefix}%&cDu hast nicht genügend Geld für diesen Gutschein." to player
+            else:
+                send "%{server_prefix}%&cKann nur vom Rang &5Bürger &cgekauft werden." to player
+
+        if name of event-item is "&6&lHalloween Crate &8| &fSchlüssel":
+            if {balance::%uuid of player%} >= 75000:
+                remove 75000 from {balance::%uuid of player%}
+                updateScoreboardBalance(player)
+                send "%{server_prefix}%&6&lHalloween Crate &8| &fSchlüssel &7für &c%{currency_symbol}%75.000 &7gekauft." to player
+                if player has space for 1 of trial key named "&6&lHalloween Crate &8| &fSchlüssel" with lore "&8→ &7Rechtsklick auf eine &6&lHalloween Crate &7um diese zu öffnen.":
+                    give player 1 of trial key named "&6&lHalloween Crate &8| &fSchlüssel" with lore "&8→ &7Rechtsklick auf eine &6&lHalloween Crate &7um diese zu öffnen."
+                else:
+                    drop 1 of trial key named "&6&lHalloween Crate &8| &fSchlüssel" with lore "&8→ &7Rechtsklick auf eine &6&lHalloween Crate &7um diese zu öffnen." at player
+            else:
+                send "%{server_prefix}%&cDu hast nicht genügend Geld für diesen Crate-Schlüssel." to player
+        if name of event-item is "&d&l*Girly* Crate &8| &fSchlüssel":
+            if {balance::%uuid of player%} >= 80000:
+                remove 80000 from {balance::%uuid of player%}
+                updateScoreboardBalance(player)
+                send "%{server_prefix}%&d&l*Girly* Crate &8| &fSchlüssel &7für &c%{currency_symbol}%80.000 &7gekauft." to player
+                if player has space for 1 of trial key named "&d&l*Girly* Crate &8| &fSchlüssel" with lore "&8→ &7Rechtsklick auf eine &d&l*Girly* Crate &7um diese zu öffnen.":
+                    give player 1 of trial key named "&d&l*Girly* Crate &8| &fSchlüssel" with lore "&8→ &7Rechtsklick auf eine &d&l*Girly* Crate &7um diese zu öffnen."
+                else:
+                    drop 1 of trial key named "&d&l*Girly* Crate &8| &fSchlüssel" with lore "&8→ &7Rechtsklick auf eine &d&l*Girly* Crate &7um diese zu öffnen." at player
+            else:
+                send "%{server_prefix}%&cDu hast nicht genügend Geld für diesen Crate-Schlüssel." to player
+        if name of event-item is "&f&lCraften Crate &8| &fSchlüssel":
+            if {balance::%uuid of player%} >= 30000:
+                remove 30000 from {balance::%uuid of player%}
+                updateScoreboardBalance(player)
+                send "%{server_prefix}%&f&lCraften Crate &8| &fSchlüssel &7für &c%{currency_symbol}%30.000 &7gekauft." to player
+                if player has space for 1 of trial key named "&f&lCraften Crate &8| &fSchlüssel" with lore "&8→ &7Rechtsklick auf eine &f&lCraften Crate &7um diese zu öffnen.":
+                    give player 1 of trial key named "&f&lCraften Crate &8| &fSchlüssel" with lore "&8→ &7Rechtsklick auf eine &f&lCraften Crate &7um diese zu öffnen."
+                else:
+                    drop 1 of trial key named "&f&lCraften Crate &8| &fSchlüssel" with lore "&8→ &7Rechtsklick auf eine &f&lCraften Crate &7um diese zu öffnen." at player
+            else:
+                send "%{server_prefix}%&cDu hast nicht genügend Geld für diesen Crate-Schlüssel." to player
+        if name of event-item is "&7&lStandard Crate &8| &fSchlüssel":
+            if {balance::%uuid of player%} >= 15000:
+                remove 15000 from {balance::%uuid of player%}
+                updateScoreboardBalance(player)
+                send "%{server_prefix}%&7&lStandard Crate &8| &fSchlüssel &7für &c%{currency_symbol}%15.000 &7gekauft." to player
+                if player has space for 1 of trial key named "&7&lStandard Crate &8| &fSchlüssel" with lore "&8→ &7Rechtsklick auf eine &7&lStandard Crate &7um diese zu öffnen.":
+                    give player 1 of trial key named "&7&lStandard Crate &8| &fSchlüssel" with lore "&8→ &7Rechtsklick auf eine &7&lStandard Crate &7um diese zu öffnen."
+                else:
+                    drop 1 of trial key named "&7&lStandard Crate &8| &fSchlüssel" with lore "&8→ &7Rechtsklick auf eine &7&lStandard Crate &7um diese zu öffnen." at player
+            else:
+                send "%{server_prefix}%&cDu hast nicht genügend Geld für diesen Crate-Schlüssel." to player
+        if name of event-item is "&5Süßigkeitentüte":
+            if {balance::%uuid of player%} >= 2500:
+                remove 2500 from {balance::%uuid of player%}
+                updateScoreboardBalance(player)
+                send "%{server_prefix}%&5Süßigkeitentüte &7für &c%{currency_symbol}%2.500 &7gekauft." to player
+                if player has space for 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjI2ZTAzMTg2MDI0YzRiZDRjYjQ0NGY4YzYwNzUxZTQ4ODgzOTNhYjE1NGY0YTgzNTcxNDQwMWRkNDM4YTM0MiJ9fX0=""}]}}" named "&5Süßigkeitentüte" with lore "&6Halloween Spezial-Item &8- &dHalloween 2025%new line%&8- &7Rechtsklick zum öffnen.":
+                    give player 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjI2ZTAzMTg2MDI0YzRiZDRjYjQ0NGY4YzYwNzUxZTQ4ODgzOTNhYjE1NGY0YTgzNTcxNDQwMWRkNDM4YTM0MiJ9fX0=""}]}}" named "&5Süßigkeitentüte" with lore "&6Halloween Spezial-Item &8- &dHalloween 2025%new line%&8- &7Rechtsklick zum öffnen."
+                else:
+                    drop 1 of player head with nbt from "{profile:{properties:[{name:""textures"",value:""eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjI2ZTAzMTg2MDI0YzRiZDRjYjQ0NGY4YzYwNzUxZTQ4ODgzOTNhYjE1NGY0YTgzNTcxNDQwMWRkNDM4YTM0MiJ9fX0=""}]}}" named "&5Süßigkeitentüte" with lore "&6Halloween Spezial-Item &8- &dHalloween 2025%new line%&8- &7Rechtsklick zum öffnen." at player
+            else:
+                send "%{server_prefix}%&cDu hast nicht genügend Geld für die Süßigkeitentüte." to player

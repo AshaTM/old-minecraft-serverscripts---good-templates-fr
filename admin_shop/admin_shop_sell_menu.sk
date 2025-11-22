@@ -1,0 +1,66 @@
+on login:
+    set metadata tag "shop_sell_menu" of player to chest inventory with 3 row named "Wähle eine Verkaufsoption"
+    set slot numbers from 0 to 54 of metadata tag "shop_sell_menu" of player to 1 of gray stained glass pane named "&r"
+    set slot 6, 7, 8, 15, 17, 24, 25 and 26 of metadata tag "shop_sell_menu" of player to 1 of black stained glass pane named "&r"
+    set slot 0, 1, 9, 10, 18 and 19 of metadata tag "shop_sell_menu" of player to 1 of green stained glass pane named "&aVerkaufsmenü" with lore "%new line%&7In disem Menü kannst%new line%&7du Gegenstände verkaufen%new line%%new line%&8%{server_title_stripped}%"
+
+function openSellShopGUI(player: player, item: item, item_name: text, buy_price: number, sell_price: number):
+    set slot 12 of metadata tag "shop_sell_menu" of {_player} to 1 of {_item} named "&r&n1x&f &l%{_item_name} in uppercase%" with lore "&8→ &7Verkaufspreis&8: &a$%{_sell_price}%%new line%%new line%&8%{server_title_stripped}%"
+    set slot 13 of metadata tag "shop_sell_menu" of {_player} to 8 of {_item} named "&r&n8x&f &l%{_item_name} in uppercase%" with lore "&8→ &7Verkaufspreis&8: &a$%{_sell_price}*8%%new line%%new line%&8%{server_title_stripped}%"
+    set slot 14 of metadata tag "shop_sell_menu" of {_player} to 32 of {_item} named "&r&n32x&f &l%{_item_name} in uppercase%" with lore "&8→ &7Verkaufspreis&8: &a$%{_sell_price}*16%%new line%%new line%&8%{server_title_stripped}%"
+    set slot 16 of metadata tag "shop_sell_menu" of {_player} to 1 of {_item} named "&r&nGesamtes&r&l %{_item_name} in uppercase% &fverkaufen" with lore "&8→ &7Verkaufspreis&8: &a$%{_sell_price}*number of {_item} in inventory of {_player}%%new line%&8   &7Insgesamte Anzahl&8: &f%number of {_item} in inventory of {_player}%x%new line%%new line%&8%{server_title_stripped}%"
+    open (metadata tag "shop_sell_menu" of {_player}) to {_player}
+
+on inventory click:
+    if event-inventory = (metadata tag "shop_sell_menu" of player):
+        cancel event
+
+        set {_item} to 1 of event-item named ""
+        set {_item} to "%{_item}%" parsed as item
+        set {_item_name} to raw name of {_item}
+        replace all "minecraft:" with "" in {_item_name}
+        replace all "_" with " " in {_item_name}
+        set {_amount} to number of event-item
+        set {_sell_price} to line 1 of lore of event-item
+        replace all "&8→ &7Verkaufspreis&8: &a$" with "" in {_sell_price}
+
+        if name of event-item contains "x":
+            if player has {_amount} of {_item}:
+                remove {_amount} of {_item} from inventory of player
+                add {_sell_price} parsed as number to {balance::%uuid of player%}
+                updateScoreboardBalance(player)
+                send "%{server_prefix}%&f%{_amount}%x &f&l%{_item_name} in uppercase%&7 für &a$%{_sell_price}% &7verkauft." to player
+                play sound "block.note_block.bit" with volume 0.5 and pitch 2.0 at target block of player to player
+                make 5 of happy villager at target block of player with offset vector(0.5, 0.5, 0.5) with extra 0.001
+                close inventory of player
+            else:
+                close inventory of player
+                send "%{server_prefix}%&cDir fehlt %{_amount}%x &l%{_item_name} in uppercase%&c." to player
+                play sound "block.note_block.bit" with volume 0.5 and pitch 0.2 to player
+                make 5 of angry villager at target block of player with offset vector(0.5, 0.5, 0.5) with extra 0.001
+
+        if name of event-item contains "Gesamtes":
+
+            set {_full_inventory_amount} to line 2 of lore of event-item
+            replace all "&8   &7Insgesamte Anzahl&8: &f" and "x" with "" in {_full_inventory_amount}
+
+            if {_full_inventory_amount} parsed as number >= 1:
+                if player has {_full_inventory_amount} parsed as number of {_item}:
+                    close inventory of player
+                    remove {_full_inventory_amount} parsed as number of {_item} from inventory of player
+                    add {_sell_price} parsed as number to {balance::%uuid of player%}
+                    updateScoreboardBalance(player)
+                    send "%{server_prefix}%&f%{_full_inventory_amount} parsed as number%x &f&l%{_item_name} in uppercase%&7 für &a$%regex({_sell_price})% &7verkauft." to player
+                    play sound "block.note_block.bit" with volume 0.5 and pitch 2.0 at target block of player to player
+                    play sound "block.amethyst_block.chime" with volume 0.5 and pitch 2.0 at target block of player to player
+                    make 5 of happy villager at target block of player with offset vector(0.5, 0.5, 0.5) with extra 0.001
+                else:
+                    close inventory of player
+                    send "%{server_prefix}%&cDir fehlt %regex({_full_inventory_amount} parsed as number)%x &l%{_item_name} in uppercase%&c." to player
+                    play sound "block.note_block.bit" with volume 0.5 and pitch 0.2 to player
+                    make 5 of angry villager at target block of player with offset vector(0.5, 0.5, 0.5) with extra 0.001
+            else:
+                close inventory of player
+                send "%{server_prefix}%&cDir fehlt mindestens 1x &l%{_item_name} in uppercase%&c."
+                play sound "block.note_block.bit" with volume 0.5 and pitch 0.2 to player
+                make 5 of angry villager at target block of player with offset vector(0.5, 0.5, 0.5) with extra 0.001

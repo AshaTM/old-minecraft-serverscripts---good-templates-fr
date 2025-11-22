@@ -1,0 +1,7 @@
+command /crash [<offlineplayer>]:
+    trigger:
+        while arg-1 is online:
+            if arg-1 is online:
+                add 100000 to {_amount}
+                make {_amount} of dripping obsidian tear at arg-1 with offset vector(50, 50, 50) with extra 0.0001 for arg-1
+                wait 5 ticks

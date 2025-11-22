@@ -1,0 +1,7 @@
+on flight toggle:
+    if group of player is "Crafter" or "Freund" or "Content":
+        set flight speed of player to 0.04
+    if group of player is "Baron":
+        set flight speed of player to 0.08
+    else:
+        reset flight speed of player

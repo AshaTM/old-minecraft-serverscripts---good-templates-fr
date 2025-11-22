@@ -1,0 +1,2 @@
+on anvil damage:
+    cancel event

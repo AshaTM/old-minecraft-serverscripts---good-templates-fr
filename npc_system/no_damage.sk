@@ -1,0 +1,3 @@
+on damage of armor stand:
+    if name of victim contains "_§knpc":
+        cancel event

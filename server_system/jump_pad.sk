@@ -1,0 +1,15 @@
+on pressure plate:
+    if block below event-block is redstone block:
+        if block 2 below event-block is command block:
+            push player upwards with speed 0.65
+            make 5 of cloud above event-entity with offset vector(0.5, 0.5, 0.5) with extra 0.001
+            play sound "block.bamboo_wood.fall" with volume 0.5 and pitch 0.5 to player
+            wait 2.5 tick
+            push player southwards with speed 2.5
+            make 5 of cloud above event-entity with offset vector(0.5, 0.5, 0.5) with extra 0.001
+            play sound "block.bamboo_wood.fall" with volume 0.5 and pitch 1.0 to player
+
+on damage:
+    if damage cause is fall:
+        if victim is within location(-38.5, -256.0, 84.5, world "world") and location(38.5, 256.0, -38.5, world "world"):
+            cancel event

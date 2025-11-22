@@ -1,0 +1,9 @@
+command /clearchat:
+    aliases: cc
+    permission: command.clearchat
+    trigger:
+        loop 128 times:
+            send "%random number between 0 and 9999999999999%" to all players
+        loop 128 times:
+            send "&r" to all players
+        send "%{server_prefix}%Der Chat wurde durch &f%player% &7geleert." to all players

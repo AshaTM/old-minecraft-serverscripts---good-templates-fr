@@ -1,0 +1,49 @@
+function openBlackMarketGUI(player: player):
+    play sound "block.note_block.bit" with volume 0.25 and pitch 1.2 at {_player} to {_player}
+    open (metadata tag "black_market_menu" of {_player}) to {_player}
+
+on login:
+    set metadata tag "black_market_menu" of player to chest inventory with 3 rows named "Schwarzmarkt"
+    set slot numbers from 0 to 54 of metadata tag "black_market_menu" of player to 1 of gray stained glass pane named "&r"
+    set slot 10 of metadata tag "black_market_menu" of player to 1 of enchanted book named "&5Verzaubere dein Werkzeug mit Effizienz 10." with lore "&8→ &7Kosten&8:%new line%&8     - &c%{currency_symbol}%150.000%new line%&8     - &7Rang&8: &6Crafter%new line%%new line%&8%{server_title_stripped}%"
+    set slot 11 of metadata tag "black_market_menu" of player to 1 of enchanted book named "&5Verzaubere dein Werkzeug mit Schärfe 10." with lore "&8→ &7Kosten&8:%new line%&8     - &c%{currency_symbol}%1,500.000%new line%&8     - &7Rang&8: &6Crafter%new line%%new line%&8%{server_title_stripped}%"
+
+on inventory click:
+    if event-inventory = (metadata tag "black_market_menu" of player):
+        cancel event
+        close inventory of player
+
+        if name of event-item is "&5Verzaubere dein Werkzeug mit Effizienz 10.":
+            if group of player is "Inhaber" or "Supporter" or "Moderator" or "Content" or "Freund" or "Crafter" or "Baron":
+                if {balance::%uuid of player%} >= 150000:
+                    if tool of player is not air or enchanted book or book:
+                        if tool of the player is not enchanted with efficiency 10:
+                            remove 150000 from {balance::%uuid of player%}
+                            updateScoreboardBalance(player)
+                            enchant tool of player with efficiency 10
+                            send "%{server_prefix}%&7Effizienz 10 für &c%{currency_symbol}%150.000 &7gekauft." to player
+                        else:
+                            send "%{server_prefix}%&cDein Werkzeug hat schon Effizienz 10." to player
+                    else:
+                        send "%{server_prefix}%&cDu musst das Werkzeug in deiner Hand halten dafür." to player
+                else:
+                    send "%{server_prefix}%&cDu hast nicht genügend Geld für dieses Buch." to player
+            else:
+                send "%{server_prefix}%&cKann nur vom Rang &6Crafter &cund höher gekauft werden." to player
+        if name of event-item is "&5Verzaubere dein Werkzeug mit Schärfe 10.":
+            if group of player is "Inhaber" or "Supporter" or "Moderator" or "Content" or "Freund" or "Crafter" or "Baron":
+                if {balance::%uuid of player%} >= 1500000:
+                    if tool of player is not air or enchanted book or book:
+                        if tool of the player is not enchanted with sharpness 10:
+                            remove 1500000 from {balance::%uuid of player%}
+                            updateScoreboardBalance(player)
+                            enchant tool of player with sharpness 10
+                            send "%{server_prefix}%&7Schärfe 10 für &c%{currency_symbol}%1,500.000 &7gekauft." to player
+                        else:
+                            send "%{server_prefix}%&cDein Werkzeug hat schon Schärfe 10." to player
+                    else:
+                        send "%{server_prefix}%&cDu musst das Werkzeug in deiner Hand halten dafür." to player
+                else:
+                    send "%{server_prefix}%&cDu hast nicht genügend Geld für dieses Buch." to player
+            else:
+                send "%{server_prefix}%&cKann nur vom Rang &6Crafter &cund höher gekauft werden." to player

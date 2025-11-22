@@ -1,0 +1,5 @@
+command /craftingtable:
+    aliases: craft, workbench, wb,
+    trigger:
+        open crafting table inventory to player
+        send action bar "%{server_prefix}%Öffne eine Werkbank..." to player

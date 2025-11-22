@@ -1,0 +1,317 @@
+on load:
+    # TYPE:3 - TITLES
+    
+    set {_text} to "Zeitbank"
+    set {_sub_text} to "Verdiene jede Sekunde<color:dark_gray>*</color:dark_gray> dazu<color:dark_gray>!</color:dark_gray>"
+    set {_item} to clock
+    set {_type} to 3
+    set {_x} to -14.5
+    set {_y} to 10.0
+    set {_z} to 44.5
+    set {_yaw} to -90
+    set {_pitch} to 5
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+
+    set {_text} to "Herzen"
+    set {_sub_text} to "Halte länger durch mit Herzen<color:dark_gray>!</color:dark_gray>"
+    set {_item} to potion of healing
+    set {_type} to 3
+    set {_x} to 15.5
+    set {_y} to 10.0
+    set {_z} to 44.5
+    set {_yaw} to 90
+    set {_pitch} to 5
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+
+    set {_text} to "Admin Shop"
+    set {_sub_text} to "Inflation schon berechnet<color:dark_gray>?</color:dark_gray>"
+    set {_item} to writable book
+    set {_type} to 3
+    set {_x} to 0.5
+    set {_y} to 15.0
+    set {_z} to 56.5
+    set {_yaw} to 180
+    set {_pitch} to 5
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+
+    # TYPE:2 - CATEGORIES
+    set {_text} to "Mineralien"
+    set {_sub_text} to "Seltene Erze und wertvolle Rohstoffe."
+    set {_item} to iron ore
+    set {_type} to 2
+    set {_x} to -5.5
+    set {_y} to 4.0
+    set {_z} to 65.5
+    set {_yaw} to 0
+    set {_pitch} to 0
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_text} to "Hölzer"
+    set {_sub_text} to "Holzarten für dein Projekt."
+    set {_item} to oak log
+    set {_type} to 2
+    set {_x} to 6.5
+    set {_y} to 4.0
+    set {_z} to 65.5
+    set {_yaw} to 0
+    set {_pitch} to 0
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_text} to "Grundmaterialien"
+    set {_sub_text} to "Natürliche Stoffe und grundlegende Baumaterialien."
+    set {_item} to dirt
+    set {_type} to 2
+    set {_x} to -5.5
+    set {_y} to 4.0
+    set {_z} to 75.5
+    set {_yaw} to 0
+    set {_pitch} to 0
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_text} to "Nutzpflanzen"
+    set {_sub_text} to "Alles für deine Landwirtschaft."
+    set {_item} to poisonous potato
+    set {_type} to 2
+    set {_x} to 6.5
+    set {_y} to 4.0
+    set {_z} to 75.5
+    set {_yaw} to 0
+    set {_pitch} to 0
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_text} to "Drops"
+    set {_sub_text} to "Von Monstern, für Spieler."
+    set {_item} to bone
+    set {_type} to 2
+    set {_x} to 6.5
+    set {_y} to 12.0
+    set {_z} to 75.5
+    set {_yaw} to 0
+    set {_pitch} to 0
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_text} to "<color:light_purple>Verzauberung</color:light_purple>"
+    set {_sub_text} to "Verzaubere deine Gegenstände. <color:red>Nur bis Level 12!</color:red>"
+    set {_item} to enchanted book
+    set {_type} to 2
+    set {_x} to 5.5
+    set {_y} to 4.5
+    set {_z} to 14.5
+    set {_yaw} to 0
+    set {_pitch} to 0
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_text} to "<color:gray>Ambosse</color:gray>"
+    set {_sub_text} to "Repariere deine Gegenstände."
+    set {_item} to mace
+    set {_type} to 2
+    set {_x} to 9.5
+    set {_y} to 5.5
+    set {_z} to 4.5
+    set {_yaw} to 0
+    set {_pitch} to 0
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_text} to "Craften"
+    set {_sub_text} to "Crafte Gegenstände."
+    set {_item} to crafting table
+    set {_type} to 2
+    set {_x} to -4.5
+    set {_y} to 5.5
+    set {_z} to 2.5
+    set {_yaw} to 0
+    set {_pitch} to 0
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_text} to "<color:dark_purple>Enderchest</color:dark_purple>"
+    set {_sub_text} to "Öffne deine Enderchest."
+    set {_item} to air
+    set {_type} to 2
+    set {_x} to -2.5
+    set {_y} to 4.0
+    set {_z} to -10.5
+    set {_yaw} to 0
+    set {_pitch} to 0
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_text} to "<color:green>Community Kiste</color:green>"
+    set {_sub_text} to "Öffne die Community Kiste."
+    set {_item} to air
+    set {_type} to 2
+    set {_x} to 3.5
+    set {_y} to 4.0
+    set {_z} to -10.5
+    set {_yaw} to 0
+    set {_pitch} to 0
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_text} to "Crates"
+    set {_sub_text} to "Oh, das ist nützlich!"
+    set {_item} to trial key
+    set {_type} to 2
+    set {_x} to 11.5
+    set {_y} to 6.5
+    set {_z} to -5.5
+    set {_yaw} to 0
+    set {_pitch} to 10
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_text} to "Kühe"
+    set {_sub_text} to "Halal Serverfleisch"
+    set {_item} to beef
+    set {_type} to 2
+    set {_x} to -11.5
+    set {_y} to 5.0
+    set {_z} to -0.5
+    set {_yaw} to 0
+    set {_pitch} to 10
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    set {_text} to "Kleiner Teich"
+    set {_sub_text} to "Eher eine Pfütze..."
+    set {_item} to fishing rod
+    set {_type} to 2
+    set {_x} to 10.5
+    set {_y} to 4.0
+    set {_z} to 40.5
+    set {_yaw} to 0
+    set {_pitch} to 10
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+    add location at {_x}, {_y}, {_z} in world {_world} to {ambient_particle_locations::*}
+
+    # TYPE:1 - INFO TEXT
+    set {_text} to "Fahrstuhl"
+    set {_sub_text} to "<color:gray>Stell zwei Eisenblöcke übereinander%new line%und zack, du hast einen Fahrstuhl!%new line%%new line%Damit kommst du schnell und bequem%new line%in andere Ebenen.</color:gray>%new line%%new line%<color:gold>☑ Von allen Rängen baubar.</color:gold>"
+    set {_item} to iron block
+    set {_type} to 1
+    set {_x} to 0.5
+    set {_y} to 3.25
+    set {_z} to 70.5
+    set {_yaw} to 0
+    set {_pitch} to 0
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+
+    set {_text} to "Fahrstuhl"
+    set {_sub_text} to "<color:gray>Stell zwei Eisenblöcke übereinander%new line%und zack, du hast einen Fahrstuhl!%new line%%new line%Damit kommst du schnell und bequem%new line%in andere Ebenen.</color:gray>%new line%%new line%<color:gold>☑ Von allen Rängen baubar.</color:gold>"
+    set {_item} to iron block
+    set {_type} to 1
+    set {_x} to 0.5
+    set {_y} to 11.25
+    set {_z} to 70.5
+    set {_yaw} to 0
+    set {_pitch} to 0
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+
+    set {_text} to "Fahrstuhl"
+    set {_sub_text} to "<color:gray>Stell zwei Eisenblöcke übereinander%new line%und zack, du hast einen Fahrstuhl!%new line%%new line%Damit kommst du schnell und bequem%new line%in andere Ebenen.</color:gray>%new line%%new line%<color:gold>☑ Von allen Rängen baubar.</color:gold>"
+    set {_item} to iron block
+    set {_type} to 1
+    set {_x} to 0.5
+    set {_y} to 19.25
+    set {_z} to 70.5
+    set {_yaw} to 0
+    set {_pitch} to 0
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+
+    set {_text} to "Wichtige Befehle"
+    set {_sub_text} to "<color:white>""F"" (Item-Swap) /menu</color:white> <color:dark_gray>→</color:dark_gray> <color:gray>Öffnet das Hauptmenü.</color:gray>%new line%<color:white>/plot auto</color:white> <color:dark_gray>→</color:dark_gray> <color:gray>Automatisch ein Plot beanspruchen.</color:gray>%new line%<color:white>/plot home</color:white> <color:dark_gray>→</color:dark_gray> <color:gray>Zu deinem Plot teleportieren.</color:gray>%new line%<color:white>/warps</color:white> <color:dark_gray>→</color:dark_gray> <color:gray>Rude das Warps-Menü auf.</color:gray>%new line%<color:white>/ranks</color:white> <color:dark_gray>→</color:dark_gray> <color:gray>Öffnet das Ränge-Menü.</color:gray>%new line%<color:white>/plotmenu</color:white> <color:dark_gray>→</color:dark_gray> <color:gray>Öffnet die Plotverwaltung.</color:gray>%new line%<color:white>/vote</color:white> <color:dark_gray>→</color:dark_gray> <color:gray>Für den Server abstimmen ;)</color:gray>"
+    set {_item} to command block
+    set {_type} to 1
+    set {_x} to -3.5
+    set {_y} to 2.7
+    set {_z} to 29.5
+    set {_yaw} to 0
+    set {_pitch} to 0
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+
+    set {_text} to "Bank-Befehle"
+    set {_sub_text} to "<color:gray>%new line%<color:white>/bank einzahlen (Betrag)</color:white> <color:dark_gray>→</color:dark_gray> <color:gray>Zahle in die Bank ein.%new line%<color:white>/bank auszahlen (Betrag)</color:white> <color:dark_gray>→</color:dark_gray> <color:gray>Auszahlung durchführen.</color:gray>%new line%<color:white>/bank kontostand</color:white> <color:dark_gray>→</color:dark_gray> <color:gray>Kontostand abfragen.</color:gray></color:gray>%new line%%new line%%new line%%new line%"
+    set {_item} to command block
+    set {_type} to 1
+    set {_x} to -12.5
+    set {_y} to 2.3
+    set {_z} to 47.5
+    set {_yaw} to 0
+    set {_pitch} to 0
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+
+    set {_text} to "<color:red>Nur Taschengeld!</color:red>"
+    set {_sub_text} to "<color:gray>Der Admin-Shop ist nur mit Taschengeld nutzbar.%new line%Schau, dass du immer genug Wechselgeld dabei hast :)</color:gray>%new line%%new line%%new line%%new line%%new line%"
+    set {_item} to blue harness
+    set {_type} to 1
+    set {_x} to 5.5
+    set {_y} to 3.25
+    set {_z} to 70.5
+    set {_yaw} to 0
+    set {_pitch} to 0
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+
+    set {_text} to "<color:red>Nur Taschengeld!</color:red>"
+    set {_sub_text} to "<color:gray>Der Admin-Shop ist nur mit Taschengeld nutzbar.%new line%Schau, dass du immer genug Wechselgeld dabei hast :)</color:gray>%new line%%new line%%new line%%new line%%new line%"
+    set {_item} to blue harness
+    set {_type} to 1
+    set {_x} to -4.5
+    set {_y} to 3.25
+    set {_z} to 70.5
+    set {_yaw} to 0
+    set {_pitch} to 0
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+
+    set {_text} to "<color:red>Nur Taschengeld!</color:red>"
+    set {_sub_text} to "<color:gray>Der Admin-Shop ist nur mit Taschengeld nutzbar.%new line%Schau, dass du immer genug Wechselgeld dabei hast :)</color:gray>%new line%%new line%%new line%%new line%%new line%"
+    set {_item} to blue harness
+    set {_type} to 1
+    set {_x} to -4.5
+    set {_y} to 11.25
+    set {_z} to 70.5
+    set {_yaw} to 0
+    set {_pitch} to 0
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})
+
+    set {_text} to "<color:red>Nur Taschengeld</color:red>"
+    set {_sub_text} to "<color:gray>Der Admin-Shop ist nur mit Taschengeld nutzbar.%new line%Schau, dass du immer genug Wechselgeld dabei hast :)</color:gray>%new line%%new line%%new line%%new line%%new line%"
+    set {_item} to blue harness
+    set {_type} to 1
+    set {_x} to 5.5
+    set {_y} to 11.25
+    set {_z} to 70.5
+    set {_yaw} to 0
+    set {_pitch} to 0
+    set {_world} to "world"
+    setDisplay({_text}, {_sub_text}, {_item}, {_type}, {_yaw}, {_pitch}, {_x}, {_y}, {_z}, {_world})

@@ -1,0 +1,60 @@
+on login:
+    if {balance::%uuid of player%} is not set:
+        set {balance::%uuid of player%} to 0
+
+command /skeconomy [<text>] [<offlineplayer>] [<number>]:
+    permission: command.economy
+    aliases: skeco
+    usage: %{server_prefix}% &cUngültige Nutzung.%newline%&8→ &7/economy <add, remove, reset, set> <Spieler> <Betrag>
+    trigger:
+        if arg-2 is not set:
+            send "%{server_prefix}%Bitte gib einen &fSpieler &7an, der &aonline &7ist."
+            stop
+
+        if arg-1 is "add":
+            if arg-3 is not set:
+                send "%{server_prefix}%Bitte gib einen &fBetrag &7an, der hinzugefügt werden soll."
+                stop
+
+            add arg-3 to {balance::%uuid of arg-2%}
+            send "%{server_prefix}%Dem Konto von &f%arg-2% &7wurden &a%{currency_symbol}%%regex(arg-3)% &7hinzugefügt."
+            send "%{server_prefix}%Dir wurden &a%{currency_symbol}%%regex(arg-3)% &7gutgeschrieben." to arg-2
+            if arg-2 is online:
+                updateScoreboardBalance(arg-2)
+            stop
+
+        if arg-1 is "remove":
+            if arg-3 is not set:
+                send "%{server_prefix}%Bitte gib einen &fBetrag &7an, der entfernt werden soll."
+                stop
+            remove arg-3 from {balance::%uuid of arg-2%}
+            send "%{server_prefix}%Dem Konto von &f%arg-2% &7wurden &c%{currency_symbol}%%regex(arg-3)% &7entfernt."
+            send "%{server_prefix}%Es wurden &c%{currency_symbol}%%regex(arg-3)% &7von deinem Konto entfernt." to arg-2
+            if arg-2 is online:
+                updateScoreboardBalance(arg-2)
+            stop
+
+        if arg-1 is "reset":
+            set {balance::%uuid of arg-2%} to 0
+            send "%{server_prefix}%Der Kontostand von &f%arg-2% &7wurde &fzurückgesetzt&7."
+            send "%{server_prefix}%Dein Kontostand wurde &fzurückgesetzt&7." to arg-2
+            if arg-2 is online:
+                updateScoreboardBalance(arg-2)
+            stop
+
+        if arg-1 is "set":
+            if arg-3 is not set:
+                send "%{server_prefix}%Bitte gib den &fneuen Kontostand &7an."
+                stop    
+            set {balance::%uuid of arg-2%} to arg-3
+            send "%{server_prefix}%Der Kontostand von &f%arg-2% &7wurde auf &f%{currency_symbol}%%regex(arg-3)% &7gesetzt."
+            send "%{server_prefix}%Dein Kontostand wurde auf &f%{currency_symbol}%%regex(arg-3)% &7gesetzt." to arg-2
+            if arg-2 is online:
+                updateScoreboardBalance(arg-2)
+            stop
+
+        send "%{server_prefix}% &cUngültige Nutzung.%newline%&8→ &7/economy <add, remove, reset, set> <Spieler> <Betrag>"
+
+on tab complete of "/skeconomy" or "skeco":
+    set tab completions for position 1 to "add", "remove", "reset", and "set"
+    set tab completions for position 3 to "10", "100", "1000", "2500", and "5000"

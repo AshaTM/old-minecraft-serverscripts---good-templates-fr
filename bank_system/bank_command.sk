@@ -1,0 +1,54 @@
+command /bank [<text>] [<text>]:
+    trigger:
+        if arg-1 or arg-2 is not set:
+            if arg-1 is "kontoauszug":
+                send "%{server_prefix}%Dein Guthaben beträgt&8: &f%{currency_symbol}%%balance of event-entity%&7." to event-entity
+                play sound "block.note_block.bit" with volume 0.5 and pitch 0.2 to player
+                make 5 of angry villager at player with offset vector(0.5, 0.5, 0.5) with extra 0.001
+                stop
+            send "%{server_prefix}%/bank einzahlen/auszahlen (Summe)" to player
+            stop
+        if arg-1 is "einzahlen":
+            if {balance::%uuid of player%} >= arg-2 parsed as number:
+                set {_exchangeMoney} to arg-2
+                set {_exchangeMoney::*} to "%{_exchangeMoney}%" split at "."
+                if {_exchangeMoney::1} is not set:
+                    set {_exchangeMoney::1} to "0"
+                if {_exchangeMoney::2} is not set:
+                    set {_exchangeMoney::2} to "0"
+                set {_exchangeMoney} to "%{_exchangeMoney::1}%.%first 2 character of {_exchangeMoney::2}%"
+                remove {_exchangeMoney} parsed as number from {balance::%uuid of player%}
+                if {balance::%uuid of player%} <= 0:
+                    set {balance::%uuid of player%} to 0
+                updateScoreboardBalance(player)
+                add {_exchangeMoney} parsed as number to balance of player
+                play sound "block.note_block.bit" with volume 0.5 and pitch 2.0 to player
+                make 15 of note at player with offset vector(0.5, 0.5, 0.5) with extra 0.001
+                send "%{server_prefix}%&c%{currency_symbol}%%{_exchangeMoney}% &7wurde auf die Bank überwiesen." to player
+            else:
+                send action bar "%{server_prefix}%&cDu hast nicht genügend Taschengeld für diesen Umtausch." to event-entity
+                play sound "block.note_block.bit" with volume 0.5 and pitch 0.2 to player
+                make 5 of angry villager at player with offset vector(0.5, 0.5, 0.5) with extra 0.001
+        if arg-1 is "auszahlen":
+            if arg-2 parsed as number <= 0:
+                send "%{server_prefix}%Sehr witzig..." to player
+                stop
+            if balance of player >= arg-2 parsed as number:
+                set {_exchangeMoney} to arg-2
+                replace all "," with "" in {_exchangeMoney}
+                set {_exchangeMoneyNum} to {_exchangeMoney} parsed as number
+                set {_exchangeMoneyNum} to round({_exchangeMoneyNum} * 100) / 100
+                remove {_exchangeMoneyNum} from balance of player
+                add {_exchangeMoneyNum} to {balance::%uuid of player%}
+                updateScoreboardBalance(player)
+                play sound "block.note_block.bit" with volume 0.5 and pitch 2.0 to player
+                make 50 of bubble at player with offset vector(0.5, 0.5, 0.5) with extra 0.001
+                send "%{server_prefix}%&a%{currency_symbol}%%{_exchangeMoney}% &7wurde ausgezahlt." to player
+            else:
+                send action bar "%{server_prefix}%&cDu hast nicht genügend Kontostand für diesen Umtausch." to event-entity
+                play sound "block.note_block.bit" with volume 0.5 and pitch 0.2 to player
+                make 5 of angry villager at player with offset vector(0.5, 0.5, 0.5) with extra 0.001
+
+on tab complete of "/bank":
+    set tab completions for position 1 to "kontoauszug", "einzahlen" and "auszahlen"
+    set tab completions for position 2 to "1000", "10000", "15000", "25000" and "50000"

@@ -1,0 +1,18 @@
+on right click on gray stained glass:
+    loop all entities in radius 0.11 of event-block:
+        if name of loop-entity contains "shop":
+            cancel event
+
+            set {_data::*} to name of loop-entity split at ","
+            set {_buy_price} to {_data::2} parsed as number
+            set {_sell_price} to {_data::3} parsed as number
+            set {_item} to {_data::4} parsed as item
+            set {_item_name} to raw name of {_item}
+            replace all "minecraft:" with "" in {_item_name} 
+            replace all "_" with " " in {_item_name}
+            set {_item_name} to "%{_item_name}%"
+
+            openBuyShopGUI(player, {_item}, {_item_name}, {_buy_price}, {_sell_price})
+
+            play sound "block.note_block.bit" with volume 0.5 and pitch 1.5 at event-block to player
+            make 2 of cloud at event-block with offset vector(0.5, 0.5, 0.5) with extra 0.001

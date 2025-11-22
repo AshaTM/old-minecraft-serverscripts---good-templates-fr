@@ -1,0 +1,4 @@
+on explosion:
+    if event-entity is creeper:
+        cancel event
+        drop 3 gunpowder 0.5 above event-entity

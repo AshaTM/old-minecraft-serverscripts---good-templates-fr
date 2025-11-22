@@ -1,0 +1,44 @@
+on login:
+    set metadata tag "shop_buy_menu" of player to chest inventory with 3 row named "Wähle eine Kaufoption"
+    set slot numbers from 0 to 54 of metadata tag "shop_buy_menu" of player to 1 of gray stained glass pane named "&r"
+    set slot 0, 1, 9, 10, 18 and 19 of metadata tag "shop_buy_menu" of player to 1 of red stained glass pane named "&cKaufmenü" with lore "%new line%&7In disem Menü kannst%new line%&7du Gegenstände kaufen%new line%%new line%&8%{server_title_stripped}%"
+
+function openBuyShopGUI(player: player, item: item, item_name: text, buy_price: number, sell_price: number):
+    set slot 12 of metadata tag "shop_buy_menu" of {_player} to 1 of {_item} named "&r&n1x&f &l%{_item_name} in uppercase%" with lore "&8→ &7Kaufpreis&8: &c$%{_buy_price}%%new line%%new line%&8%{server_title_stripped}%"
+    set slot 13 of metadata tag "shop_buy_menu" of {_player} to 8 of {_item} named "&r&n8x&f &l%{_item_name} in uppercase%" with lore "&8→ &7Kaufpreis&8: &c$%{_buy_price}*8%%new line%%new line%&8%{server_title_stripped}%"
+    set slot 14 of metadata tag "shop_buy_menu" of {_player} to 16 of {_item} named "&r&n16x&f &l%{_item_name} in uppercase%" with lore "&8→ &7Kaufpreis&8: &c$%{_buy_price}*16%%new line%%new line%&8%{server_title_stripped}%"
+    set slot 15 of metadata tag "shop_buy_menu" of {_player} to 32 of {_item} named "&r&n32x&f &l%{_item_name} in uppercase%" with lore "&8→ &7Kaufpreis&8: &c$%{_buy_price}*32%%new line%%new line%&8%{server_title_stripped}%"
+    set slot 16 of metadata tag "shop_buy_menu" of {_player} to 64 of {_item} named "&r&n64x&f &l%{_item_name} in uppercase%" with lore "&8→ &7Kaufpreis&8: &c$%{_buy_price}*64%%new line%%new line%&8%{server_title_stripped}%"
+    open (metadata tag "shop_buy_menu" of {_player}) to {_player}
+
+on inventory click:
+    if event-inventory = (metadata tag "shop_buy_menu" of player):
+        cancel event
+        if name of event-item contains "&n":
+
+            set {_item} to 1 of plain event-item
+            set {_item_name} to raw name of {_item}
+            replace all "minecraft:" with "" in {_item_name}
+            replace all "_" with " " in {_item_name}
+            set {_amount} to number of event-item
+            set {_buy_price} to line 1 of lore of event-item
+            replace all "&8→ &7Kaufpreis&8: &c$" with "" in {_buy_price}
+
+            if {balance::%uuid of player%} >= {_buy_price} parsed as number:
+                if player has space for {_amount} of {_item}:
+                    remove {_buy_price} parsed as number from {balance::%uuid of player%}
+                    updateScoreboardBalance(player)
+                    give player {_amount} of {_item}
+                    send "%{server_prefix}%Du hast &f%{_amount}%x &l%{_item_name} in uppercase%&7 für &c$%regex({_buy_price})% &7gekauft." to player
+                    play sound "block.note_block.bit" with volume 0.5 and pitch 1.5 at target block of player to player
+                    make 5 of happy villager at target block of player with offset vector(0.5, 0.5, 0.5) with extra 0.001
+                else:
+                    close inventory of player
+                    send "%{server_prefix}%&cNicht genügend Platz für %{_amount}%x &l%{_item_name} in uppercase%&c." to player
+                    play sound "block.note_block.bit" with volume 0.5 and pitch 0.2 at target block of player to player
+                    make 5 of angry villager at target block of player with offset vector(0.5, 0.5, 0.5) with extra 0.001
+            else:
+                close inventory of player
+                send "%{server_prefix}%&cDir fehlt $%regex({_buy_price} parsed as number-{balance::%uuid of player%})% für %{_amount}%x &l%{_item_name} in uppercase%&c." to player
+                play sound "block.note_block.bit" with volume 0.5 and pitch 0.2 to player
+                make 5 of angry villager at target block of player with offset vector(0.5, 0.5, 0.5) with extra 0.001

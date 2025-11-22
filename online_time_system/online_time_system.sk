@@ -1,0 +1,32 @@
+on login:
+    if {seconds::%uuid of player%} is not set:
+        set {seconds::%uuid of player%} to 0
+        set {minutes::%uuid of player%} to 0
+        set {hours::%uuid of player%} to 0
+
+    while player is online:
+        if {isAfk::%uuid of player%} is not 1:
+            add 1 to {seconds::%uuid of player%}
+            add random number between 0.07 and 0.12 to {time_balance::%uuid of player%}
+
+            if {seconds::%uuid of player%} >= 60:
+                set {seconds::%uuid of player%} to 0
+                add 1 to {minutes::%uuid of player%}
+                updateScoreboardOnlineTime(player)
+
+                if {minutes::%uuid of player%} >= 60:
+                    set {minutes::%uuid of player%} to 0
+                    add 1 to {hours::%uuid of player%}
+                    updateTablistName(player)
+        wait 1 second
+
+command /onlinetime [<offline player>]:
+    aliases: /ot, playtime
+    trigger:
+        if arg-1 is not set:
+            send "%{server_prefix}%Spielzeit&8: &f%{hours::%uuid of player%}% &7Stunde(n)&8, &f%{minutes::%uuid of player%}% &7Minute(n)&8, &f%{seconds::%uuid of player%}% &7Sekunde(n)&7."
+        else:
+            if arg-1 is online:
+                send "%{server_prefix}%Spielzeit von &f%arg-1%&8: &f%{hours::%uuid of arg-1%}% &7Stunde(n)&8, &f%{minutes::%uuid of arg-1%}% &7Minute(n)&8, &f%{seconds::%uuid of arg-1%}% &7Sekunde(n)&7."
+            else:
+                send "%{server_prefix}%Bitte gib einen &fSpieler &7an, der &aonline &7ist."

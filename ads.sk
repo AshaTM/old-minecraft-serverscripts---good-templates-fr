@@ -1,0 +1,13 @@
+command /werbung [<text>]:
+    cooldown: 15 seconds
+    cooldown message: &cBitte warte einen moment...
+    trigger:
+        if {balance::%uuid of player%} >= 100:
+            if arg-1 is set:
+                remove 100 from {balance::%uuid of player%}
+                send "&2&lWerbung &7von &f%prefix of player%&7%player%&8:%new line%&8&m                                              &r" to all players
+                send "&7%colored arg-1%" to all players
+                send "&8&m                                              &r" to all players
+                updateScoreboardBalance(player)
+            else:
+                send "%{server_prefix}%Die Werbung kostet 100$"

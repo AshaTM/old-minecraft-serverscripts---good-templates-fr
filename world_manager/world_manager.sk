@@ -1,0 +1,15 @@
+command /world [<text>]:
+    trigger:
+        if arg-1 is "world":
+            teleport player to location(0.5, 19.0, 0.5, world "world")
+        if arg-1 is "world_miscellaneous":
+            teleport player to location(0.5, -60.0, 0.5, world "world_miscellaneous")
+        if arg-1 is "world_nether":
+            teleport player to location(0.5, 128.0, 0.5, world "world_nether")
+        if arg-1 is "world_overworld":
+            teleport player to location(0.5, 56.0, 0.5, world "world_overworld")
+        if arg-1 is "world_the_end":
+            teleport player to location(0.5, 63.0, 0.5, world "world_the_end")
+
+on tab complete of "/world":
+    set tab completions for position 1 to "world", "world_miscellaneous", "world_nether", "world_overworld" and "world_the_end"

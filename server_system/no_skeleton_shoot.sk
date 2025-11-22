@@ -1,0 +1,3 @@
+on shoot:
+    if shooter is skeleton:
+        cancel event

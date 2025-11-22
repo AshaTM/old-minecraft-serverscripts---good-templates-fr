@@ -1,0 +1,41 @@
+command /fly [<offlineplayer>]:
+    permission: command.fly
+    trigger:
+        if arg-1 is set:
+            if arg-1 is online:
+                if player has permission "command.fly.others":
+                    if flight mode of arg-1 is false:
+                        set flight mode of arg-1 to true
+                        send "%{server_prefix}%Dein &fFlugmodus &7wurde &aaktiviert&7." to arg-1
+                        send "%{server_prefix}%Flugmodus von &f%arg-1% &7wurde &aaktiviert&7." to player
+                    else:
+                        set flight mode of arg-1 to false
+                        send "%{server_prefix}%Dein &fFlugmodus &7wurde &cdeaktiviert&7." to arg-1
+                        send "%{server_prefix}%Flugmodus von &f%arg-1% &7wurde &cdeaktiviert&7." to player
+                else:
+                    send "%{server_prefix}%&cDazu hast keine Berechtigung." to player
+            else:
+                send "%{server_prefix}%Bitte gib einen &fSpieler &7an, der &aonline &7ist." to player
+        else:
+            if flight mode of player is false:
+                set flight mode of player to true
+                send "%{server_prefix}%Dein &fFlugmodus &7wurde &aaktiviert&7." to player
+            else:
+                set flight mode of player to false
+                send "%{server_prefix}%Dein &fFlugmodus &7wurde &cdeaktiviert&7." to player
+
+on command "/fly":
+    if player has permission "command.fly":
+        if flight mode of player is false:
+            set {flight::%uuid of player%} to true
+            stop
+        if flight mode of player is true:
+            set {flight::%uuid of player%} to false
+            stop
+
+on world change:
+    if {flight::%uuid of player%} is true:
+        set flight mode of player to true
+
+on logout:
+    delete {flight::%uuid of player%}
