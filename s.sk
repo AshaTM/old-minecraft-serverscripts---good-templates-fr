@@ -135,9 +135,9 @@ function donationMessage(player: player):
     send "" to {_player}
     send " &5Wichtig&8: &7Eure Spenden sind rein freiwillig und dienen ausschließlich dazu, die laufenden Server- und Entwicklungskosten zu decken. Ihr erhaltet dafür keine spielinternen Vorteile oder Belohnungen – euer Beitrag hilft uns aber direkt dabei, das Projekt am Leben zu halten und stetig zu verbessern." to {_player}
     send "" to {_player}
-    send "%{server_prefix}%Über diesen&8: <link:https://gofund.me/c3f41d17e>&9&nLink<reset> &7kannst du" to {_player}
+    send "%{server_prefix}%Über diesen&8: <link:https://LINK>&9&nLink<reset> &7kannst du" to {_player}
     send "&7für das %{server_title}% &7Servernetzwerk spenden." to {_player}
-    send "<link:https://gofund.me/c3f41d17e>&8(https://gofund.me/c3f41d17e)<reset>" to {_player}
+    send "<link:https://LINK>&8(https://LINK)<reset>" to {_player}
     send "" to {_player}
     play sound "block.note_block.guitar" with volume 0.5 and pitch 0.5 to {_player}
     wait 5 tick

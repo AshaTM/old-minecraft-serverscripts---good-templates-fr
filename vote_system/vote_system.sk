@@ -9,8 +9,8 @@ command /vote:
         send "&7• Gib auf der Webseite deinen Minecraft-Namen korrekt ein." to player
         send "&7• Bestätige anschließend deinen Vote." to player
         send "" to player
-        send "<link:https://minecraft-server.eu/vote/index/23591>&9[Jetzt für den Server voten]<reset>" to player
-        send "&8(https://minecraft-server.eu/vote/index/23591)" to player
+        send "<link:https://LINK>&9[Jetzt für den Server voten]<reset>" to player
+        send "&8(https://LINK)" to player
         send "" to player
         send "&7Du hast bisher insgesamt &a%{votes::%uuid of player%}% &7Mal gevotet." to player
         send "" to player

@@ -1,6 +1,6 @@
 on load:
-    set {server_title} to "&57EAVEN.DE"
-    set {server_title_stripped} to "7eaven.de"
+    set {server_title} to "&5SERVER_NAME"
+    set {server_title_stripped} to "SERVER_NAME"
     set {server_motto} to "&7Endlich, mein Server."
-    set {server_prefix} to "&57EAVEN.DE &8→ &7"
+    set {server_prefix} to "&5SERVER_NAME &8→ &7"
     set {currency_symbol} to "$"
